@@ -35,13 +35,27 @@ const orgSchema = {
   telephone: '+12125550198',
   email: 'Info@thevolleyballuniforms.com',
 };
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'The Volleyball Uniforms',
+  url: 'https://thevolleyballuniforms.com',
+  description: 'Custom volleyball uniforms, jerseys, and team apparel for schools, colleges, clubs, and leagues across the United States.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://thevolleyballuniforms.com/?s={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
 import InlineQuoteSection from '../components/InlineQuoteSection.astro';
 ---
 
 <BaseLayout
   title="Custom Volleyball Uniforms & Jerseys | The Volleyball Uniforms"
   description="Premium custom volleyball uniforms, jerseys & team apparel for schools, colleges & clubs. Bulk orders, free design mockups, fast turnaround. Request a quote today."
-  schema={orgSchema}
+  schema={[orgSchema, websiteSchema]}
+  canonical="https://thevolleyballuniforms.com/"
 >
   <!-- HERO -->
   <section class="relative bg-gradient-to-br from-navy-950 via-navy-900 to-electric-900 overflow-hidden min-h-[90vh] flex items-center">
