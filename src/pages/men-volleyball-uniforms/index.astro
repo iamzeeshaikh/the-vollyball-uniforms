@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'men-volleyball-uniforms')!;
+const related = products.filter(p => ['men-volleyball-jerseys', 'volleyball-training-shorts', 'volleyball-warm-up-suits'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking interlock' },
+  { label: 'Fit', value: 'Men\'s athletic or relaxed cut' },
+  { label: 'Sizes Available', value: 'S – 4XL' },
+  { label: 'Customization', value: 'Full dye-sublimation on jersey and shorts' },
+  { label: 'Shorts Inseam Options', value: '5\", 7\", 9\" inseam available' },
+  { label: 'Waistband', value: 'Elastic with internal drawstring' },
+  { label: 'Set Contents', value: 'Jersey + shorts (libero jersey optional add-on)' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  {
+    question: 'Can jerseys and shorts be ordered in perfectly matching colors?',
+    answer: 'Yes — and this is one of the strongest advantages of ordering a complete set from us rather than mixing suppliers. Because both the jersey and shorts are sublimated in the same production run using the same color profiles and fabric batches, the colors are guaranteed to match. Ordering jersey and shorts separately from different suppliers almost always results in visible color variation under court lighting.',
+  },
+  {
+    question: 'What inseam lengths do men\'s volleyball shorts come in?',
+    answer: 'We offer three inseam options: 5-inch (standard athletic short), 7-inch (mid-length for players who prefer more coverage), and 9-inch (longer option for players who play in cold gyms or prefer extended coverage). All three inseam options are available in matching sublimation designs. The 5-inch and 7-inch are the most common for competitive men\'s programs.',
+  },
+  {
+    question: 'Does a men\'s team also need a libero uniform in a different color?',
+    answer: 'Under both NFHS and NCAA rules, the libero position requires a jersey that clearly contrasts with the rest of the team on the court. We produce men\'s libero jerseys as an add-on to the complete set — same design language, contrasting color scheme. This is included in our standard quoting process; just let us know the libero\'s size when you submit your order.',
+  },
+  {
+    question: 'Can we order a full men\'s set as individual pieces rather than a bundled set?',
+    answer: 'Yes. While ordering jersey and shorts together provides the best pricing and color matching, we can produce jerseys or shorts individually if you need to replace a damaged piece or add a new player mid-season. Individual replacement orders use your stored artwork file and are produced to match the original exactly.',
+  },
+  {
+    question: 'We\'re ordering for a coed team — do we need separate cuts for men and women?',
+    answer: 'Yes, we recommend separate cuts. Men\'s and women\'s patterns differ in shoulder width, torso length, and taper. A women\'s jersey on a male player will typically be too narrow in the shoulders and too short in the torso. Coed teams can order men\'s and women\'s cut jerseys in the same design simultaneously — we manage the two rosters as sub-groups within a single order.',
+  },
+  {
+    question: 'How does the sizing work for the complete set — do jersey and shorts use the same size?',
+    answer: 'Not necessarily. Some players wear different sizes for jersey and shorts due to differences in torso versus waist/hip measurements. Our roster template includes separate size fields for jersey and shorts, and we size each piece independently based on the measurements provided. We recommend measuring both jersey fit (chest) and shorts fit (waist/hip) separately when collecting your team\'s size data.',
+  },
+  {
+    question: 'Do men\'s volleyball shorts come with elastic waistbands or drawstrings?',
+    answer: 'Both. All men\'s volleyball shorts include an elastic waistband for secure fit during dynamic play, plus an internal drawstring for players who want a more customized tightness level. The drawstring is fully hidden inside the waistband tunnel and does not interfere with the sublimated design on the shorts exterior.',
+  },
+  {
+    question: 'What accessories can be added to match a men\'s uniform set?',
+    answer: 'We can produce matching libero jerseys, warm-up jackets and pants, practice jerseys, compression shirts, and socks in coordinating colors and designs to create a complete team apparel package. Visit our <a href="/volleyball-warm-up-suits/">volleyball warm-up suits</a> page for pre-game and sideline options that pair with men\'s competition sets.',
+  },  { question: 'Can the uniform design be refreshed each season while keeping the same team colors?', answer: 'Yes. Many club programs update their design annually while maintaining consistent team colors and core branding elements. We archive your previous design and build from it when creating a new season\'s variation. Design consultation for returning customers is typically faster than new program onboarding since the foundational brand elements are already established.' },
+  { question: 'Do you produce men\'s volleyball uniforms for beach volleyball competitions?', answer: 'Yes. Beach volleyball uniforms follow different cut conventions than indoor — board shorts or fitted shorts at longer inseams, and jerseys adapted for outdoor conditions. Contact us with your beach program\'s specific requirements and we will advise on the best fabric, cut, and construction for sand court conditions and extended outdoor exposure.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: "Men's Volleyball Uniforms",
+  description: "Complete men's volleyball uniform sets — jerseys, shorts, and matching accessories for clubs, leagues, and colleges.",
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '76' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+  { label: "Men's Volleyball Uniforms" },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Men's Volleyball Uniforms — Complete Custom Sets | The Volleyball Uniforms"
+  description="Complete men's volleyball uniform sets — jerseys, shorts & matching accessories. Full customization, bulk pricing, fast delivery. For clubs, leagues & colleges."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/men-volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Uniforms</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Men's Volleyball Uniforms</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (76 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">A complete men's volleyball uniform set should look coordinated, feel purpose-built, and hold together through a full competitive season. Our men's uniform sets pair a sublimated performance jersey with matching sublimated shorts — produced together to guarantee color consistency — in men's-specific athletic cuts that accommodate the broader shoulder span and extended torso of male athletes.</p>
+          <div class="space-y-3 mb-8">
+            {['Coordinated jersey + shorts in single production run', 'Men\'s-specific athletic cut', 'Multiple inseam options (5\", 7\", 9\")', 'Elastic + drawstring waistband on shorts', 'Libero jersey add-on available', 'Sizes S through 4XL'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>The Value of a Coordinated Men's Uniform Set</h2>
+      <p>In men's volleyball, the visual cohesion of a uniform set communicates professionalism and team identity. Mismatched jerseys and shorts — whether from different suppliers or different production runs — stand out under gym lighting in ways that are difficult to ignore. Ordering a complete men's volleyball uniform set from a single source guarantees that every element uses the same Pantone-matched color profile, the same fabric dye lot, and the same design language.</p>
+
+      <h2>Men's Athletic Cut — Why It Matters</h2>
+      <p>The men's volleyball athletic cut is engineered around the biomechanics of male volleyball players. The wider shoulder construction accommodates the broader deltoid and trapezius development common in competitive hitters, while the extended torso length ensures the jersey stays tucked during jump serves and spike approaches. Deep-cut armholes allow a full overhand serve motion without fabric tension at the shoulder seam — a detail that generic unisex jerseys routinely fail to provide.</p>
+      <h3>Shorts Design and Inseam Selection</h3>
+      <p>Men's volleyball shorts complete the uniform with the same design elements as the jersey — color blocks, team logos, and player numbers if desired. We offer 5-inch, 7-inch, and 9-inch inseam options. Most competitive men's programs default to the 5-inch, which is the most common at the collegiate and club level. For indoor programs where floor contact is a concern, the 7-inch provides additional coverage without restricting movement. Pair your shorts order with <a href="/volleyball-training-shorts/">volleyball training shorts</a> in a matching color for consistent team appearance across practices and games.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>Men's volleyball uniform sets are produced on a 4.5 oz performance polyester interlock. This fabric grade is selected for its combination of structural integrity — holding its shape through repeated laundering — and performance functionality, including moisture-wicking and quick-dry properties. The interlock weave is denser than standard mesh, which means it resists snagging when a player slides across a gym floor in a defensive play. Colors sublimated into this fabric remain vivid through 100+ wash cycles.</p>
+
+      <h2>Customization Options</h2>
+      <p>Full dye-sublimation means unlimited color combinations, patterns, and design elements at no added cost per color. Men's uniform sets commonly feature bold geometric patterns, gradient color transitions, and large-format logo placement that would be prohibitively expensive with screen printing. Our design team can work from your club's existing branding, develop new concepts from a color palette you provide, or refine a design you've already sketched. Start the process through our <a href="/request-a-quote/">quote request form</a>.</p>
+
+      <h2>Sizing Information</h2>
+      <p>Men's uniform sets are available in sizes S through 4XL for both jersey and shorts, with independent size selection for each garment. Because some players have proportionally different chest and waist measurements, we size jersey and shorts independently using separate measurement inputs. Our <a href="/size-guide/">size guide</a> provides chest, shoulder, waist, and hip measurements for each size with guidance on how to choose between sizes for the best athletic fit.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Men's volleyball clubs and college programs that order complete sets — jersey and shorts together — receive the best per-unit pricing in our catalog. Bulk tiers begin at 10 sets, with significant price reductions at 20 and 30 sets. Programs that order across multiple squads simultaneously, such as club A, B, and C teams, combine quantities for a single discount calculation.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Men's club volleyball programs competing in USA Volleyball regional leagues</li>
+        <li>College men's club teams outfitting for the NCVF national championship</li>
+        <li>High school boys volleyball programs in NFHS-sanctioned states</li>
+        <li>Adult recreational leagues standardizing on matching uniforms for teams</li>
+        <li>International men's club programs competing under FIVB regional rules</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Men's Volleyball Uniforms Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Men's Volleyball Uniforms FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Complete Your Men's Program Look" subtitle="Full uniform sets with matching jersey and shorts — free mockup, fast production." />
+</BaseLayout>

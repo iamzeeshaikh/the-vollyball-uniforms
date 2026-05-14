@@ -1,0 +1,132 @@
+---
+import { categories } from '../data/products';
+---
+
+<header class="bg-navy-950 sticky top-0 z-50 shadow-xl">
+  <!-- Top bar -->
+  <div class="bg-navy-900 border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-sm">
+      <div class="flex items-center gap-6 text-navy-300">
+        <a href="tel:+12125550198" class="flex items-center gap-1.5 hover:text-gold-400 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          +1 212-555-0198
+        </a>
+        <a href="mailto:Info@thevolleyballuniforms.com" class="flex items-center gap-1.5 hover:text-gold-400 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          Info@thevolleyballuniforms.com
+        </a>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-navy-300">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Free Design Mockup
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Bulk Order Discounts
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-gold-500 rounded-lg flex items-center justify-center group-hover:bg-gold-400 transition-colors">
+          <svg class="w-6 h-6 text-navy-950" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.1"/>
+            <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="text-white font-extrabold text-lg leading-tight">The Volleyball</div>
+          <div class="text-gold-400 font-semibold text-sm leading-tight">Uniforms</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="/" class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm">Home</a>
+
+        <!-- Mega dropdown for products -->
+        <div class="relative group">
+          <button class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm flex items-center gap-1">
+            Products
+            <svg class="w-4 h-4 group-hover:rotate-180 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block w-[700px] z-50">
+            <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid grid-cols-3 gap-6">
+              {categories.map(cat => (
+                <div>
+                  <a href={`/${cat.slug}/`} class="font-bold text-navy-950 text-sm uppercase tracking-wide hover:text-electric-600 transition-colors block mb-3">{cat.name}</a>
+                  <ul class="space-y-2">
+                    {cat.products.slice(0, 4).map(slug => {
+                      const name = slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                      return (
+                        <li>
+                          <a href={`/${slug}/`} class="text-gray-600 hover:text-navy-900 text-sm hover:font-medium transition-all block">{name}</a>
+                        </li>
+                      );
+                    })}
+                    {cat.products.length > 4 && (
+                      <li><a href={`/${cat.slug}/`} class="text-electric-600 text-sm font-medium hover:text-electric-700">View all →</a></li>
+                    )}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a href="/about/" class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm">About</a>
+        <a href="/blog/" class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm">Blog</a>
+        <a href="/faq/" class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm">FAQ</a>
+        <a href="/contact/" class="text-navy-200 hover:text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-all font-medium text-sm">Contact</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-3">
+        <a href="/request-a-quote/" class="hidden md:inline-flex btn-primary text-sm py-3 px-6">
+          Get a Free Quote
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white p-2 rounded-lg hover:bg-navy-800 transition-colors" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-navy-800 px-4 py-4">
+    <div class="space-y-2">
+      <a href="/" class="block text-navy-200 hover:text-white py-2 font-medium">Home</a>
+      {categories.map(cat => (
+        <div>
+          <a href={`/${cat.slug}/`} class="block text-gold-400 font-semibold py-2">{cat.name}</a>
+          <div class="pl-4 space-y-1">
+            {cat.products.map((slug: string) => {
+              const name = slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+              return <a href={`/${slug}/`} class="block text-navy-300 hover:text-white py-1 text-sm">{name}</a>;
+            })}
+          </div>
+        </div>
+      ))}
+      <a href="/about/" class="block text-navy-200 hover:text-white py-2 font-medium">About</a>
+      <a href="/blog/" class="block text-navy-200 hover:text-white py-2 font-medium">Blog</a>
+      <a href="/faq/" class="block text-navy-200 hover:text-white py-2 font-medium">FAQ</a>
+      <a href="/contact/" class="block text-navy-200 hover:text-white py-2 font-medium">Contact</a>
+      <a href="/request-a-quote/" class="btn-primary block text-center mt-4">Get a Free Quote</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

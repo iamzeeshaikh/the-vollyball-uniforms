@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'blank-volleyball-jerseys')!;
+const related = products.filter(p => ['sublimated-volleyball-jerseys', 'volleyball-practice-jerseys', 'custom-number-volleyball-jerseys', 'men-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Moisture-Wicking Polyester' },
+  { label: 'Fabric Weight', value: '140–160 GSM' },
+  { label: 'Fit', value: 'Relaxed Athletic / Unisex' },
+  { label: 'Sizes Available', value: 'YXS – 3XL' },
+  { label: 'Colors', value: 'White, Black, Navy, Royal, Red, Gold, and custom colors' },
+  { label: 'Neckline', value: 'V-neck or crew neck (specify on order)' },
+  { label: 'Sleeve Style', value: 'Short sleeve or sleeveless' },
+  { label: 'Customization', value: 'Available via heat transfer or sublimation' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: 'What are blank volleyball jerseys used for?', answer: 'Blank volleyball jerseys are commonly used for practice sessions, recreational leagues, pickup games, school PE classes, and teams that apply their own numbers or logos through heat transfer. They are also popular as budget-friendly alternatives when full custom sublimation is not required.' },
+  { question: 'Can blank jerseys be customized after purchase?', answer: 'Yes. Blank jerseys are designed to accept heat transfer vinyl, iron-on numbers, and screen printing. If you plan to add numbers or team names yourself, specify this when ordering so we can ensure the fabric surface is optimized for your chosen application method.' },
+  { question: 'What colors do blank volleyball jerseys come in?', answer: 'Our standard stock colors include white, black, navy, royal blue, red, gold, forest green, and several others. Custom color matching is also available for orders of 24 or more pieces. Contact us for a full color chart.' },
+  { question: 'Are blank jerseys available in youth sizes?', answer: 'Yes. We stock blank volleyball jerseys in youth sizes from YXS through YXL as well as adult sizes XS through 3XL.' },
+  { question: 'What is the minimum order for blank jerseys?', answer: 'There is no minimum for blank jersey orders. However, orders of 12 or more pieces unlock our first bulk pricing tier for better per-unit pricing.' },
+  { question: 'How do blank jerseys compare to fully sublimated jerseys in quality?', answer: 'Blank jerseys use quality moisture-wicking polyester and are built for real athletic use. The primary difference from sublimated jerseys is design — blank jerseys do not have full-color custom designs. For teams that prioritize cost over design complexity, blank jerseys are an excellent choice.' },
+  { question: 'Can I get blank jerseys with just a number and no name?', answer: 'Yes. Adding numbers only (without names) is a popular request. Numbers can be sublimated into the fabric during manufacturing for maximum durability, or applied via heat transfer after production for more flexibility. See our custom number volleyball jerseys for details.' },
+  { question: 'What is the turnaround time for blank jersey orders?', answer: 'In-stock blank jerseys in standard colors typically ship within 3–5 business days. For custom-color blank jerseys or orders requiring pre-applied numbers, standard turnaround of 10–14 business days applies.' },  { question: 'Can blank jerseys be ordered in multiple colors for the same team?', answer: 'Yes. Teams often order blank jerseys in two or three colors to facilitate drill groupings, scrimmage team separation, or position identification during practice. Each color runs as part of the same order, so all jerseys are produced simultaneously with the same fabric and construction quality.' },
+  { question: 'How does a blank jersey hold up to repeated washing throughout a season?', answer: 'Blank jerseys use the same 100% moisture-wicking polyester as our customized jerseys — a fabric designed to hold its shape and color through an entire season of machine washing. We recommend a cool cycle and low heat dry to maximize jersey lifespan. Without sublimated designs to protect, blank jerseys are the most care-flexible option in our lineup.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Blank Volleyball Jerseys',
+  description: 'High-quality blank volleyball jerseys in moisture-wicking polyester. Available in multiple colors and sizes for teams, leagues, and individual players.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '54' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Blank Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Blank Volleyball Jerseys — Custom & Stock Colors | The Volleyball Uniforms"
+  description="High-quality blank volleyball jerseys in moisture-wicking polyester. Stock colors and custom options. Ideal for practice, rec leagues & teams. No minimum. Get a quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/blank-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Blank Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (54 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Premium blank volleyball jerseys crafted from 100% moisture-wicking polyester. Available in multiple stock colors and custom options. Perfect for practice, recreational leagues, and teams that prefer to apply their own customization.</p>
+          <div class="space-y-3 mb-8">
+            {['Moisture-wicking 100% polyester construction', 'Multiple stock colors available immediately', 'Youth and adult sizing (YXS – 3XL)', 'Compatible with heat transfer and screen printing', 'V-neck or crew neck options', 'Fast turnaround on stock orders'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Everything You Need to Know About Blank Volleyball Jerseys</h2>
+      <p>Blank volleyball jerseys are the foundation of any volleyball apparel program. Whether you are outfitting a recreational league that wants consistent team colors, a school PE department that needs affordable athletic wear, or a competitive club that prefers to apply numbers and logos in-house, blank jerseys offer excellent value and versatility.</p>
+      <p>At The Volleyball Uniforms, our blank jersey selection starts with the same performance fabrics we use in our fully customized game jerseys. The difference is simply design — blank jerseys come without logos, names, or numbers, ready for you to add customization as needed, or to use as-is for practice and recreational play.</p>
+
+      <h2>Material and Construction</h2>
+      <p>All of our blank volleyball jerseys use 100% moisture-wicking polyester. This is the same material used in professional volleyball jerseys — it is not a compromise for the blank category. Moisture wicking keeps players dry during intense training sessions by pulling sweat away from the skin to the jersey's outer surface where it evaporates quickly.</p>
+      <p>The fabric weight of our blank jerseys ranges from 140–160 GSM (grams per square meter), making them lightweight and breathable without feeling flimsy. Double-stitched hems and flatlock seam construction prevent chafing and ensure the jersey holds its shape after repeated washing.</p>
+
+      <h2>Customization Compatibility</h2>
+      <p>If you plan to add numbers, logos, or names to blank jerseys, there are several methods available. Heat transfer vinyl (HTV) applied with a heat press is the most accessible DIY option and produces professional results when done correctly. Screen printing is another option for high-volume decoration, particularly effective for 1–2 color logos and text. For the most permanent and durable results, consider our <a href="/sublimated-volleyball-jerseys/">sublimated volleyball jerseys</a>, which integrate the design into the fabric itself.</p>
+      <p>If you are uncertain which customization approach is right for your situation, our team can advise you based on your quantity, timeline, and budget requirements. Many teams order blank jerseys from us and have a local print shop add the custom elements — a cost-effective approach for small orders.</p>
+
+      <h2>Use Cases for Blank Volleyball Jerseys</h2>
+      <p>Blank jerseys serve a wide variety of use cases beyond simple cost savings. Physical education departments use them for class play, where standardized athletic wear improves safety awareness and team identification during drills. Recreational leagues that reorganize teams each season use blank jerseys in different colors to indicate team assignments without committing to permanent custom designs. Tournament organizers use them as participation jerseys for one-time events.</p>
+      <p>For competitive clubs, blank jerseys are the backbone of the practice wardrobe. A dedicated set of practice jerseys — either blank or with basic number application — helps differentiate practice from game play, which many coaches believe reinforces the mental significance of game-day uniforms.</p>
+
+      <h2>Sizing Information</h2>
+      <p>Our blank volleyball jerseys are available in a complete size range from YXS (youth extra small, approximately age 4–6) through adult 3XL. Use our <a href="/size-guide/">volleyball jersey size guide</a> to match body measurements to the appropriate size. For team orders, collect chest circumference measurements from every player rather than relying on self-reported clothing sizes.</p>
+
+      <h2>Related Products</h2>
+      <p>Teams that order blank jerseys often also need matching shorts and socks to complete the practice kit. For game day, most competitive programs upgrade to <a href="/sublimated-volleyball-jerseys/">fully sublimated jerseys with custom team colors and player numbers</a>.</p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Blank Volleyball Jersey Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Blank Volleyball Jerseys FAQs" />
+
+  <!-- RELATED PRODUCTS -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Ready to Order Blank Volleyball Jerseys?" subtitle="Get pricing on blank jerseys in your preferred colors and sizes. Fast turnaround, no minimum order." />
+</BaseLayout>

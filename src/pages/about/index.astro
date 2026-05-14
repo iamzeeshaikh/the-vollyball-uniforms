@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'About Us' }];
+---
+
+<BaseLayout
+  title="About The Volleyball Uniforms | Custom Volleyball Apparel USA"
+  description="Learn about The Volleyball Uniforms — New York-based custom volleyball apparel company serving teams across the USA for 15+ years. Our story, mission & values."
+  canonical="https://thevolleyballuniforms.com/about/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6">About The Volleyball Uniforms</h1>
+        <p class="text-xl text-navy-300 leading-relaxed">We are a New York-based custom volleyball apparel company that has been serving teams, schools, clubs, and leagues across the United States for over 15 years. Our mission is to help every volleyball program look and perform its best.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Our Story</h2>
+          <div class="prose-custom">
+            <p>The Volleyball Uniforms was founded with a single purpose: to make high-quality, fully custom volleyball apparel accessible to teams at every level — from a youth rec league in a small town to a Division I college program.</p>
+            <p>We started by solving a problem we saw firsthand. Teams were choosing between cheap, ill-fitting uniforms or waiting months for expensive custom orders from large manufacturers with minimum order quantities out of reach for most programs. We built a better process — one that combines premium production standards with a customer experience designed around the real needs of coaches, athletic directors, and team managers.</p>
+            <p>Today we produce tens of thousands of volleyball uniforms and jerseys each year for teams across all 50 states. Our client list includes everything from first-year youth volleyball clubs to established NCAA programs. The common thread is that every team deserves a uniform that looks professional, performs at the highest level, and arrives on time.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <img src="/images/volleyball-team-kits/1.jpg" alt="The Volleyball Uniforms team kit" class="rounded-2xl w-full object-cover aspect-square" loading="lazy" />
+          <img src="/images/sublimated-volleyball-jerseys/1.jpg" alt="Custom sublimated volleyball jerseys" class="rounded-2xl w-full object-cover aspect-square" loading="lazy" />
+          <img src="/images/college-volleyball-uniforms/1.jpg" alt="College volleyball uniforms" class="rounded-2xl w-full object-cover aspect-square" loading="lazy" />
+          <img src="/images/women-volleyball-jerseys/1.jpg" alt="Women's volleyball jerseys" class="rounded-2xl w-full object-cover aspect-square" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-16 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {[
+          { n: '500+', l: 'Teams Served' },
+          { n: '10,000+', l: 'Uniforms Produced' },
+          { n: '15+', l: 'Years in Business' },
+          { n: '50', l: 'States Served' },
+        ].map(s => (
+          <div class="text-center">
+            <div class="text-5xl font-extrabold text-gold-400 mb-2">{s.n}</div>
+            <div class="text-navy-300 font-medium">{s.l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VALUES -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="section-title">Our Mission & Values</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { emoji: '🎯', title: 'Quality First', desc: 'Every uniform that leaves our facility is inspected for color accuracy, print quality, and construction integrity. We do not ship anything we would not wear ourselves.' },
+          { emoji: '🤝', title: 'Team-Centered Service', desc: 'We understand that uniform orders affect real people — players who wear these jerseys with pride. We treat every order with the care it deserves, regardless of size.' },
+          { emoji: '⚡', title: 'On-Time Delivery', desc: 'A season does not wait. We plan production schedules with realistic timelines and maintain clear communication throughout so your team has what it needs before the first game.' },
+        ].map(v => (
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+            <div class="text-4xl mb-4">{v.emoji}</div>
+            <h3 class="text-xl font-bold text-navy-950 mb-3">{v.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="section-title mb-6">Our Location & Contact</h2>
+      <p class="text-gray-600 text-lg leading-relaxed mb-8">We are headquartered in New York City, at the heart of the American apparel industry. Our production partnerships span domestic and international facilities, allowing us to offer premium quality at accessible prices with reliable turnaround times.</p>
+      <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm inline-block text-left">
+        <div class="space-y-4 text-gray-700">
+          <div class="flex items-center gap-3">
+            <span class="text-gold-500 text-xl">📍</span>
+            <span>245 W 29th St, New York, NY 10001, United States</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold-500 text-xl">📞</span>
+            <a href="tel:+12125550198" class="text-electric-600 hover:text-electric-700 font-medium">+1 212-555-0198</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold-500 text-xl">✉️</span>
+            <a href="mailto:Info@thevolleyballuniforms.com" class="text-electric-600 hover:text-electric-700 font-medium">Info@thevolleyballuniforms.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Ready to Work With Us?" subtitle="Request a free quote and design mockup for your team's volleyball uniforms." />
+</BaseLayout>

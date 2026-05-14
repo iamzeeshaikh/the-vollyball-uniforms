@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Size Guide' }];
+
+const faqs = [
+  { question: 'How do I measure chest size for a volleyball jersey?', answer: 'Measure around the fullest part of the chest, keeping the tape parallel to the ground and slightly loose (about 1 inch of ease). This is the primary measurement we use to determine jersey size.' },
+  { question: 'Should volleyball jerseys fit tight or loose?', answer: 'For competitive play, most players prefer an athletic or semi-fitted cut that moves with the body without restricting range of motion. For recreational play, a relaxed fit is comfortable. We recommend ordering a size up if you are between sizes and prioritize freedom of movement.' },
+  { question: 'What if players on my team fall between sizes?', answer: 'We recommend sizing up for players between sizes. A slightly larger jersey is less restrictive than a smaller one during overhead movements, diving, and jumping. If your team has players with unusual proportions, we can produce custom dimensions.' },
+  { question: 'Do youth and adult size charts differ significantly?', answer: 'Yes. Youth sizes are not simply smaller versions of adult sizes — they are cut to the proportions of developing bodies. Always use the appropriate youth size chart rather than comparing youth to adult measurements.' },
+  { question: 'Can I order a size sample before placing a full team order?', answer: 'Yes. We can produce a sample jersey in your team\'s design for fit review before the full team order. Contact us to arrange this and we will factor the sample cost toward your final order.' },
+  { question: 'Can players measure themselves or does someone need to measure them?', answer: 'Players can self-measure with a soft tape measure, but we strongly recommend having a second person take measurements for accuracy. Self-measured chest circumference is often underestimated. For team orders, coaches or managers collecting measurements on-site produce the most reliable size rosters.' },
+  { question: 'What happens if a jersey does not fit correctly after delivery?', answer: 'If a fit issue results from a production error on our end — a jersey produced at the wrong dimensions from your submitted measurement — we replace the piece at no charge with priority turnaround. If the issue stems from an incorrect measurement submitted by the program, we produce a replacement at cost. This is why we strongly recommend using body measurements rather than self-reported clothing sizes.' },
+  { question: 'Do players need to order the same size for jersey and shorts?', answer: 'Not necessarily. Some players carry different proportions between chest and waist, which means their jersey size and shorts size may differ. Our team roster template has separate size columns for jersey and shorts, and we produce each piece according to its own size entry. Measure chest for jersey and waist plus hip for shorts separately.' },
+  { question: 'How should I size a jersey that will be worn over a compression shirt or sports bra?', answer: 'Add one size if your players regularly wear a fitted compression layer underneath. A jersey sized for bare skin will feel restrictive when layered. Most competitive programs size jerseys with a light compression undershirt in mind — the resulting athletic fit is still performance-appropriate without being uncomfortably tight.' },
+  { question: 'Are men\'s and women\'s jerseys sized differently?', answer: 'Yes. Men\'s and women\'s jersey cuts use different pattern templates. Women\'s jerseys are cut with a narrower shoulder, shorter torso, and a tapered waist, while men\'s jerseys use a wider shoulder and longer body length for the same nominal size. Always specify which cut when ordering for a mixed-gender program or a coed team to ensure each player receives the correct pattern for their body type.' },
+];
+---
+
+<BaseLayout
+  title="Volleyball Uniform Size Guide — Youth & Adult Charts | The Volleyball Uniforms"
+  description="Complete volleyball uniform size guide with youth and adult size charts. How to measure, fit tips, and team sizing instructions for jerseys, shorts & warm-up suits."
+  canonical="https://thevolleyballuniforms.com/size-guide/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-4">Volleyball Uniform Size Guide</h1>
+      <p class="text-xl text-navy-300">Complete size charts for youth and adult volleyball jerseys, shorts, and warm-up suits. Use this guide when submitting your team size roster.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <!-- How to Measure -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">How to Take Measurements</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: 'Chest', icon: '📏', desc: 'Measure around the fullest part of the chest, keeping the tape level and slightly loose. This is the primary jersey measurement.' },
+            { title: 'Waist', icon: '📏', desc: 'Measure around the natural waist — the narrowest point of the torso. Used for shorts and pants sizing.' },
+            { title: 'Hip / Seat', icon: '📏', desc: 'Measure around the fullest part of the hips and seat. Used for shorts sizing, especially for women\'s uniforms.' },
+          ].map(m => (
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+              <div class="text-2xl mb-3">{m.icon}</div>
+              <h3 class="font-bold text-navy-950 mb-2">{m.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Adult Size Chart -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Adult Volleyball Jersey Size Chart</h2>
+        <div class="overflow-x-auto rounded-xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead class="bg-navy-950 text-white">
+              <tr>
+                {['Size', 'Chest (inches)', 'Body Length (inches)', 'Shoulder Width (inches)'].map(h => (
+                  <th class="px-4 py-3 text-left font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['XS', '32–34', '27–27.5', '15–15.5'],
+                ['S', '35–37', '27.5–28', '16–16.5'],
+                ['M', '38–40', '28–28.5', '17–17.5'],
+                ['L', '41–43', '28.5–29', '18–18.5'],
+                ['XL', '44–46', '29–29.5', '19–19.5'],
+                ['2XL', '47–49', '29.5–30', '20–20.5'],
+                ['3XL', '50–52', '30–30.5', '21–21.5'],
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map(cell => <td class="px-4 py-3 text-gray-700">{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Youth Size Chart -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Youth Volleyball Jersey Size Chart</h2>
+        <div class="overflow-x-auto rounded-xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead class="bg-electric-700 text-white">
+              <tr>
+                {['Size', 'Chest (inches)', 'Body Length (inches)', 'Approx. Age'].map(h => (
+                  <th class="px-4 py-3 text-left font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['YXS', '24–26', '20–21', '4–6 years'],
+                ['YS', '27–29', '21.5–22.5', '6–8 years'],
+                ['YM', '30–32', '23–24', '8–10 years'],
+                ['YL', '33–35', '24.5–25.5', '10–12 years'],
+                ['YXL', '36–38', '26–27', '12–14 years'],
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map(cell => <td class="px-4 py-3 text-gray-700">{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Shorts Size Chart -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Volleyball Shorts Size Chart</h2>
+        <div class="overflow-x-auto rounded-xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead class="bg-navy-950 text-white">
+              <tr>
+                {['Size', 'Waist (inches)', 'Hip (inches)', 'Inseam Options'].map(h => (
+                  <th class="px-4 py-3 text-left font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['XS', '24–26', '34–36', '2", 4", or 6"'],
+                ['S', '27–29', '37–39', '2", 4", or 6"'],
+                ['M', '30–32', '40–42', '2", 4", or 6"'],
+                ['L', '33–35', '43–45', '2", 4", or 6"'],
+                ['XL', '36–38', '46–48', '2", 4", or 6"'],
+                ['2XL', '39–41', '49–51', '2", 4", or 6"'],
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map(cell => <td class="px-4 py-3 text-gray-700">{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="bg-electric-50 rounded-2xl p-8 border border-electric-100 mb-12">
+        <h2 class="text-2xl font-extrabold text-navy-950 mb-4">Team Sizing Tips</h2>
+        <ul class="space-y-3 text-gray-700">
+          {[
+            'Collect chest measurements from all players rather than relying on self-reported sizes',
+            'For jerseys worn over a compression layer, size up by one for a comfortable fit',
+            'Order 1–2 extra jerseys in the most common sizes for last-minute roster additions',
+            'Consider printing the size on the inside label for easy player distribution',
+            'Youth players grow fast — ordering YXL or adult S can extend a jersey\'s lifespan by a year',
+          ].map(tip => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-electric-600 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              {tip}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Sizing FAQs" />
+  <CTASection title="Ready to Submit Your Size Roster?" subtitle="Use our quote form to submit your complete size roster and we will handle the rest." btnText="Request a Quote" />
+</BaseLayout>

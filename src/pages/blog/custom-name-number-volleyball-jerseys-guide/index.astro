@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Custom Name and Number Volleyball Jerseys Guide' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Custom Name and Number Volleyball Jerseys Guide',
+  author: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  publisher: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  datePublished: '2025-03-10',
+};
+---
+
+<BaseLayout
+  title="Custom Name & Number Volleyball Jerseys — Complete Guide | Blog"
+  description="Everything about adding custom names and numbers to volleyball jerseys. Font styles, placement options, sublimation vs heat transfer, NFHS compliance, and ordering tips."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/blog/custom-name-number-volleyball-jerseys-guide/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="mb-8">
+        <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">Customization</span>
+        <div class="text-gray-400 text-sm mt-3">March 10, 2025 • 6 min read • By The Volleyball Uniforms Team</div>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">Custom Name and Number Volleyball Jerseys — Complete Guide</h1>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">Adding names and numbers to volleyball jerseys involves more decisions than most coaches expect. This guide covers every option so you can make the right choice for your team.</p>
+
+      <div class="prose-custom">
+        <h2>Why Names and Numbers Matter</h2>
+        <p>Player names and numbers on volleyball jerseys serve both practical and symbolic purposes. Practically, numbers allow referees, scorers, and fans to identify specific players during play. Names build team identity and make players feel like real members of a program rather than interchangeable kit-wearers. A jersey with a player's name and number on it is often one of their most valued possessions from their playing career.</p>
+
+        <h2>Sublimation vs. Heat Transfer for Names and Numbers</h2>
+        <p>There are two primary methods for applying names and numbers to volleyball jerseys, each with distinct advantages:</p>
+        <p><strong>Sublimation (integrated):</strong> Names and numbers are included in the original sublimation design and are printed into the fabric simultaneously with the rest of the jersey design. This produces names and numbers that are completely permanent — they cannot crack, peel, or fade because they are part of the fabric itself. This is the standard method for our <a href="/custom-name-volleyball-jerseys/">custom name volleyball jerseys</a> and <a href="/custom-number-volleyball-jerseys/">custom number volleyball jerseys</a>.</p>
+        <p><strong>Heat transfer:</strong> A separately produced transfer is heat-pressed onto the jersey after it is made. This method is useful when adding names/numbers to blank jerseys after delivery, when individual players join a team after the main order, or when numbers need to change between seasons. Heat transfer quality has improved significantly — modern twill and tackle twill transfers are durable and professional-looking, though not as permanent as sublimation.</p>
+
+        <h2>Font Selection for Volleyball Jerseys</h2>
+        <p>Font choice significantly affects the visual impact and readability of player numbers. Here are the most important considerations:</p>
+        <p><strong>Legibility at distance:</strong> Numbers must be readable from the stands, the officials' table, and across the court. Block fonts and athletic serif fonts (like those used by collegiate programs) read clearly at distance. Decorative or script fonts often fail this test.</p>
+        <p><strong>Proportions:</strong> Numbers should feel bold and substantial — thin, lightweight number fonts look lost on a jersey. We recommend fonts with a stroke weight that represents at least 20% of the numeral's overall width.</p>
+        <p><strong>Consistency with overall design:</strong> The number font should complement the jersey design's overall aesthetic. A modern geometric jersey design looks best with a contemporary sans-serif number; a classic collegiate design works well with a block number that nods to traditional athletic lettering.</p>
+
+        <h2>Number Placement Requirements</h2>
+        <p>Governing body regulations specify where and how large numbers must appear on volleyball jerseys. Under NFHS rules for high school volleyball, front numbers must be a minimum of 4 inches tall, and back numbers must be a minimum of 6 inches tall. Numbers must contrast with the jersey color by at least 50% on the color value scale. Our design team reviews all high school orders against current NFHS requirements. See our <a href="/high-school-volleyball-uniforms/">high school volleyball uniforms</a> page for more compliance details.</p>
+
+        <h2>Player Name Placement Options</h2>
+        <p>Player names are most commonly placed on the back of the jersey, above the number. Some programs also add names to the front chest. The standard position is centered, but left-justified or right-justified placements are also popular. Name height is typically 2–3 inches for back placement. Front names are usually 1.5–2 inches to fit within the chest panel.</p>
+
+        <h2>Collecting Names and Numbers for Your Roster</h2>
+        <p>When placing an order for <a href="/personalized-volleyball-jerseys/">personalized volleyball jerseys</a>, submit a complete roster spreadsheet with player name (exactly as it should appear on the jersey), jersey number, jersey size, and shorts size. Double-check spelling carefully — incorrect names on completed jerseys require new production runs and delay delivery.</p>
+        <p>Confirm number uniqueness across your roster — no two players can wear the same number in most governing body rules. Also confirm there are no numbers that are regulated (some leagues prohibit certain numbers).</p>
+
+        <h2>Adding Names and Numbers After the Season Starts</h2>
+        <p>If a new player joins your team after the main order is placed, we can produce individual jerseys using the same design. Contact us with the player's name, number, and size. Single-jersey rush production is available for exactly this scenario.</p>
+      </div>
+
+      <div class="mt-12 p-6 bg-navy-50 rounded-2xl border border-navy-100">
+        <h3 class="font-bold text-navy-950 mb-2">Order Custom Name & Number Jerseys</h3>
+        <p class="text-gray-600 text-sm mb-4">Submit your roster and we will handle the rest — sublimated names and numbers on every jersey.</p>
+        <a href="/request-a-quote/" class="btn-primary">Request a Free Quote</a>
+      </div>
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

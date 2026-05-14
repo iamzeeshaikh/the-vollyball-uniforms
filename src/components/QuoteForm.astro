@@ -1,0 +1,139 @@
+---
+interface Props {
+  productName?: string;
+  formId?: string;
+}
+const { productName = '', formId = 'quote-form' } = Astro.props;
+const successId = `${formId}-success`;
+const errorId   = `${formId}-error`;
+const submitId  = `${formId}-submit`;
+---
+
+<div id={`${formId}-wrap`}>
+  <form id={formId} class="space-y-5" novalidate>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div>
+        <label for={`${formId}-name`} class="block text-sm font-semibold text-gray-700 mb-1.5">Full Name *</label>
+        <input type="text" id={`${formId}-name`} name="name" required placeholder="Your full name"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label for={`${formId}-email`} class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address *</label>
+        <input type="email" id={`${formId}-email`} name="email" required placeholder="your@email.com"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label for={`${formId}-phone`} class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number</label>
+        <input type="tel" id={`${formId}-phone`} name="phone" placeholder="+1 (555) 000-0000"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label for={`${formId}-team`} class="block text-sm font-semibold text-gray-700 mb-1.5">Team / Organization *</label>
+        <input type="text" id={`${formId}-team`} name="team" required placeholder="School name, club, or team"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label for={`${formId}-product`} class="block text-sm font-semibold text-gray-700 mb-1.5">Product Interested In *</label>
+        <input type="text" id={`${formId}-product`} name="product" required value={productName}
+          placeholder="e.g., Custom sublimated jerseys"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label for={`${formId}-quantity`} class="block text-sm font-semibold text-gray-700 mb-1.5">Quantity Needed *</label>
+        <input type="number" id={`${formId}-quantity`} name="quantity" required min="1"
+          placeholder="Number of uniforms"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+      <div class="md:col-span-2">
+        <label for={`${formId}-deadline`} class="block text-sm font-semibold text-gray-700 mb-1.5">Deadline / Needed By</label>
+        <input type="date" id={`${formId}-deadline`} name="deadline"
+          class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all" />
+      </div>
+    </div>
+    <div>
+      <label for={`${formId}-message`} class="block text-sm font-semibold text-gray-700 mb-1.5">Additional Details</label>
+      <textarea id={`${formId}-message`} name="message" rows="4"
+        placeholder="Team colors, design ideas, logo details, budget, or any specific questions..."
+        class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all resize-none"></textarea>
+    </div>
+    <button id={submitId} type="submit" class="btn-primary w-full justify-center text-base py-4">
+      <span class="submit-label flex items-center gap-2 justify-center">
+        Submit Quote Request
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </span>
+      <span class="loading-label hidden items-center gap-2 justify-center">
+        <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+        Sending…
+      </span>
+    </button>
+    <p class="text-xs text-gray-500 text-center">We typically respond within 1–2 business hours. No spam, ever.</p>
+  </form>
+
+  <!-- Success state -->
+  <div id={successId} class="hidden text-center py-12 px-6">
+    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+      <svg class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <h3 class="text-2xl font-extrabold text-navy-950 mb-3">Quote Request Sent!</h3>
+    <p class="text-gray-600 mb-6 max-w-sm mx-auto">
+      Thanks — we have received your request and will send your free design mockup and pricing within <strong>1–2 business hours</strong>.
+    </p>
+    <p class="text-sm text-gray-500">Check your spam folder if you don't hear from us within 2 hours.</p>
+  </div>
+
+  <!-- Error state -->
+  <div id={errorId} class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+    <p class="text-red-700 text-sm font-medium">Error: <span class="error-msg">Something went wrong</span> — please try again or email us directly at
+      <a href="mailto:Info@thevolleyballuniforms.com" class="underline">Info@thevolleyballuniforms.com</a>.
+    </p>
+  </div>
+</div>
+
+<script define:vars={{ formId, successId, errorId, submitId }}>
+  const form    = document.getElementById(formId);
+  const success = document.getElementById(successId);
+  const errBox  = document.getElementById(errorId);
+  const btn     = document.getElementById(submitId);
+
+  if (form && btn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.classList.add('hidden');
+
+      // Show loading state
+      btn.disabled = true;
+      btn.querySelector('.submit-label').classList.add('hidden');
+      btn.querySelector('.loading-label').classList.remove('hidden');
+      btn.querySelector('.loading-label').classList.add('flex');
+
+      try {
+        const res = await fetch('/api/quote', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const json = await res.json();
+
+        if (json.success) {
+          form.classList.add('hidden');
+          success.classList.remove('hidden');
+        } else {
+          throw new Error(json.error ?? 'Unknown error');
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Unknown error';
+        const span = errBox.querySelector('.error-msg');
+        if (span) span.textContent = msg;
+        errBox.classList.remove('hidden');
+        btn.disabled = false;
+        btn.querySelector('.submit-label').classList.remove('hidden');
+        btn.querySelector('.loading-label').classList.add('hidden');
+        btn.querySelector('.loading-label').classList.remove('flex');
+      }
+    });
+  }
+</script>

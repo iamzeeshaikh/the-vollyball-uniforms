@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-hoodies')!;
+const related = products.filter(p => ['volleyball-warm-up-suits','volleyball-team-kits','volleyball-practice-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Material Options', value: 'Lightweight performance fleece or 80/20 cotton-poly blend' },
+  { label: 'Style Options', value: 'Pullover or Full-Zip' },
+  { label: 'Weight', value: 'Lightweight (280 GSM) or Standard (350 GSM)' },
+  { label: 'Sizes Available', value: 'YS – 3XL' },
+  { label: 'Customization', value: 'Screen print, embroidery, or sublimation panel designs' },
+  { label: 'Pockets', value: 'Front kangaroo pocket (pullover) or zip pockets (full-zip)' },
+  { label: 'Hood Style', value: 'Lined drawstring hood' },
+  { label: 'Care', value: 'Machine wash warm, tumble dry medium' },
+];
+
+const faqs = [
+  { question: 'What is the difference between pullover and full-zip volleyball hoodies?', answer: 'Pullover hoodies are typically more affordable and popular for general team wear, senior gifts, and fan merchandise. Full-zip hoodies are easier to put on and remove over game uniforms during warm-ups, making them more practical as sideline and bench pieces. Many programs order both styles for different purposes.' },
+  { question: 'Can player names be added to individual hoodies?', answer: 'Yes. Player names can be applied to hoodies via embroidery, screen print, or heat transfer depending on the fabric and design. Sublimated panel designs on performance hoodies support full-color name and number integration. Personalized hoodies are popular for senior recognition nights and as end-of-season gifts.' },
+  { question: 'Are lightweight or heavyweight hoodies better for volleyball teams?', answer: 'Lightweight performance hoodies (around 280 GSM) are ideal for active warmup use and as bench layers in temperature-controlled gyms. Heavyweight fleece hoodies (350+ GSM) are better as travel wear and for cold outdoor environments. Many programs stock both weights for different seasonal needs.' },
+  { question: 'Can I order hoodies in youth sizes?', answer: 'Yes. Our volleyball hoodies are available in youth sizes from YS through YXL, plus adult sizes XS through 3XL. Youth hoodies are popular for recreational leagues and middle school programs where the players are smaller and the adult sizing is inappropriate.' },
+  { question: 'What logo placement options are available on volleyball hoodies?', answer: 'Standard logo placement options include the front left chest, full front chest, back across the shoulders, and left sleeve. For full-zip hoodies, the right chest panel is also popular. Multiple placement options can be combined for a more detailed branded look.' },
+  { question: 'Are volleyball hoodies appropriate as game-day warm-up wear?', answer: 'Hoodies are excellent as pre-game warm-up and arrival pieces. They are not typically worn during active pre-game warm-ups (where warm-up suits or track jackets are more functional), but they are ideal for team arrival, pre-warm-up locker room preparation, and post-game cooling down.' },
+  { question: 'What is the minimum order for team hoodies?', answer: 'There is no minimum. Single hoodies can be produced for individual players. For team orders of 12 or more, bulk pricing applies. Orders of 24+ receive our best standard pricing. Large league orders of 50+ hoodies qualify for our highest volume discount tier.' },
+  { question: 'How long does production take for custom volleyball hoodies?', answer: 'Standard production for custom hoodies takes 10–14 business days after artwork approval. For screen-printed or embroidered designs on stock hoodies, production can sometimes be faster. Rush production in 5–7 business days is available for an additional fee.' },  { question: 'Can hoodies be customized with individual player names and numbers?', answer: 'Yes. Player names are typically sublimated on the back of the hoodie between the shoulders, with numbers available on the chest or sleeve. Personalized hoodies are popular for senior recognition programs where each player receives a keepsake piece. The name and number follow the same dye-sublimation process as jerseys, making the personalization permanent and professional.' },
+  { question: 'What is the difference between performance fabric and cotton-blend hoodies?', answer: 'Performance hoodies use a lightweight polyester or poly-blend knit that accepts full sublimation printing, dries quickly, and is suitable for travel and pre-game warm-ups. Cotton-blend hoodies have a softer, heavier feel preferred for casual team identity wear, fan merchandise, and fundraising items. Cotton-blend hoodies use screen printing or embroidery rather than sublimation. Both options are available — we will recommend the right construction based on how your program plans to use them.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Hoodies',
+  description: 'Custom volleyball hoodies for teams, travel days, and program identity. Pullover and full-zip styles with your team colors, logo, and player names.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '74' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Team Apparel', href: '/team-apparel/' },
+  { label: 'Volleyball Hoodies' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Volleyball Hoodies — Pullover & Zip Team Hoodies | The Volleyball Uniforms"
+  description="Custom volleyball hoodies for travel, warmups & team events. Pullover & full-zip styles in your team colors with logos & player names. Bulk pricing. Get a free quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-hoodies/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Team Apparel</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Hoodies</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (74 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Custom volleyball hoodies that build program identity beyond the court. Available in pullover and full-zip styles with your team's colors, logo, and individual player names. The go-to piece for travel days, team events, and senior recognition.</p>
+          <div class="space-y-3 mb-8">
+            {['Pullover and full-zip style options','Performance fleece or cotton-poly fabric','Full team color customization','Logo placement on chest, back, or sleeve','Player names for personalized orders','Youth and adult sizes available'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/design-guide/" class="btn-outline w-full justify-center text-sm">View Design Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Custom Volleyball Hoodies: More Than Just Apparel</h2>
+      <p>A volleyball team hoodie is one of the most versatile pieces in any program's apparel lineup. It travels with players from their homes to the gym, to tournaments across the country, and into the years after their playing careers end. A well-designed custom hoodie becomes a lasting symbol of the team, the season, and the experience of being part of a program.</p>
+
+      <h2>Pullover vs. Full-Zip Hoodies</h2>
+      <p>Both styles have specific advantages for volleyball programs. Pullover hoodies feature a classic silhouette with a kangaroo front pocket, making them comfortable, durable, and slightly more affordable per unit. They are the standard choice for senior night gifts, booster merchandise, and general team wear. Full-zip hoodies are more practical as game-day layering pieces — they can be put on and removed quickly over game uniforms without disrupting hair or jewelry, and allow for easy ventilation adjustment during warm-up periods.</p>
+
+      <h2>Fabric Options</h2>
+      <p>We offer volleyball hoodies in two primary fabric options. Our performance fleece option uses a lightweight polyester fleece that is smooth on the outside, soft on the inside, and compatible with sublimation printing for full-color panel designs. Our classic cotton-poly blend (typically 80/20 or 50/50) provides a heavier, more traditional hoodie feel that many players prefer for daily wear. Cotton-poly hoodies are decorated via screen printing or embroidery rather than sublimation.</p>
+
+      <h2>Customization and Branding</h2>
+      <p>Custom hoodies are decorated with your team's colors, logo, and any additional text elements including season years, senior names, or program mottos. Consistent branding with your game jerseys creates a cohesive program identity. For complete <a href="/volleyball-team-kits/">volleyball team kit packages</a> that include hoodies alongside uniforms and warm-up gear, the design can be unified across all pieces.</p>
+
+      <h2>Senior Recognition and Special Events</h2>
+      <p>Personalized hoodies with individual player names and numbers are among the most cherished items we produce. Senior night hoodies, regional championship commemoration pieces, and end-of-season gifts all create lasting memories. For these applications, we offer premium packaging options and can include custom labels inside the garment. Order details for these items should be placed 4–6 weeks before the event to ensure comfortable production and delivery timelines.</p>
+
+      <h2>Use Cases for Volleyball Hoodies</h2>
+      <ul>
+        <li>Team travel days to tournaments and away matches</li>
+        <li>Pre-game arrival and post-game cooldown wear</li>
+        <li>Senior recognition night personalized gifts</li>
+        <li>End-of-season team awards and commemorative items</li>
+        <li>Program booster fundraising merchandise</li>
+        <li>Coach and staff uniform coordination</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Volleyball Hoodie Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Hoodie FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Design Your Team's Custom Hoodies" subtitle="Get a free mockup and quote for volleyball hoodies in your school or club colors." />
+</BaseLayout>

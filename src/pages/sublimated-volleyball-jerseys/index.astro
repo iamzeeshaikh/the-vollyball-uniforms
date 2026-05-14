@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'sublimated-volleyball-jerseys')!;
+const related = products.filter(p => ['personalized-volleyball-jerseys','custom-name-volleyball-jerseys','volleyball-warm-up-suits','women-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Printing Method', value: 'Dye-Sublimation (infused into fabric)' },
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '150–170 GSM' },
+  { label: 'Color Options', value: 'Unlimited — full Pantone spectrum' },
+  { label: 'Design Area', value: 'Full edge-to-edge, front and back' },
+  { label: 'Fit Options', value: 'Relaxed, Athletic, or Compression' },
+  { label: 'Sizes Available', value: 'YXS – 4XL' },
+  { label: 'Customization', value: 'Names, numbers, logos, gradients, photographic imagery' },
+  { label: 'Care', value: 'Machine wash cool inside-out, tumble dry low, no bleach' },
+];
+
+const faqs = [
+  { question: 'What is dye-sublimation printing and how does it work?', answer: 'Dye-sublimation uses heat and pressure to convert solid dye into a gas that penetrates and permanently bonds with polyester fibers. The color becomes part of the fabric itself rather than sitting on the surface. This means the design cannot crack, peel, fade, or wash out — ever.' },
+  { question: 'How many colors can I use in my sublimated jersey design?', answer: 'Unlimited. Unlike screen printing which charges per color, sublimation supports every color in the visible spectrum at no additional cost per color. Gradients, multiple tones, and complex multi-color artwork are all included at the same base price.' },
+  { question: 'Will sublimated colors fade after repeated washing?', answer: 'No. Sublimated colors are permanently bonded into the fabric fibers, not printed on top. After hundreds of wash cycles under proper care conditions, the colors remain as vivid as day one. This is one of the key advantages of sublimation over screen printing or heat transfer methods.' },
+  { question: 'Can sublimated jerseys include photographic or gradient designs?', answer: 'Yes. Sublimation supports photographic imagery, smooth gradients, watercolor effects, and any other design element that can be created in design software. These effects are included at no extra cost. They are completely impossible with traditional screen printing.' },
+  { question: 'Do you need polyester fabric for sublimation printing?', answer: 'Yes. Dye-sublimation only works on polyester (and certain synthetic blends with a high polyester content). It does not work on cotton. All our sublimated jerseys use 100% performance polyester specifically chosen for sublimation compatibility.' },
+  { question: 'What is the minimum order quantity for sublimated jerseys?', answer: 'There is no minimum order. We produce single sublimated jerseys as well as orders of 500+. However, orders of 12 or more units benefit from our bulk pricing tiers, and orders of 24+ receive our best standard rates.' },
+  { question: 'Can sublimated jerseys be produced with individual player names and numbers on each piece?', answer: 'Yes. Player-specific names and numbers are sublimated into each jersey individually. You submit a roster and each jersey is produced with that specific player\'s information. There is no per-player upcharge — individual personalization is included in the standard sublimation price.' },
+  { question: 'How long does it take to produce sublimated volleyball jerseys?', answer: 'Standard production takes 10–14 business days after you approve the design mockup. Rush production in 5–7 business days is available. The design mockup phase typically takes 1–3 business days. Rush fees apply for expedited production.' },  { question: 'Can I order a single sample jersey before committing to a full team order?', answer: 'Yes. Sample jerseys are available and strongly recommended for programs ordering sublimated jerseys for the first time. A sample order lets you verify color accuracy, fabric feel, and fit before your full roster order enters production. Sample turnaround follows standard production timing. The cost of the sample jersey applies as a credit toward your full team order.' },
+  { question: 'How accurately can you match our school or club\'s specific Pantone colors?', answer: 'We use high-precision sublimation equipment calibrated to standard Pantone profiles. For programs with strict institutional color standards, provide your Pantone PMS codes and we produce a sample print panel at no charge to verify color accuracy before full production begins. Minor variation between screen display and physical fabric is normal — the print panel eliminates any color surprise before your full order.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Sublimated Volleyball Jerseys',
+  description: 'Premium dye-sublimated volleyball jerseys with permanent full-color designs. Unlimited colors, edge-to-edge printing, player names and numbers included.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '186' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Sublimated Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Sublimated Volleyball Jerseys — Full Color Custom Designs | The Volleyball Uniforms"
+  description="Premium sublimated volleyball jerseys with permanent full-color designs. Unlimited colors, edge-to-edge printing, never crack or fade. Bulk pricing. Free mockup. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/sublimated-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Sublimated Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (186 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">The gold standard in custom volleyball jersey production. Dye-sublimation printing creates permanent, vibrant designs infused directly into the fabric — unlimited colors, zero cracking, zero fading, season after season.</p>
+          <div class="space-y-3 mb-8">
+            {['Unlimited colors at no extra cost per color','Permanent dye — never cracks, peels, or fades','Full edge-to-edge design coverage','Gradient and photographic design support','Player names & numbers included in sublimation','Available in sizes YXS – 4XL'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/design-guide/" class="btn-outline w-full justify-center text-sm">View Design Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Sublimated Volleyball Jerseys Are the Industry Standard</h2>
+      <p>When you watch professional and collegiate volleyball on television, the jerseys you see are almost universally produced using dye-sublimation printing. This is not a coincidence — sublimation has become the dominant production method because it delivers quality, durability, and design flexibility that no other printing process can match. At every level from youth clubs to Olympic programs, sublimated volleyball jerseys represent the benchmark for custom team apparel.</p>
+      <p>At The Volleyball Uniforms, all of our custom <a href="/volleyball-jerseys/">volleyball jerseys</a> are available in fully sublimated production. Our sublimation process uses industrial-grade equipment and performance polyester fabrics to create jerseys that look as vibrant on day 500 as they do on day one.</p>
+
+      <h2>The Science Behind Dye-Sublimation</h2>
+      <p>Understanding why sublimated jerseys are so durable requires understanding the process. Sublimation starts with a special dye that is printed onto transfer paper. The paper is then placed over the polyester fabric and subjected to heat (around 400°F) and pressure. At this temperature, the dye converts from a solid to a gas — a process called sublimation — and the gas molecules penetrate the open polyester fibers. When the heat is removed, the fibers close around the dye molecules, trapping them permanently inside the fabric.</p>
+      <p>The critical distinction is that the color is inside the fabric, not on top of it. There is no ink layer to crack under flexion, no surface coating to wash away, and no adhesive to fail over time. The only way to remove sublimated color is to physically destroy the fabric itself.</p>
+
+      <h2>Design Freedom Without Limits</h2>
+      <p>Sublimation's biggest creative advantage is its complete freedom from color count constraints. Traditional screen printing charges per color and becomes increasingly expensive as design complexity grows. With sublimation, a two-color design and a twenty-color design cost the same to produce. This means your team can use school-accurate color combinations without compromise, incorporate photorealistic team photography, add complex gradients that give jerseys a three-dimensional depth, and create truly one-of-a-kind designs that set your program apart visually.</p>
+      <p>Our design team creates free mockups for every order. If you have an existing design, we will reproduce it faithfully. If you are starting from scratch, share your color preferences, team name, and any design direction and we will build a custom mockup. Review our <a href="/design-guide/">volleyball uniform design guide</a> for tips on preparing artwork and making the most of sublimation's capabilities.</p>
+
+      <h2>Fabric Quality in Sublimated Jerseys</h2>
+      <p>Sublimation requires 100% polyester fabric to work correctly. Fortunately, polyester is also the ideal performance fabric for volleyball — it moisture-wicks aggressively, dries quickly, resists stretching out of shape, and maintains consistent sizing after washing. Our sublimated jersey fabric is a 150–170 GSM performance polyester with micro-channel moisture transport technology built into the weave structure.</p>
+      <p>We offer two base fabric options: standard athletic polyester for players who prefer a non-stretch feel, and a polyester-spandex blend for those who want additional mobility and a compression-adjacent fit. Our <a href="/personalized-volleyball-jerseys/">personalized volleyball jerseys with individual player details</a> are available in either fabric option.</p>
+
+      <h2>Customization Options</h2>
+      <p>Every sublimated jersey order includes full front and back design coverage, player-specific names and numbers for each piece in the order, your team logo or school crest, custom collar and sleeve treatment, and any other design elements your program requires. Sponsor logos, position designations, number fonts, name placement variations — all handled within the standard order process.</p>
+      <p>For programs that want complete visual consistency across all apparel items — jerseys, shorts, <a href="/volleyball-warm-up-suits/">custom volleyball warm-up suits</a>, and hoodies — we apply the same design language to every piece so your entire program looks coordinated.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Sublimated jersey orders of 12 or more pieces receive bulk pricing. The more you order, the lower the per-unit cost. League orders, school programs ordering for multiple teams, and clubs ordering for full rosters plus spares all benefit from our tiered pricing structure. Contact us for volume pricing on orders of 50 or more pieces.</p>
+
+      <h2>Use Cases for Sublimated Volleyball Jerseys</h2>
+      <ul>
+        <li>Game-day jerseys for high school varsity and JV programs</li>
+        <li>Collegiate team jerseys for NCAA, NAIA, and club programs</li>
+        <li>Club volleyball team uniforms for competitive travel teams</li>
+        <li>Youth league uniforms where durability through growing seasons matters</li>
+        <li>Adult recreational league jerseys that need to look professional</li>
+        <li>Tournament identification jerseys for volleyball event organizers</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Sublimated Volleyball Jersey Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Sublimated Volleyball Jersey FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Ready to Design Your Sublimated Jerseys?" subtitle="Get a free full-color design mockup and competitive quote within 1–2 business hours." />
+</BaseLayout>

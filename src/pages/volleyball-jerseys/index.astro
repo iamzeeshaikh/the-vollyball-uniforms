@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { products } from '../../data/products';
+
+const jerseyProducts = products.filter(p => p.category === 'volleyball-jerseys');
+
+const faqs = [
+  { question: 'What types of volleyball jerseys do you offer?', answer: 'We offer a wide range including blank volleyball jerseys, sublimated jerseys, personalized jerseys with custom names and numbers, women\'s jerseys, men\'s jerseys, youth and kids jerseys. Each style is available in various fabrics and fit options.' },
+  { question: 'Can I add my team logo to volleyball jerseys?', answer: 'Absolutely. All our custom volleyball jerseys support full logo placement. We recommend providing your logo in vector format (AI, EPS, or SVG) for the sharpest results. Our design team can also create or recreate your logo if needed.' },
+  { question: 'What is sublimation printing and why is it better?', answer: 'Sublimation printing infuses color directly into the fabric fibers rather than sitting on top. The result is vibrant, permanent color that cannot crack, peel, or fade — even after hundreds of washes. It also allows full edge-to-edge designs at no additional cost per color.' },
+  { question: 'What is the minimum order quantity for custom jerseys?', answer: 'We have no strict minimum order quantity. We can process single jerseys for individual players as well as bulk orders of 100+ for full leagues. Pricing improves significantly with quantity.' },
+  { question: 'How do I submit my jersey design?', answer: 'After requesting a quote, our design team will contact you to gather design details. You can submit existing artwork, share reference images, or describe your ideas and our designers will create mockups for your review.' },
+  { question: 'What fabrics are volleyball jerseys made from?', answer: 'Our standard volleyball jerseys use 100% moisture-wicking polyester for maximum breathability. We also offer polyester-spandex blends (typically 90/10 or 88/12) for added stretch and compression, which is ideal for competitive play.' },
+  { question: 'How long does jersey production take?', answer: 'Standard production takes 10–14 business days after you approve the design mockup. Rush production is available in 5–7 business days. Contact us if you have an urgent tournament or season deadline and we will work to accommodate you.' },
+  { question: 'Do you offer reversible volleyball jerseys?', answer: 'Yes, we can produce reversible volleyball jerseys featuring two different colors or designs on each side. These are popular for practice scrimmages and training sessions. Contact us for reversible jersey pricing.' },  { question: 'Can I mix different jersey styles within the same team order?', answer: 'Yes. A single team order can include different jersey styles for different players — for example, sublimated game jerseys for the competitive roster alongside blank jerseys for practice use. Each style runs through its appropriate production process. We package and label all pieces together for easy distribution.' },
+  { question: 'What artwork files should I provide for a custom jersey order?', answer: 'Vector files (AI, EPS, or SVG) are preferred for logos and wordmarks to ensure sharp reproduction at any size. High-resolution PNG or PDF files at 300 DPI or higher also work well. If you don\'t have vector files, our design team can re-create your logo from a clean reference image at no additional charge. See our design guide for the complete artwork checklist.' },
+];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Custom Volleyball Jerseys',
+  url: 'https://thevolleyballuniforms.com/volleyball-jerseys/',
+  description: 'Custom volleyball jerseys for youth, adult, women, men, and team orders.',
+};
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Volleyball Jerseys for Teams | The Volleyball Uniforms"
+  description="Shop custom volleyball jerseys for youth, women, men & kids. Sublimated, personalized, blank & custom name/number options. Bulk orders & free mockups available."
+  schema={schema}
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">Custom Volleyball Jerseys for Every Team</h1>
+        <p class="text-xl text-navy-300 mb-8 leading-relaxed">From blank jerseys for practice to fully sublimated game-day designs, we produce high-quality volleyball jerseys for teams at every level — youth leagues, high school, college, and competitive clubs.</p>
+        <a href="/request-a-quote/" class="btn-primary">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Browse Our Volleyball Jersey Styles</h2>
+        <p class="section-subtitle mx-auto">Every style is fully customizable with your team colors, logos, names, and numbers.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {jerseyProducts.map(p => (
+          <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Everything You Need to Know About Custom Volleyball Jerseys</h2>
+      <p>Choosing the right volleyball jersey for your team is more than a style decision — it directly affects how players feel, move, and perform on the court. At The Volleyball Uniforms, we have spent over 15 years refining the art of custom volleyball jersey production, serving youth leagues, high school programs, college teams, and competitive clubs across the United States.</p>
+
+      <h2>Types of Volleyball Jerseys We Offer</h2>
+      <p>Our volleyball jersey catalog covers every team need — blank practice jerseys, fully sublimated game-day designs, and jerseys with individual player names and numbers. Browse the product grid above to see each style, or read on for guidance on choosing the right jersey for your program.</p>
+
+      <h3>Sublimated Volleyball Jerseys</h3>
+      <p>Sublimation is the gold standard for custom volleyball jersey printing. Using heat to transfer dye directly into the polyester fibers, sublimation produces colors that are permanent, vibrant, and immune to cracking or peeling. The technique allows full-bleed edge-to-edge designs, gradients, and intricate artwork that simply are not possible with traditional printing. Our <a href="/sublimated-volleyball-jerseys/">sublimated volleyball jerseys with unlimited color options</a> are available in any combination with no per-color upcharge.</p>
+
+      <h3>Custom Name and Number Jerseys</h3>
+      <p>For teams that want individual player identification, names and numbers can be sublimated directly into the fabric or applied via heat transfer, depending on your design and budget. Sublimated names and numbers are permanent — they cannot crack, peel, or separate from the jersey regardless of how frequently the garment is washed.</p>
+
+      <h3>Personalized and Senior Recognition Jerseys</h3>
+      <p>Beyond standard names and numbers, jerseys can be personalized with graduation years, captain designations, and position markers for each player. These are especially popular for senior recognition nights and end-of-season gifts that players keep long after their competitive career ends.</p>
+
+      <h3>Jerseys by Gender and Age Group</h3>
+      <p>We produce volleyball jerseys sized and cut for every player. Women's jerseys feature tailored proportions for female athletes, men's jerseys use a wider shoulder and longer torso construction, and youth jerseys are cut specifically for developing athletes rather than scaled down from adult templates.</p>
+
+      <h2>How to Choose the Right Volleyball Jersey</h2>
+
+      <h3>Consider the Fabric</h3>
+      <p>The majority of competitive volleyball jerseys are made from 100% moisture-wicking polyester or a polyester-spandex blend. Pure polyester provides excellent moisture management and color vibrancy for sublimation. Polyester-spandex blends (typically 88–12 or 90–10 ratio) add a degree of stretch that many players prefer for diving, jumping, and overhead movements. Consult our <a href="/size-guide/">size guide</a> for fabric recommendations by play level.</p>
+
+      <h3>Choose the Right Fit</h3>
+      <p>Volleyball jerseys are generally offered in three cuts: relaxed (loose-fitting), athletic (semi-fitted), and compression (form-fitting). Recreational and youth teams often prefer relaxed fits for comfort. Competitive high school and college teams typically use athletic or compression fits that stay in place during dynamic play.</p>
+
+      <h3>Determine Your Customization Level</h3>
+      <p>If you need jerseys quickly for practice or drills, blank jerseys ship without any customization delay. For official game play, a fully customized jersey with team colors, logo, and player details creates the professional appearance that sets programs apart. Review our <a href="/design-guide/">custom jersey design guide</a> for tips on preparing artwork and choosing design layouts.</p>
+
+      <h2>Fabric and Material Details</h2>
+      <p>All of our volleyball jerseys are produced using performance-grade fabrics sourced from certified textile manufacturers. Our standard fabric is a 150–180 GSM moisture-wicking polyester with a smooth, breathable texture. The moisture-wicking treatment pulls sweat away from the skin to the outer surface where it evaporates quickly, keeping players cool and comfortable throughout long matches and tournaments.</p>
+      <p>Our premium option is a 4-way stretch polyester-spandex blend that moves with the athlete. This fabric is particularly popular with liberos and defensive specialists who require maximum mobility. All fabrics are pre-shrunk and colorfast, maintaining their fit and appearance after repeated machine washing.</p>
+
+      <h2>Customization Options for Volleyball Jerseys</h2>
+      <p>The Volleyball Uniforms offers the most comprehensive customization platform in the custom volleyball apparel space. Here is what you can customize on every jersey order:</p>
+      <ul>
+        <li>Base color and secondary accent colors (unlimited with sublimation)</li>
+        <li>Team name placement and font style</li>
+        <li>Player name and number (back, front, or both)</li>
+        <li>Team logo or school crest (front chest, back neck, or sleeve)</li>
+        <li>Sponsor logos (available for club and league orders)</li>
+        <li>Collar and sleeve design elements</li>
+        <li>Hem length and side slit options</li>
+        <li>Mesh ventilation panel placement</li>
+      </ul>
+
+      <h2>Sizing Information</h2>
+      <p>We offer volleyball jerseys in sizes XS through 5XL for adults and YXS through YXL for youth. Every order includes a complimentary size consultation to ensure your entire roster receives the correct fit. For team orders, we recommend using our downloadable size chart, which includes body measurement ranges for each size. View our complete <a href="/size-guide/">volleyball uniform size guide</a> for detailed measurement instructions.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Ordering jerseys for a full team or league unlocks significant savings. Our tiered bulk pricing structure starts at 12+ units and scales to 100+ units for the best per-jersey rates. Large orders also receive priority production scheduling and dedicated account management throughout the process.</p>
+      <p>For complete team packages that include jerseys alongside training shorts, warm-up suits, and socks, we offer bundled package pricing that saves even more compared to ordering each item separately.</p>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Jersey FAQs" />
+  <InlineQuoteSection />
+
+  <CTASection title="Ready to Design Your Team's Jerseys?" subtitle="Get a free digital mockup and quote for custom volleyball jerseys in 1–2 business days." />
+</BaseLayout>

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-gray-800 antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-8 py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-navy-900 font-semibold px-8 py-4 rounded-lg border-2 border-white/20 hover:border-navy-200 transition-all duration-200;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 bg-transparent hover:bg-navy-900 text-navy-900 hover:text-white font-semibold px-8 py-4 rounded-lg border-2 border-navy-900 transition-all duration-200;
+  }
+  .section-title {
+    @apply text-4xl md:text-5xl font-extrabold text-navy-950 leading-tight;
+  }
+  .section-subtitle {
+    @apply text-lg text-gray-600 mt-4 max-w-2xl;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  .prose-custom h2 {
+    @apply text-2xl font-bold text-navy-950 mt-8 mb-4;
+  }
+  .prose-custom h3 {
+    @apply text-xl font-semibold text-navy-900 mt-6 mb-3;
+  }
+  .prose-custom p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+  .prose-custom ul {
+    @apply list-disc pl-6 mb-4 space-y-2 text-gray-700;
+  }
+  .prose-custom a {
+    @apply text-electric-600 underline underline-offset-2 hover:text-electric-700 transition-colors duration-150;
+  }
+}

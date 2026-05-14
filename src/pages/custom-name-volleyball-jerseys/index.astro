@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'custom-name-volleyball-jerseys')!;
+const related = products.filter(p => ['custom-number-volleyball-jerseys', 'personalized-volleyball-jerseys', 'sublimated-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking knit' },
+  { label: 'Fit', value: 'Athletic cut (men\'s and women\'s available)' },
+  { label: 'Sizes Available', value: 'YXS – 4XL' },
+  { label: 'Name Application', value: 'Full dye-sublimation — permanent, crack-proof' },
+  { label: 'Name Placement', value: 'Back (standard), front above number, or both' },
+  { label: 'Font Options', value: '20+ team font styles available' },
+  { label: 'NFHS Compliance', value: 'Name sizing and placement meets NFHS standards' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  {
+    question: 'Is there a character limit for player names on jerseys?',
+    answer: 'Our standard name block comfortably fits up to 14 characters across the back of a jersey. Names longer than 14 characters can be accommodated with a slightly reduced font size or a two-line stacked format. We\'ll show you a mockup of any long name before production so you can approve the layout.',
+  },
+  {
+    question: 'What font styles are available for player names?',
+    answer: 'We offer 20+ pre-approved team font styles ranging from classic block lettering to modern athletic scripts. Each font is tested for readability at regulation viewing distances. You can choose one font for the entire team or, in some cases, mix font families for names versus numbers. Our design team will send you a font sheet with your initial mockup.',
+  },
+  {
+    question: 'Can player names be placed on the front of the jersey instead of the back?',
+    answer: 'Yes. While back placement is the most common, we offer front placement above the number, back placement only, or both front and back. Some leagues and governing bodies restrict front name placement, so check your rulebook before selecting a dual-placement option. Our design team can advise on what\'s permissible for your competition level.',
+  },
+  {
+    question: 'Do NFHS rules regulate how player names must appear on jerseys?',
+    answer: 'NFHS rules do not mandate player names on jerseys but do set standards when names are used — including minimum legibility requirements. Our name sizing and placement templates are built to satisfy NFHS standards by default. If you\'re playing under a different governing body such as USA Volleyball or NCAA, let us know and we\'ll adjust accordingly.',
+  },
+  {
+    question: 'Can I add names to jerseys I already ordered without names?',
+    answer: 'Unfortunately, sublimated names cannot be added to a jersey after it has been produced — the dye is applied to the blank fabric during manufacturing, not on top of a finished garment. However, if you have existing jerseys you\'d like to continue using, we can produce matching name-bearing jerseys in the same design for players who need them, then blend the sets together.',
+  },
+  {
+    question: 'Are rush orders available for custom name jerseys?',
+    answer: 'Yes. Rush production (7–10 business days after artwork approval) is available for an added fee. Because each jersey in a name order is unique, our production team processes name data carefully before printing, so we ask that you submit a complete, final roster before we begin. Last-minute name changes after production starts cannot be accommodated without a reprint charge.',
+  },
+  {
+    question: 'How do I collect and submit the roster of player names?',
+    answer: 'After placing your order, we\'ll send you a roster template spreadsheet. Fill in each player\'s name exactly as it should appear on the jersey — including capitalization and spacing. Return the completed template to your account manager. We\'ll include the name data in your mockup proof so you can verify every player before we go to print.',
+  },
+  {
+    question: 'Can I order jerseys with both names and numbers in a single order?',
+    answer: 'Absolutely — and this is our most popular configuration. Names and numbers are sublimated together in a single production pass, ensuring perfect color and placement consistency. Simply include both the name roster and the number assignments in your roster template and we handle the rest. See our <a href="/custom-number-volleyball-jerseys/">custom number volleyball jerseys</a> page for more on number options.',
+  },  { question: 'Can different players have different name fonts within the same team order?', answer: 'Yes. While most programs choose a single font for visual consistency, individual font selections per player are supported within the same order. This is occasionally used when the libero or captain wears a slightly different typographic treatment to distinguish their role on the court. Specify any per-player font variations in the notes field when submitting your roster.' },
+  { question: 'What happens if a player name is misspelled on a delivered jersey?', answer: 'If a name error occurs due to a production mistake on our end, we replace the jersey at no cost with priority turnaround. To prevent errors entirely, every name jersey order includes a player-by-player proof confirmation step — you receive a visual layout of each jersey with the exact name and number as it will be produced, and production does not begin until you approve every individual proof.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Custom Name Volleyball Jerseys',
+  description: 'Custom volleyball jerseys with player names sublimated permanently into the fabric — crack-proof and fade-resistant.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '143' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Custom Name Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Name Volleyball Jerseys — Player Personalization | The Volleyball Uniforms"
+  description="Order custom name volleyball jerseys for your team. Player names sublimated into the fabric — permanent, crack-proof. Bulk pricing, free mockups. Request a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/custom-name-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Custom Name Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (143 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Give every player on your roster a jersey that's uniquely theirs. Our custom name volleyball jerseys use full dye-sublimation to permanently embed each player's name into the fabric — no iron-on letters, no cracking after the third wash. From high school varsity squads to adult club leagues, every name looks sharp all season long.</p>
+          <div class="space-y-3 mb-8">
+            {['Sublimated player names (never crack or peel)', 'Custom font styles', 'Front/back name placement options', 'NFHS-compliant name sizing', 'Compatible with any jersey design', 'Name + number combination available'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Sublimated Names Outperform Every Alternative</h2>
+      <p>Teams have tried every method for adding player names to jerseys: iron-on transfers, screen-printed lettering, sewn tackle-twill patches, and vinyl heat presses. Each of those methods sits on top of the fabric, which means they eventually separate, crack, or peel — especially with the aggressive laundering that sports uniforms require. Dye-sublimation works differently. The dye is converted to a gas under heat and pressure, then it bonds molecularly with the polyester fibers. The result is a name that is literally part of the jersey — it cannot be removed without destroying the garment. Browse our <a href="/volleyball-jerseys/">full range of custom volleyball jerseys</a> to see how sublimated names integrate into every design we offer.</p>
+
+      <h2>Font and Style Options for Team Names</h2>
+      <p>Choosing the right font for player names is more important than it might seem. In a competitive volleyball match, scorekeepers, officials, and fans need to read jersey names quickly from a distance. Our 20+ pre-approved team fonts are tested for legibility at regulation viewing distances under gym lighting conditions. Classic block fonts remain the most popular for competitive programs, while athletic serif styles are favored by programs seeking a more traditional collegiate aesthetic.</p>
+      <h3>Matching Names to Your Jersey Design</h3>
+      <p>Your name font should complement the overall jersey design, not compete with it. When you submit your order, our designers will pair your selected font with your jersey's color scheme and layout. If you're also ordering <a href="/personalized-volleyball-jerseys/">personalized volleyball jerseys</a> with numbers, we'll ensure the name and number fonts form a cohesive visual system across the entire set.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>Custom name jerseys are produced on our standard 4.5 oz performance polyester interlock — the same fabric used across our competition jersey lineup. This weight provides enough body to keep the sublimated name crisp and visible while remaining light enough for unrestricted movement. The moisture-wicking finish keeps players dry during long rally sequences, and the pre-shrunk construction ensures the name stays centered and properly positioned wash after wash.</p>
+
+      <h2>Customization Options</h2>
+      <p>Beyond the player name itself, every element of the jersey is customizable: team colors, background patterns, sponsor logos, school crests, and numbers. Names and all other design elements are sublimated in a single production pass, so there's no extra cost or turnaround time for adding names to a fully custom design. Submit your artwork and roster through our <a href="/request-a-quote/">quote request form</a> to get started with a free mockup.</p>
+
+      <h2>Sizing Information</h2>
+      <p>We offer custom name jerseys in youth sizes YXS through YXL and adult sizes XS through 4XL. Both men's and women's athletic cuts are available. Because each jersey is produced individually to carry a unique player name, we ask that you submit a complete sizing roster alongside your name roster. Our <a href="/size-guide/">size guide</a> includes detailed chest, waist, and length measurements to help you collect accurate sizes from every player before production begins.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Ordering custom name jerseys as a team — rather than as individual one-offs — unlocks bulk pricing that makes personalization affordable for programs at every budget level. Orders of 10 or more jerseys receive preferential per-unit pricing, and orders of 25 or more unlock our best rates. Because each jersey must be individually proofed against the name roster, we do ask for a complete, final name list before we begin production to avoid reprint charges from late changes.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>High school varsity and JV programs adding player names to meet coach or parent expectations</li>
+        <li>College club teams wanting a professional appearance with individual recognition</li>
+        <li>Adult recreational leagues where player identification for officials and fans matters</li>
+        <li>Travel club programs that compete in multiple tournaments and need durable, permanent naming</li>
+        <li>Youth league coordinators ordering individually named jerseys as season keepsakes</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Custom Name Volleyball Jerseys Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Custom Name Volleyball Jerseys FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Put Every Player's Name on the Back" subtitle="Get a free mockup with your team's roster — bulk pricing available for all order sizes." />
+</BaseLayout>

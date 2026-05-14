@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'high-school-volleyball-uniforms')!;
+const related = products.filter(p => ['college-volleyball-uniforms', 'youth-volleyball-uniforms', 'volleyball-warm-up-suits'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking interlock' },
+  { label: 'Fit', value: 'Athletic cut (men\'s and women\'s)' },
+  { label: 'Sizes Available', value: 'YXS – 3XL' },
+  { label: 'Customization', value: 'Full dye-sublimation: team colors, logos, names, numbers' },
+  { label: 'Compliance', value: 'NFHS-standard number sizing and placement' },
+  { label: 'Set Contents', value: 'Jersey + shorts; libero jersey add-on available' },
+  { label: 'State Variation Support', value: 'State-specific rule adjustments accommodated' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  {
+    question: 'Are your high school volleyball uniforms NFHS compliant?',
+    answer: 'Yes. Our high school volleyball uniforms are designed to meet NFHS standards by default. This includes number sizing (4-inch minimum on front, 6-inch minimum on back), color contrast requirements for the libero, and permissible logo placement. We stay current with annual NFHS rulebook updates and adjust our templates accordingly.',
+  },
+  {
+    question: 'My state has rules that differ slightly from the standard NFHS rulebook — can you accommodate those?',
+    answer: 'Absolutely. A number of state high school athletic associations (SHSAAs) adopt local amendments to NFHS volleyball rules. Texas, California, and several other states have historically modified jersey specifications. Tell us which state your program is in and we\'ll check for any state-specific requirements before finalizing your mockup.',
+  },
+  {
+    question: 'Can we order separate uniform sets for varsity and JV teams?',
+    answer: 'Yes — and many programs do exactly that. Varsity and JV sets can share the same design with subtle differences (different number ranges, a JV identifier on the hem, or slightly different color saturation) so the programs look related but distinct. We handle both sets under a single account, simplifying the reorder process in future seasons.',
+  },
+  {
+    question: 'What are the libero jersey requirements for high school play?',
+    answer: 'Under NFHS rules, the libero must wear a jersey that clearly contrasts with all teammates on the court. Many programs choose a reverse color scheme — for example, a navy jersey with white trim for the team, and a white jersey with navy trim for the libero. We produce libero jerseys as a coordinated add-on to your full team set, ensuring the design language is consistent while satisfying contrast rules.',
+  },
+  {
+    question: 'How far in advance should we order for the high school season?',
+    answer: 'We recommend placing your order at least 6–8 weeks before your first competition. This timeline accounts for design consultation, mockup revisions (typically 3–5 business days), production (14–18 business days), and shipping. Programs that order during the summer typically have the smoothest experience — fall season orders placed in July or August arrive well before the first game.',
+  },
+  {
+    question: 'How do we budget for uniforms when the athletic department has limited funds?',
+    answer: 'We work with high school athletic directors and booster clubs on pricing that fits real program budgets. Ordering complete sets (jersey + shorts) in a single order always yields the best per-unit cost. We also offer multi-year pricing agreements where the second-season reorder is discounted. Contact us for a budget-specific quote and we\'ll find a configuration that works for your program.',
+  },
+  {
+    question: 'Does number visibility affect the outcome of plays under the current scoring system?',
+    answer: 'Under rally scoring — which is universal in high school volleyball — every rally results in a point regardless of which team served. Officials frequently reference jersey numbers when making substitution, libero, and rotation violation calls. Illegible or non-compliant numbers can slow the game and, in extreme cases, result in a penalty point. Compliant, high-contrast sublimated numbers eliminate this risk entirely.',
+  },
+  {
+    question: 'If a jersey gets damaged mid-season, can we order a replacement that matches exactly?',
+    answer: 'Yes. We retain your artwork and specifications on file for the duration of the season and the following year. Replacement jerseys are produced from the same template, ensuring a perfect color and design match. Single-jersey replacement orders ship within 10–14 business days. Rush replacement options (7 business days) are available for an additional fee.',
+  },  { question: 'Can varsity and JV uniforms use different designs within the same school program order?', answer: 'Yes. Varsity and JV sets are managed as separate design sub-orders within the same project. Most programs maintain the same color palette and design language between varsity and JV but use a variation — different accent color, simplified design, or reversed colorway — to visually distinguish the squads. Both sets receive the same production quality and are delivered together.' },
+  { question: 'How do school purchase orders work for high school volleyball uniform orders?', answer: 'We accept school district purchase orders as payment for high school athletic programs. Contact us to receive a formal quote document formatted for PO submission. We can also provide specification sheets for athletic director budget approval and district procurement review. Our team works directly with school administration when the purchasing process requires it.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'High School Volleyball Uniforms',
+  description: 'NFHS-compliant high school volleyball uniforms with full customization for varsity and JV programs.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '118' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+  { label: 'High School Volleyball Uniforms' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="High School Volleyball Uniforms — NFHS Compliant Custom Sets"
+  description="NFHS-compliant high school volleyball uniforms with full customization. Varsity & JV sets, libero jerseys, warm-up suits. Bulk pricing. Free design mockup. Quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/high-school-volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Uniforms</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">High School Volleyball Uniforms</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (118 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">High school volleyball programs deserve uniforms that reflect the pride of the school, satisfy NFHS compliance requirements, and survive a full competitive season of practice and match play. Our high school volleyball uniforms check every box — fully customizable with your school colors, mascot, and player details, and built on performance polyester that holds its shape and color all season long.</p>
+          <div class="space-y-3 mb-8">
+            {['NFHS-compliant number sizing & placement', 'Full dye-sublimation printing', 'Varsity and JV set options', 'Libero jersey add-on available', 'State-specific rule accommodation', 'Season-long color and shape retention'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why High School Programs Choose Full Sublimation</h2>
+      <p>High school athletic budgets are often stretched across multiple sports, which means uniform decisions need to deliver long-term value. A fully sublimated volleyball uniform from The Volleyball Uniforms is not just the best-looking option — it's also the most economical over a multi-season horizon. Sublimated designs don't crack, peel, or fade, meaning the same set of jerseys can still look sharp in year three without a costly refresh.</p>
+
+      <h2>NFHS Compliance Made Simple</h2>
+      <p>The NFHS publishes annual volleyball rules that govern jersey numbering, color contrast, logo dimensions, and libero identification. Non-compliant uniforms can lead to warnings, delays, and in rare cases disqualification from a match. We build NFHS compliance into every mockup from the first draft, so your athletic director never has to worry about sending a team onto the court in violation. Our compliance checklist covers number height, contrast ratios, prohibited number values, and libero differentiation.</p>
+      <h3>Accommodating State-Specific Rules</h3>
+      <p>While most states follow NFHS standards closely, some state high school athletic associations have adopted amendments. If you're coaching in a state with local modifications, share your state's rulebook addendum and we'll adjust the design accordingly. We've worked with programs in all 50 states and maintain a database of known state amendments to streamline this process.</p>
+
+      <h2>Complete High School Uniform Sets</h2>
+      <p>A complete high school volleyball uniform set includes a sublimated game jersey and matching shorts, produced in a single run to ensure color batch consistency. Sets can be ordered in women's and men's cuts simultaneously — important for coed or mixed-division programs. Varsity and JV sets are managed as separate sub-orders within a single project, with independent sizing rosters and delivery routing to the appropriate coaches.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>High school volleyball uniforms are produced on our 4.5 oz performance polyester interlock, a fabric grade that balances durability with athletic performance. The interlock weave resists the snags and abrasion common in high-intensity gym floor play, while the moisture-wicking finish keeps players dry through two-a-day preseason practices and marathon tournament brackets. All fabric is pre-shrunk and tested for colorfastness to ensure your school colors remain accurate from the first game through the state championship.</p>
+
+      <h2>Customization Options</h2>
+      <p>Every high school volleyball uniform we produce is fully unique to your program. School mascots, logos, color gradients, player names, and numbers are all sublimated in a single production pass — no extra steps, no added costs for complex designs. Visit our <a href="/design-guide/">design guide</a> to learn about the artwork submission process and how to prepare your school's logo files for best results.</p>
+
+      <h2>Sizing Information</h2>
+      <p>High school rosters include athletes ranging from freshman-year players in youth sizes to senior starters in adult large and extra-large cuts. We offer youth sizes YXS through YXL and adult sizes XS through 3XL to cover every athlete on your roster. Women's and men's cuts are available with appropriate fit adjustments for each. Use our detailed <a href="/size-guide/">size guide</a> when collecting measurements from your players, especially for incoming freshmen who may be unfamiliar with athletic jersey sizing.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Athletic departments that order varsity and JV sets together, or that bundle jerseys and shorts with <a href="/volleyball-warm-up-suits/">custom volleyball warm-up suits for the sideline</a>, receive better per-unit pricing than programs that order in small increments. We offer multi-year agreements for schools that commit to ordering with us across multiple seasons, including a locked-in design archive so future orders are processed faster.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Public and private high school varsity volleyball programs needing NFHS-compliant sets</li>
+        <li>Athletic directors managing combined varsity/JV uniform budgets under a single purchase order</li>
+        <li>High school programs refreshing aged uniforms for a new coaching staff's visual identity</li>
+        <li>Booster clubs fundraising to purchase upgraded uniforms for a school program</li>
+        <li>Programs in states with specific local amendments that require modified jersey specs</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="High School Volleyball Uniforms Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="High School Volleyball Uniforms FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Outfit Your High School Program This Season" subtitle="NFHS-compliant designs, free mockup, and bulk pricing for every squad size." />
+</BaseLayout>

@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-practice-jerseys')!;
+const related = products.filter(p => ['blank-volleyball-jerseys','volleyball-compression-shirts','volleyball-training-shorts'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Moisture-Wicking Polyester' },
+  { label: 'Fabric Weight', value: '140–160 GSM' },
+  { label: 'Fit', value: 'Relaxed Athletic' },
+  { label: 'Sizes Available', value: 'YXS – 3XL' },
+  { label: 'Numbering', value: 'Optional — sublimated or heat transfer' },
+  { label: 'Mesh Panels', value: 'Available on side/underarm panels' },
+  { label: 'Customization', value: 'Team colors, numbers, basic logo' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: 'Why should practice jerseys be different from game jerseys?', answer: 'Using separate practice jerseys preserves your game jerseys for competition, extending their lifespan significantly. Psychologically, many coaches find that keeping game jerseys exclusively for game days builds mental significance around them. Practice jerseys are made to take more punishment so game jerseys stay looking sharp.' },
+  { question: 'Can practice jerseys be numbered for drill identification?', answer: 'Yes. Numbered practice jerseys allow coaches to quickly identify and reference specific players during drills and scrimmages. Numbers can be sublimated into the fabric or applied via heat transfer. Color-coded numbering (e.g., different colors for different groups) is also available.' },
+  { question: 'Are reversible practice jerseys available?', answer: 'Yes. Reversible practice jerseys with different colors on each side are popular for scrimmages where teams need to quickly identify two opposing sides without changing jerseys. Contact us for reversible jersey pricing and options.' },
+  { question: 'What is the difference between practice jerseys and blank jerseys?', answer: 'Practice jerseys are purpose-built for training use, often with reinforced construction, mesh ventilation options, and pre-applied numbering. Blank jerseys are stock garments without any customization. For a practice jersey program, we recommend a design with team colors and numbers to create an organized training environment.' },
+  { question: 'Do practice jerseys need to match game jersey colors?', answer: 'Not necessarily. Some programs use contrasting colors for practice jerseys to create a clear visual distinction from game-day wear. Others prefer matching colors to maintain program cohesion. Either approach is valid — the right choice depends on your coaching philosophy and program identity.' },
+  { question: 'Can coaching staff get matching practice jerseys?', answer: 'Yes. Coaching staff jerseys in matching or complementary designs are a popular addition to practice jersey orders. We can differentiate staff jerseys with "Coach" or staff names while keeping the overall design consistent.' },
+  { question: 'How many practice jersey sets should a program order?', answer: 'Most programs benefit from ordering enough practice jerseys for the full roster plus 2–3 extras for roster additions and replacements. Programs that run both varsity and JV practices simultaneously may want two complete sets. Practice jerseys ordered in bulk get progressively better pricing.' },
+  { question: 'How durable are volleyball practice jerseys for daily use?', answer: 'Our practice jerseys are built for daily use over a full season. With proper care (cool machine wash, tumble dry low), they maintain their shape, color, and construction integrity through 5+ practices per week for an entire season. They are designed to be replaced every 1–2 seasons as part of normal program maintenance.' },  { question: 'Can practice jerseys be made reversible for drill use?', answer: 'Yes. Reversible practice jerseys with two different colored sides are available for programs that run split-squad drills or need to quickly separate players into groups. One side carries team branding and the other side is typically a solid contrasting color. Reversible jerseys are slightly higher in cost than single-sided practice jerseys due to the additional construction involved.' },
+  { question: 'How do practice jersey prices compare to fully sublimated game jerseys?', answer: 'Practice jerseys are priced lower than fully sublimated game jerseys because the design is simpler — typically a solid or two-color base with team name and number rather than full-coverage custom artwork. The fabric and construction quality are the same. For programs managing tight budgets, ordering simpler practice jerseys and investing in premium sublimated game jerseys is the most common and cost-effective approach.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Practice Jerseys',
+  description: 'Durable volleyball practice jerseys for daily training. Breathable, moisture-wicking, with optional numbering for drill organization.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '91' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practice Gear', href: '/practice-gear/' },
+  { label: 'Volleyball Practice Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Volleyball Practice Jerseys — Durable Daily Training Gear | The Volleyball Uniforms"
+  description="Durable volleyball practice jerseys built for daily training. Breathable, moisture-wicking, with number options for drill organization. Bulk pricing. Get a quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-practice-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Practice Gear</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Practice Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (91 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Built for the demands of daily volleyball training. Our practice jerseys combine durable moisture-wicking polyester with reinforced construction to create a training garment that holds up through an entire season of intensive use.</p>
+          <div class="space-y-3 mb-8">
+            {['Durable 100% polyester for daily training','Reinforced construction at stress points','Optional numbered system for drill organization','Mesh ventilation panel options available','Reversible style available for scrimmages','Bulk pricing for full team and program orders'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>The Case for Dedicated Volleyball Practice Jerseys</h2>
+      <p>Every volleyball program that takes its development seriously should have a dedicated practice jersey program separate from game uniforms. The reasons are both practical and psychological. From a practical standpoint, subjecting game jerseys to the daily wear and tear of intensive training accelerates their deterioration, meaning programs replace game jerseys more frequently and at greater cost. From a psychological standpoint, reserving game jerseys exclusively for competition gives them a special significance that reinforces the mental separation between training and performance modes.</p>
+      <p>At The Volleyball Uniforms, our practice jersey line is built with the full understanding of what daily training demands from a garment. These are not simply cheaper versions of our game jerseys — they are specifically engineered for training use with reinforced construction at high-stress areas, practical design features for coaching visibility, and durable materials that maintain their integrity through a full season of intensive use.</p>
+
+      <h2>Construction and Materials</h2>
+      <p>Our volleyball practice jerseys use 100% moisture-wicking polyester in a 140–160 GSM weight range. This provides the right balance of breathability and durability for daily training use. The construction features reinforced seams at the armholes and side panels — the areas that experience the most stress during the repetitive movements of volleyball training. Double-stitched hems prevent unraveling after frequent washing.</p>
+
+      <h2>Numbering System for Coaching Efficiency</h2>
+      <p>One of the most practical features of a dedicated practice jersey program is the ability to number jerseys for drill identification. When every player has a visible number during practice, coaches can quickly reference specific players during film review, provide position-specific feedback, and organize players into drill groups without confusion. Numbers on practice jerseys can be sublimated for permanence or applied via heat transfer for more flexibility.</p>
+
+      <h2>Mesh and Ventilation Options</h2>
+      <p>Summer training and gyms without climate control create demanding heat conditions. Our practice jerseys are available with open-mesh side and underarm panels that dramatically increase air circulation in the areas where heat accumulates most. These panels maintain the jersey's structural integrity while allowing significantly better ventilation compared to solid-weave construction.</p>
+
+      <h2>Customization for Program Identity</h2>
+      <p>Practice jerseys can be fully customized with your team's colors and basic branding. While practice jerseys don't require the detailed sublimation design of game jerseys, a consistent color scheme and basic team identification creates a more professional training environment and reinforces program identity. See our complete <a href="/practice-gear/">volleyball practice gear</a> collection for other training apparel that complements practice jerseys.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Daily team practice sessions throughout the season</li>
+        <li>Conditioning and pre-season training camps</li>
+        <li>Intra-squad scrimmages and inter-team practice matches</li>
+        <li>Summer volleyball camps and clinic instruction</li>
+        <li>Open gym and club training sessions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Volleyball Practice Jersey Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Practice Jersey FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Equip Your Team for Daily Training" subtitle="Get a quote for custom volleyball practice jerseys with your team colors and numbering system." />
+</BaseLayout>

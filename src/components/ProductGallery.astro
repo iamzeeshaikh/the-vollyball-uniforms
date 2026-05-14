@@ -1,0 +1,58 @@
+---
+interface Props {
+  images: string[];
+  productName: string;
+}
+
+const { images, productName } = Astro.props;
+---
+
+<div class="space-y-4">
+  <!-- Main image -->
+  <div class="aspect-square md:aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100">
+    <img
+      id="gallery-main"
+      src={images[0]}
+      alt={`${productName} - Main product view`}
+      class="w-full h-full object-cover"
+      width="800"
+      height="600"
+    />
+  </div>
+  <!-- Thumbnails -->
+  <div class="grid grid-cols-5 gap-2">
+    {images.map((img, i) => (
+      <button
+        class="gallery-thumb aspect-square overflow-hidden rounded-lg border-2 border-transparent hover:border-electric-500 transition-all"
+        data-src={img}
+        data-alt={`${productName} - View ${i + 1}`}
+      >
+        <img
+          src={img}
+          alt={`${productName} - Thumbnail ${i + 1}`}
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="160"
+          height="160"
+        />
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const main = document.getElementById('gallery-main') as HTMLImageElement;
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const src = thumb.getAttribute('data-src');
+      const alt = thumb.getAttribute('data-alt');
+      if (main && src) {
+        main.src = src;
+        main.alt = alt || '';
+      }
+      thumbs.forEach(t => t.classList.remove('border-electric-500'));
+      thumb.classList.add('border-electric-500');
+    });
+  });
+</script>

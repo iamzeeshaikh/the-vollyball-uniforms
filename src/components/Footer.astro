@@ -1,0 +1,81 @@
+---
+import { categories, siteConfig } from '../data/products';
+---
+
+<footer class="bg-navy-950 text-navy-300">
+  <!-- Main footer -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 bg-gold-500 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-navy-950" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white font-extrabold text-lg leading-tight">The Volleyball</div>
+            <div class="text-gold-400 font-semibold text-sm">Uniforms</div>
+          </div>
+        </a>
+        <p class="text-navy-400 leading-relaxed mb-6 max-w-sm">Premium custom volleyball uniforms, jerseys, and team apparel for schools, colleges, clubs, and leagues across the United States.</p>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-gold-400 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <span>245 W 29th St, New York, NY 10001</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+            <a href="tel:+12125550198" class="hover:text-white transition-colors">+1 212-555-0198</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            <a href="mailto:Info@thevolleyballuniforms.com" class="hover:text-white transition-colors">Info@thevolleyballuniforms.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product categories -->
+      {categories.slice(0, 2).map(cat => (
+        <div>
+          <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">{cat.name}</h3>
+          <ul class="space-y-2.5 text-sm">
+            {cat.products.map((slug: string) => {
+              const name = slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+              return <li><a href={`/${slug}/`} class="hover:text-white hover:translate-x-1 transition-all inline-block">{name}</a></li>;
+            })}
+          </ul>
+        </div>
+      ))}
+
+      <!-- More links -->
+      <div>
+        <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Company</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/about/" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/blog/" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="/faq/" class="hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact Us</a></li>
+          <li><a href="/request-a-quote/" class="hover:text-white transition-colors">Request a Quote</a></li>
+          <li><a href="/size-guide/" class="hover:text-white transition-colors">Size Guide</a></li>
+          <li><a href="/design-guide/" class="hover:text-white transition-colors">Design Guide</a></li>
+          <li><a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions/" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-navy-500">
+      <p>&copy; {new Date().getFullYear()} The Volleyball Uniforms. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="/terms-and-conditions/" class="hover:text-white transition-colors">Terms & Conditions</a>
+        <a href="/sitemap-index.xml" class="hover:text-white transition-colors">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

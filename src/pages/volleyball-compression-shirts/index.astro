@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-compression-shirts')!;
+const related = products.filter(p => ['volleyball-practice-jerseys','volleyball-training-shorts','volleyball-socks'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '88% Polyester / 12% Spandex' },
+  { label: 'Fabric Weight', value: '180–200 GSM (4-way stretch)' },
+  { label: 'Compression Level', value: 'Mild to Moderate' },
+  { label: 'Fit', value: 'Compression / Form-fitting' },
+  { label: 'Sizes Available', value: 'YS – 3XL' },
+  { label: 'Sleeve Options', value: 'Short sleeve, long sleeve, or sleeveless' },
+  { label: 'Customization', value: 'Team colors, logo sublimation available' },
+  { label: 'Care', value: 'Machine wash cool, air dry recommended' },
+];
+
+const faqs = [
+  { question: 'Can volleyball compression shirts be worn during match play?', answer: 'Yes. Compression shirts are suitable for both training and match play. Many players wear them under game jerseys for muscle support, or as standalone tops in recreational leagues. They provide additional body coverage, which some players prefer for diving movements.' },
+  { question: 'What is the difference between a compression shirt and a regular jersey?', answer: 'Compression shirts use a higher-spandex blend fabric that fits tightly against the body, providing mild muscle compression and a second-skin feel. Regular jerseys are cut with more room and focus primarily on moisture management. Compression shirts stay perfectly in place during aggressive floor movements.' },
+  { question: 'Do compression shirts provide muscle support benefits?', answer: 'Mild to moderate compression can help reduce muscle vibration during repetitive jumping and landing, which some athletes find reduces fatigue over long tournament days. The snug fit also supports the core and back muscles during serving and attacking motions.' },
+  { question: 'Can I get compression shirts in my team colors?', answer: 'Yes. We offer fully sublimated compression shirts with your team colors, logo, and optional player names or numbers. Team sublimated compression shirts create a professional, coordinated appearance for warm-ups and practice sessions.' },
+  { question: 'Are compression shirts available in long sleeve?', answer: 'Yes. Long sleeve compression shirts are popular in cooler gym environments and as arm protection during floor dives. They are available in the same fabric and customization options as the short sleeve version.' },
+  { question: 'How should compression shirts fit?', answer: 'A compression shirt should fit snugly without restricting breathing or range of motion. It should feel like a supportive second layer — close to the skin but not constricting. If the shirt feels uncomfortably tight or restricts arm movement overhead, size up.' },
+  { question: 'What is the minimum order for team compression shirts?', answer: 'There is no minimum order. We can produce single shirts for individual players and bulk orders of 100+ for full programs. Volume pricing applies at 12+ units.' },
+  { question: 'How do compression shirts hold up to frequent washing?', answer: 'Our compression shirts use high-quality spandex blends that maintain their elasticity through regular washing. Wash on a cool cycle and air dry to maximize the lifespan of the stretch properties and any sublimated designs.' },  { question: 'Can compression shirts be worn as the game jersey in competition?', answer: 'Compression shirts are typically worn as an underlayer beneath the game jersey rather than as the primary competition garment. Most governing bodies require the outermost layer to carry the competition number. However, for beach volleyball and some recreational leagues with relaxed uniform rules, a compression shirt can function as the primary jersey if it carries proper numbering. Check your specific governing body\'s rules before using a compression shirt as the outer game jersey.' },
+  { question: 'Do volleyball compression shirts come in women\'s specific cuts?', answer: 'Yes. Women\'s compression shirts are available in a fitted cut that follows female body proportions through the shoulder and torso. The women\'s cut avoids the boxy fit of unisex compression styles that can bunch at the waist during overhead movements. Specify women\'s cut when submitting your order, and include chest and torso length measurements for the most accurate fit.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Compression Shirts',
+  description: 'Performance volleyball compression shirts for training and match play. Muscle support, 4-way stretch, and moisture management in a form-fitting design.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', reviewCount: '52' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practice Gear', href: '/practice-gear/' },
+  { label: 'Volleyball Compression Shirts' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Volleyball Compression Shirts — Performance Training Gear | The Volleyball Uniforms"
+  description="Custom volleyball compression shirts for training & match play. 4-way stretch, muscle support, moisture management. Short & long sleeve. Team orders welcome. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-compression-shirts/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Practice Gear</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Compression Shirts</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.7 / 5 (52 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Performance compression shirts engineered for volleyball's explosive demands. The 88/12 polyester-spandex blend delivers 4-way stretch, mild muscle support, and aggressive moisture management in a form-fitting silhouette that stays in place through every dive and jump.</p>
+          <div class="space-y-3 mb-8">
+            {['88/12 polyester-spandex 4-way stretch','Mild muscle compression during explosive play','Moisture-wicking for long practice sessions','Short sleeve, long sleeve & sleeveless options','Sublimated team colors & logos available','Sizes YS – 3XL for teams of all ages'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Volleyball Compression Shirts: Performance Where It Counts</h2>
+      <p>Volleyball compression shirts occupy a unique place in athletic apparel — they function as both a standalone training garment and as a base layer worn under game jerseys. The defining characteristic is the compression-fit construction that hugs the body closely, using stretch fabric to provide gentle muscle support while maintaining the full range of motion volleyball demands.</p>
+      <p>Our compression shirts are part of our complete <a href="/practice-gear/">volleyball practice gear</a> collection, designed for teams that take their daily training environment as seriously as game day.</p>
+
+      <h2>Fabric Technology and Construction</h2>
+      <p>The 88% polyester and 12% spandex blend in our compression shirts is carefully balanced for volleyball-specific performance. The polyester component provides moisture-wicking performance, color vibrancy for sublimated designs, and durability through repeated washing. The spandex component delivers the stretch properties that define compression wear — the fabric moves freely with the athlete without restricting any movement plane.</p>
+      <p>The 4-way stretch construction (horizontal, vertical, and both diagonal axes) is essential for volleyball's overhead movements. A jersey that restricts shoulder rotation during serving or attacking mechanics is actively harmful to technique. Our compression shirts stretch with the arm through the full range of a spike approach without pulling the hem up or creating bunching at the shoulders.</p>
+
+      <h2>Benefits During Training and Match Play</h2>
+      <p>The mild compression provided by these shirts has several practical benefits for volleyball players. Compression fabric reduces muscle vibration during the repetitive jumping and landing that defines volleyball training — this has been associated with reduced muscle fatigue in extended training sessions. The snug fit also provides a degree of proprioceptive feedback (awareness of body position) that some athletes find helpful during technique-focused training.</p>
+      <p>For players who do extensive floor work — liberos and defensive specialists in particular — compression shirts provide additional body coverage during diving movements, reducing abrasion on gymnasium floors. Long sleeve options offer even more coverage for athletes who train on rough surfaces.</p>
+
+      <h2>Customization Options</h2>
+      <p>Team compression shirts can be fully sublimated with your school or club colors, team logo, and optional player names or numbers. The sublimation process works beautifully on the spandex blend fabric, producing vibrant colors that maintain their appearance through the compression and release cycles of normal wear. Consult our <a href="/design-guide/">design guide</a> for artwork requirements specific to compression-fit apparel.</p>
+
+      <h2>Sizing and Fit Guide</h2>
+      <p>Compression shirt sizing differs from regular jersey sizing. The fit should be snug — you want the fabric in contact with the skin — but never restrictive to breathing or arm movement. We recommend measuring your chest and comparing to our size chart at our <a href="/size-guide/">volleyball uniform size guide</a>. Players who fall between sizes typically prefer to size up in compression shirts for unrestricted overhead range of motion.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Daily training and practice sessions as a standalone shirt</li>
+        <li>Base layer under game jerseys for cooler competition environments</li>
+        <li>Recovery warmup layer between matches at long tournaments</li>
+        <li>Beach volleyball where full coverage is preferred</li>
+        <li>Libero position wear for maximum floor movement comfort</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Volleyball Compression Shirt Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Compression Shirt FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Gear Up Your Training Program" subtitle="Get a quote for custom volleyball compression shirts in your team colors." />
+</BaseLayout>

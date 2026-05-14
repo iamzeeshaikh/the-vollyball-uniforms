@@ -1,0 +1,50 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  btnText?: string;
+  variant?: 'dark' | 'gold' | 'light';
+}
+
+const {
+  title = 'Ready to Outfit Your Team?',
+  subtitle = 'Get a free custom design mockup and competitive quote for your volleyball uniforms order.',
+  btnText = 'Request a Free Quote',
+  variant = 'dark',
+} = Astro.props;
+
+const variants = {
+  dark: 'bg-navy-950 text-white',
+  gold: 'bg-gold-500 text-navy-950',
+  light: 'bg-gray-50 text-navy-950',
+};
+---
+
+<section class={`${variants[variant]} py-20`}>
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">{title}</h2>
+    <p class={`text-lg mb-10 max-w-2xl mx-auto ${variant === 'dark' ? 'text-navy-300' : 'opacity-80'}`}>{subtitle}</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/request-a-quote/" class={variant === 'dark' ? 'btn-primary' : 'btn-outline'}>
+        {btnText}
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <a href="/contact/" class={variant === 'dark' ? 'btn-secondary' : 'btn-outline'}>
+        Talk to an Expert
+      </a>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-8 mt-12">
+      {[
+        { icon: '✓', text: 'Free Design Mockup' },
+        { icon: '✓', text: 'No Minimum Order' },
+        { icon: '✓', text: 'Rush Orders Available' },
+        { icon: '✓', text: '100% Satisfaction Guarantee' },
+      ].map(item => (
+        <div class={`flex items-center gap-2 text-sm font-medium ${variant === 'dark' ? 'text-navy-300' : 'opacity-70'}`}>
+          <span class="text-gold-400 font-bold">{item.icon}</span>
+          {item.text}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

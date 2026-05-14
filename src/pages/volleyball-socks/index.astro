@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-socks')!;
+const related = products.filter(p => ['volleyball-training-shorts','volleyball-compression-shirts','volleyball-team-kits'].includes(p.slug));
+
+const specs = [
+  { label: 'Material', value: '80% Polyester / 15% Nylon / 5% Spandex' },
+  { label: 'Heights Available', value: 'Ankle, Crew (mid-calf), Knee-high' },
+  { label: 'Cushioning', value: 'Heel and toe cushioning zones' },
+  { label: 'Arch Support', value: 'Built-in compression arch band' },
+  { label: 'Adult Sizes', value: 'S (5–8), M (8–11), L (11–14)' },
+  { label: 'Youth Sizes', value: 'S (3–5), M (5–7)' },
+  { label: 'Customization', value: 'Team colors, stripes, logo, text' },
+  { label: 'Care', value: 'Machine wash warm, tumble dry low' },
+];
+
+const faqs = [
+  { question: 'What sock heights are available for volleyball?', answer: 'We offer ankle socks (just above the shoe), crew socks (mid-calf height), and knee-high tube socks. Crew height is the most popular for volleyball as it provides calf coverage during floor slides while remaining comfortable for extended play.' },
+  { question: 'Can volleyball socks be customized with team colors?', answer: 'Yes. Custom volleyball socks can be produced in your exact team colors with stripes, color blocks, team logo embroidery, or sublimated designs on the cuff. A full team in matching custom socks creates a professional head-to-toe look.' },
+  { question: 'Do volleyball socks have special cushioning for jumping?', answer: 'Yes. Our volleyball socks feature reinforced heel and toe cushioning zones that absorb impact during the repetitive jumping that volleyball demands. The cushioning is denser than standard athletic socks without adding excessive bulk inside volleyball shoes.' },
+  { question: 'What is the arch band and why does it matter for volleyball?', answer: 'The built-in compression arch band provides lateral stability support during the quick directional changes volleyball requires. This helps reduce foot fatigue and provides a more secure feel inside the shoe — preventing the sock from bunching or sliding during dynamic play.' },
+  { question: 'Are volleyball socks available in youth sizes?', answer: 'Yes. Youth volleyball socks are available in two youth sizes covering shoe sizes 3–7. Youth socks feature the same performance construction as adult sizes — cushioning, arch support, and moisture management — scaled to smaller foot dimensions.' },
+  { question: 'Can I order socks as part of a complete team kit?', answer: 'Absolutely. Custom volleyball socks are one of the most popular add-on items in our team kit packages. Including matching socks in your team kit order ensures every player has the complete coordinated look from jersey to shoe. See our volleyball team kits page.' },
+  { question: 'How do I determine the right sock size for my team?', answer: 'Sock size is based on shoe size. Our small size covers adult shoe sizes 5–8, medium covers 8–11, and large covers 11–14. For team orders, simply collect each player\'s US shoe size and we will size accordingly. Include a few extra pairs in the most common sizes for replacements.' },
+  { question: 'How many pairs of volleyball socks should players have?', answer: 'We recommend players have at least 3 pairs of practice socks and 2 pairs of game socks per season. Socks are the most frequently replaced item in athletic apparel, so building a small surplus into your program order is always a good practice.' },  { question: 'How many pairs of volleyball socks should each player have per season?', answer: 'We recommend a minimum of three pairs of practice socks and two pairs of game socks per player per season. Socks are the highest-turnover item in athletic apparel — washed more frequently than any other piece and prone to replacement throughout the season. Building a small buffer into your program order prevents mid-season shortages and eliminates the need to reorder individual pairs at higher per-unit cost.' },
+  { question: 'Do volleyball socks come in compression versions for performance and recovery?', answer: 'Yes. Graduated compression volleyball socks with increased compression from ankle to calf are available in crew and knee-high heights. Compression socks are popular among players who experience calf fatigue during long tournament days or who benefit from compression support during recovery between sessions. The compression level is moderate — designed for active sport use rather than therapeutic compression.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Socks',
+  description: 'Performance volleyball socks with cushioned heel and toe zones, arch support, and moisture wicking. Custom team colors and logos available.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', reviewCount: '48' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practice Gear', href: '/practice-gear/' },
+  { label: 'Volleyball Socks' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Volleyball Socks — Cushioned Performance Court Socks | The Volleyball Uniforms"
+  description="Custom volleyball socks with cushioned heel & toe, arch support & moisture wicking. Ankle, crew & knee-high options. Team colors & logo. Bulk orders. Get a quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-socks/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Practice Gear</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Socks</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.7 / 5 (48 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Performance volleyball socks engineered for court play. Reinforced heel and toe cushioning, compression arch support, and moisture-wicking construction keep players comfortable and stable through long practice sessions and tournament days. Available in your team colors.</p>
+          <div class="space-y-3 mb-8">
+            {['Cushioned heel and toe zones for jump impact','Compression arch band for lateral stability','Moisture-wicking polyester-nylon blend','Ankle, crew, and knee-high heights','Custom team colors and logo options','Youth and adult sizing available'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Volleyball-Specific Socks Matter</h2>
+      <p>Volleyball players jump, land, cut laterally, and dive to the floor hundreds of times per practice. Generic athletic socks are not designed for this combination of demands. Volleyball-specific socks address the sport's unique requirements: impact cushioning for jump-landing, lateral stability support for quick directional changes, and moisture management for extended sessions on hot gymnasium floors.</p>
+      <p>Custom team socks complete the head-to-toe coordinated look of a professional volleyball program. Teams that wear matching socks in school or club colors demonstrate attention to detail that reflects well on the program's overall organization. As part of our <a href="/volleyball-team-kits/">volleyball team kits</a>, custom socks are among the most cost-effective visual upgrades available.</p>
+
+      <h2>Performance Features</h2>
+      <p>The heel and toe cushioning zones in our volleyball socks use a denser terry loop construction that absorbs landing impact during the repetitive jumping that volleyball demands. This reduces cumulative foot fatigue over the course of a long tournament day significantly compared to thin, uncushioned athletic socks.</p>
+      <p>The compression arch band — a tighter-knit section across the midfoot — provides lateral stability during the quick directional changes of volleyball defense. It also prevents the sock from sliding inside the shoe, eliminating the bunching and repositioning that distracts players during intense defensive sequences.</p>
+
+      <h2>Custom Team Socks</h2>
+      <p>Team socks can be customized in your exact school or club colors with stripe patterns, color blocks, and logo placement on the cuff. The most common customization for volleyball team socks is a stripe or color-block pattern in team colors with a small logo on the side of the ankle or on the cuff. Full sublimated designs are available for performance polyester socks. Cotton-blend socks use embroidery for logo placement.</p>
+
+      <h2>Sock Heights and Their Uses</h2>
+      <p>Ankle socks sit just above the shoe and are popular for beach volleyball and for players who prioritize minimalism. Crew socks (mid-calf) are the standard for indoor volleyball — they provide calf coverage during floor slides and visually read well with the uniform silhouette from a distance. Knee-high tube socks are a traditional choice that provides maximum calf coverage and has a classic volleyball aesthetic.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Game-day uniform completion for a fully coordinated look</li>
+        <li>Practice and daily training sessions</li>
+        <li>Tournament day wear as part of the team kit</li>
+        <li>Component of complete volleyball team kit packages</li>
+        <li>Replacement supply for programs maintaining stock inventory</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Volleyball Sock Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Sock FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Complete Your Team's Uniform Set" subtitle="Add custom volleyball socks in your team colors to your next uniform order." />
+</BaseLayout>

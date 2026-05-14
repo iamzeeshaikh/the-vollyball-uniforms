@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-warm-up-suits')!;
+const related = products.filter(p => ['volleyball-hoodies','volleyball-team-kits','college-volleyball-uniforms'].includes(p.slug));
+
+const specs = [
+  { label: 'Jacket Material', value: 'Lightweight Performance Tricot Polyester' },
+  { label: 'Pant Material', value: 'Lightweight Performance Polyester with 2-way stretch' },
+  { label: 'Jacket Closure', value: 'Full zip with stand collar or zip-up mock neck' },
+  { label: 'Pant Style', value: 'Full side zip or snap-button side panels for quick removal' },
+  { label: 'Fit', value: 'Athletic — designed to wear over game uniforms' },
+  { label: 'Sizes Available', value: 'YS – 3XL (jacket and pants sized separately)' },
+  { label: 'Customization', value: 'Full sublimation — colors, logos, names, numbers' },
+  { label: 'Care', value: 'Machine wash cool, hang dry recommended for jacket' },
+];
+
+const faqs = [
+  { question: 'Can volleyball warm-up suits be worn over game uniforms?', answer: 'Yes. Our warm-up suits are specifically designed to be worn over game jerseys and shorts. The jacket is cut with a relaxed athletic fit that accommodates the game jersey without bunching, and the pants have wide enough legs to pull on and off over game shorts quickly during warm-ups.' },
+  { question: 'Do warm-up suits come as a complete set or can I order jacket and pants separately?', answer: 'Both options are available. Most teams order complete sets (jacket + pants) for a unified look. However, if your program only needs warm-up jackets for sideline wear, or pants only for a specific purpose, we can produce individual components at adjusted pricing.' },
+  { question: 'Can player names and numbers be added to warm-up suits?', answer: 'Yes. Player names and numbers can be sublimated onto the jacket (typically on the back above the shoulders or on the chest) and on the left leg of the pants. This is popular for senior recognition, tournament identification, and programs that want full individual personalization.' },
+  { question: 'What is the difference between a warm-up suit and a hoodie for volleyball teams?', answer: 'Warm-up suits are more functional for pre-game and sideline use — the full-zip jacket allows quick on/off transitions, and the side-panel or full-zip pants come off quickly over game uniforms without disturbing the player\'s uniform. Hoodies are generally more casual and are better for travel and off-court team identity wear.' },
+  { question: 'Are warm-up suits available in lightweight fabric for warm gyms?', answer: 'Yes. Our standard warm-up suit fabric is a lightweight tricot polyester that provides warmth without overheating in typical gym environments. For programs in particularly warm climates, we can discuss even lighter fabric options that provide coverage and uniform appearance with minimal heat retention.' },
+  { question: 'How do I size warm-up suits for my team?', answer: 'Warm-up suit jackets and pants are sized separately. For jackets, use the same chest measurement as for jerseys. For pants, use waist and hip measurements. Players sometimes prefer to size up in warm-up jackets to accommodate the game jersey underneath comfortably. Review our volleyball uniform size guide for detailed measurement instructions.' },
+  { question: 'Do you offer matching warm-up suits for coaches and staff?', answer: 'Yes. Staff warm-up suits in a complementary or matching design are an important part of a complete program uniform package. Coach suits can include "Coach" designation, staff names, or simply use a slightly different design treatment to visually differentiate from players.' },
+  { question: 'What is the standard production time for warm-up suit orders?', answer: 'Warm-up suit orders take 12–14 business days for standard production after design approval, slightly longer than jersey-only orders because of the multiple components and construction complexity. Rush production is available. Include warm-up suits in your team kit order to consolidate production timelines.' },  { question: 'Can warm-up suit logos be produced with embroidery rather than sublimation?', answer: 'Embroidery is available for logo placement on warm-up suit jackets, particularly for programs that prefer a raised, textured logo over a printed one. The jacket body colors and pattern still use sublimation for the most professional result, with the embroidered logo applied as a finishing step. Embroidery works best on the chest or left chest position where the fabric is flat and stable.' },
+  { question: 'How should warm-up suit jackets be cared for to maintain their appearance over time?', answer: 'Turn warm-up jackets inside-out before washing on a cool cycle and hang dry rather than machine dry. The lightweight tricot polyester maintains its drape and finish longer with hang drying — heat from a machine dryer degrades the polyester sheen over repeated cycles. Pants can be tumble dried on low. Store both pieces on hangers or unfolded to prevent crease lines from setting into the fabric.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Warm Up Suits',
+  description: 'Custom volleyball warm-up suits — jacket and pants sets designed to be worn over game uniforms. Full sublimation with team colors, logos, and player names.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '93' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Team Apparel', href: '/team-apparel/' },
+  { label: 'Volleyball Warm Up Suits' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Volleyball Warm Up Suits — Custom Pre-Game Team Sets | The Volleyball Uniforms"
+  description="Custom volleyball warm-up suits with jacket & pants in your team colors. Designed to wear over game uniforms. Player names & numbers available. Bulk pricing. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-warm-up-suits/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Team Apparel</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Warm Up Suits</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (93 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Premium volleyball warm-up suits that make a statement before the first point is played. Fully sublimated jacket and pants sets designed to slip on and off over game uniforms. Your colors, your logo, your identity — from the tunnel to the court.</p>
+          <div class="space-y-3 mb-8">
+            {['Designed to wear over game jerseys & shorts','Full sublimation in your team colors','Full-zip jacket for quick transitions','Side-panel or full-zip pant options','Player names & numbers available','Jacket and pants sized separately for perfect fit'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/design-guide/" class="btn-outline w-full justify-center text-sm">View Design Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Volleyball Warm-Up Suits Define Program Professionalism</h2>
+      <p>In competitive volleyball, the warm-up period is the first impression your team makes on the opposing program, officials, fans, and scouts. A team arriving on the court in coordinated, well-designed warm-up suits immediately communicates organizational quality and program pride. The significance of warm-up presentation is not lost on elite programs — from high school state championships to NCAA tournaments, every competitive team understands that professionalism on and off the court matters.</p>
+      <p>Our custom volleyball warm-up suits are produced for exactly this purpose: to make your team look exceptional from the moment they step onto the court until the final whistle.</p>
+
+      <h2>Design and Sublimation</h2>
+      <p>Every warm-up suit we produce is fully sublimated, meaning your team colors, logo, design elements, and player personalization are infused permanently into the fabric. The sublimation process ensures colors remain vibrant season after season and the design never cracks, peels, or fades regardless of how many times the suits are worn and washed.</p>
+      <p>Our design team coordinates the warm-up suit design with your game jerseys and other program apparel. For complete <a href="/volleyball-team-kits/">volleyball team kit packages</a>, we create a unified visual language across every piece — game jerseys, shorts, warm-up suits, practice gear, and accessories — so the entire program maintains a consistent, professional identity.</p>
+
+      <h2>Construction for Functional Athletic Use</h2>
+      <p>Warm-up suits must balance visual design with practical functionality. The jacket needs to zip on and off quickly when transitioning between warm-up and game play. The pants need to slide over shorts or spandex easily without snagging. Our warm-up suits are constructed with full-zip jackets and side-zip or snap-panel pants specifically to enable these transitions without disrupting a player's uniform or focus.</p>
+      <p>The lightweight tricot polyester fabric provides warmth appropriate for typical gym environments without causing overheating during active warm-up exercises. The pants feature a comfortable elastic waistband with an internal drawstring for a secure fit that accommodates different body proportions without specialized sizing.</p>
+
+      <h2>Customization Options</h2>
+      <p>Beyond team colors and logo, warm-up suits can be customized with player names (typically on the back of the jacket), player numbers (on the chest or sleeve), graduation years for senior recognition editions, and position designations. Some programs also add the team's season record or championship achievements to commemorative warm-up suits. Consult our <a href="/design-guide/">design guide</a> for more options.</p>
+
+      <h2>Use Cases for Volleyball Warm-Up Suits</h2>
+      <ul>
+        <li>Pre-game warm-up periods in competitive gym environments</li>
+        <li>Team travel days to away games and tournaments</li>
+        <li>Sideline wear for non-serving players during match play</li>
+        <li>Program photography sessions and media appearances</li>
+        <li>Senior night and recognition ceremony wear</li>
+        <li>Post-game protocol and awards ceremonies</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Volleyball Warm-Up Suit Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Warm-Up Suit FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Make Your Team's First Impression Count" subtitle="Get a free design mockup and quote for custom volleyball warm-up suits in your team colors." />
+</BaseLayout>

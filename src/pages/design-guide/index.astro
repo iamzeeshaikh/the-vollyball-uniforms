@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Design Guide' }];
+
+const faqs = [
+  { question: 'What file format should I use for my team logo?', answer: 'Vector formats (AI, EPS, SVG, or PDF saved from vector software) are preferred because they scale without quality loss. If you only have raster files (PNG, JPG), we need them at 300 DPI or higher at the intended print size. PNG with transparency is preferable to JPG for logos.' },
+  { question: 'What if I do not have a logo or existing design?', answer: 'No problem. Our design team can create a custom logo or jersey design from scratch based on your description, color preferences, and any reference images you share. This service is free as part of your quote process.' },
+  { question: 'Can I specify exact Pantone colors for my uniform?', answer: 'Yes. We support Pantone Matching System (PMS) color specifications. If your school or club has official Pantone colors, share the PMS codes with us and we will match them in your uniform production.' },
+  { question: 'How many design revision rounds are included?', answer: 'We offer unlimited design revision rounds as part of our standard service. We want you to be completely satisfied with the design before we begin production. Most orders are finalized within 2–3 rounds of revisions.' },
+  { question: 'Can I see the design on a realistic jersey mockup?', answer: 'Yes. All our design mockups are created on realistic jersey templates that show exactly how the design will look on the finished product. We can provide front, back, and side views.' },
+  { question: 'What design elements are not possible with sublimation?', answer: 'Sublimation printing cannot reproduce metallic, fluorescent, or reflective effects directly. These effects require additional heat-applied patches or transfer materials. Raised 3D embroidery is also not part of the sublimation process but can be added as a supplement.' },
+  { question: 'Can I use an existing jersey from another supplier as a design reference?', answer: 'Absolutely. Photos of existing jerseys — from any manufacturer — are a useful starting point. Share clear photos of the front, back, and any detail areas, and our designers will recreate or adapt the design concept using your team\'s colors and logo. We do not replicate proprietary branded designs, but general layout concepts, color blocking, and pattern styles are fair game.' },
+  { question: 'How do I specify the placement for player names and numbers?', answer: 'Our standard placement follows volleyball convention: player number on the front chest and back, player name above the back number. If you want non-standard placement — such as name on the front, number on the sleeve, or a number-only back — specify this in your quote request or during the design consultation. Our design team will include placement options in your mockup for approval.' },
+  { question: 'What happens if I want to change my design after approving the mockup?', answer: 'Design changes must be requested before the production sign-off form is submitted. Once you sign off, your files go directly into production and changes are no longer possible without additional cost. If you catch an error or have a change of direction before signing, contact us immediately — we will put your files on hold. This is why we encourage thorough review of every mockup detail before submitting the approval form.' },
+  { question: 'Can the same design be applied to multiple garment types — jerseys, shorts, warm-ups — consistently?', answer: 'Yes, and this is one of the key advantages of ordering a full program package from a single source. Once your design template is approved, we adapt it across all garment types while maintaining design continuity. A pattern element used on the jersey shoulder can carry through to the shorts hem and warm-up jacket chest, creating a fully coordinated visual identity for your program.' },
+];
+---
+
+<BaseLayout
+  title="Custom Volleyball Uniform Design Guide | The Volleyball Uniforms"
+  description="Learn how to design custom volleyball uniforms. File formats, color specs, design process, logo requirements & tips for the best results. Free mockups with every order."
+  canonical="https://thevolleyballuniforms.com/design-guide/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-4">Custom Volleyball Uniform Design Guide</h1>
+      <p class="text-xl text-navy-300">Everything you need to know to create a great custom volleyball uniform design — file formats, color systems, design process, and tips from our team.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+
+      <!-- Design Process -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-8">The Design Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            { n: '01', t: 'Request a Quote', d: 'Submit your order details through our quote form. Include your team colors, any design ideas, and your existing logo files if available.' },
+            { n: '02', t: 'Design Consultation', d: 'Our design team reaches out within 1–2 hours to discuss your vision, gather any missing files, and understand your timeline.' },
+            { n: '03', t: 'Mockup Creation', d: 'We create a detailed digital mockup showing your design on realistic jersey templates. Front, back, and side views are available.' },
+            { n: '04', t: 'Review & Revise', d: 'You review the mockup and request any changes. We revise until every detail is exactly right — with no limit on revision rounds.' },
+            { n: '05', t: 'Design Approval', d: 'Once you approve the final design, we send a production sign-off form. No changes can be made after this point.' },
+            { n: '06', t: 'Production Begins', d: 'After sign-off, your order enters production. Standard turnaround is 10–14 business days from approval date.' },
+          ].map(step => (
+            <div class="flex gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
+              <div class="w-10 h-10 bg-navy-950 rounded-lg flex items-center justify-center text-gold-400 font-bold text-sm shrink-0">{step.n}</div>
+              <div>
+                <h3 class="font-bold text-navy-950 mb-1">{step.t}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">{step.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- File Requirements -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Logo & Artwork File Requirements</h2>
+        <div class="overflow-x-auto rounded-xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead class="bg-navy-950 text-white">
+              <tr>
+                {['Format', 'Type', 'Quality', 'Best For'].map(h => <th class="px-4 py-3 text-left font-semibold">{h}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['.AI', 'Vector', '★★★★★', 'Logos, complex artwork'],
+                ['.EPS', 'Vector', '★★★★★', 'Logos, multi-color designs'],
+                ['.SVG', 'Vector', '★★★★★', 'Web logos, icons'],
+                ['.PDF (vector)', 'Vector', '★★★★★', 'Any artwork from Illustrator'],
+                ['.PNG', 'Raster', '★★★★☆', 'Logos at 300+ DPI, transparent background'],
+                ['.JPG', 'Raster', '★★★☆☆', 'Reference images only — not recommended for logos'],
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map((cell, ci) => <td class={`px-4 py-3 ${ci === 0 ? 'font-mono font-bold text-electric-700' : 'text-gray-700'}`}>{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-500 text-sm mt-3">If you only have low-resolution files, share them anyway — our design team can recreate or improve them as part of the process.</p>
+      </div>
+
+      <!-- Color Guide -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-extrabold text-navy-950 mb-6">Color Specifications</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: 'Pantone (PMS)', desc: 'The most accurate color specification system. If your school or club has official Pantone colors, share the PMS codes for exact color matching.', recommended: true },
+            { title: 'Hex / RGB', desc: 'Common for digital color references. Provide your hex codes (e.g., #0f1340) or RGB values and we will convert to the closest sublimation match.', recommended: false },
+            { title: 'Reference Images', desc: 'If you do not have formal color specs, share photos of existing jerseys, uniforms, or other branded materials and we will match as closely as possible.', recommended: false },
+          ].map(c => (
+            <div class={`rounded-xl p-6 border ${c.recommended ? 'bg-navy-50 border-navy-200' : 'bg-gray-50 border-gray-100'}`}>
+              {c.recommended && <span class="text-xs font-bold bg-navy-950 text-gold-400 px-3 py-1 rounded-full mb-3 inline-block">Recommended</span>}
+              <h3 class="font-bold text-navy-950 mb-2">{c.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="bg-gold-50 rounded-2xl p-8 border border-gold-200">
+        <h2 class="text-2xl font-extrabold text-navy-950 mb-5">Design Tips from Our Team</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            'Limit your design to 2–3 main colors for the cleanest, most professional look.',
+            'Keep player name and number fonts simple and legible from across the court.',
+            'High-contrast color combinations (dark base + light text) read best in arena lighting.',
+            'Avoid very thin lines (under 1pt) as they can blur during sublimation printing.',
+            'Gradient effects are fully supported and can create depth in your design.',
+            'Test your design colors in both bright and dim lighting if possible before approval.',
+          ].map(tip => (
+            <div class="flex items-start gap-3">
+              <span class="text-gold-500 font-bold shrink-0">→</span>
+              <p class="text-gray-700 text-sm leading-relaxed">{tip}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Design Process FAQs" />
+  <CTASection title="Start Your Design Today" subtitle="Request a quote and our design team will create your free mockup within 1–2 business days." btnText="Request a Free Mockup" />
+</BaseLayout>

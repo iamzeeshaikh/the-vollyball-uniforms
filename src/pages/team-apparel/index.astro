@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { products } from '../../data/products';
+
+const apparelProducts = products.filter(p => p.category === 'team-apparel');
+
+const faqs = [
+  { question: 'What is included in a volleyball warm-up suit?', answer: 'A volleyball warm-up suit typically includes a zip-up jacket and matching pants. Both pieces feature your team colors, logo, and optional player names or numbers. They are designed to be worn over your game uniform for pre-match warm-ups and during travel.' },
+  { question: 'Can we add player names to warm-up jackets?', answer: 'Yes. Player names can be added to warm-up jackets and pants via sublimation (for all-over designs) or heat transfer (for individual personalization added after production). This is popular for senior recognition and tournament identification.' },
+  { question: 'Are volleyball hoodies available in pullover and zip styles?', answer: 'We offer both pullover and full-zip hoodie styles. Pullover hoodies are typically more affordable and popular for general team use. Full-zip hoodies are easier to put on and remove over game uniforms, making them popular as warm-up layering pieces.' },
+  { question: 'What fabrics are used for volleyball warm-up suits?', answer: 'Our warm-up suits use a lightweight performance polyester or polyester-spandex blend for the pants, and a slightly heavier tricot or fleece-lined polyester for the jacket. The combination provides warmth during cool gym environments without overheating during activity.' },
+  { question: 'Can we order matching hoodies and warm-up suits in the same design?', answer: 'Absolutely. Many teams order coordinated team apparel packages that include warm-up suits, hoodies, and backpacks or bags in a unified design language. This creates a cohesive, professional appearance for travel days and team events.' },
+  { question: 'What is the minimum order for team apparel?', answer: 'There is no minimum order requirement. However, orders of 12+ pieces benefit from our bulk pricing tiers. For large programs ordering warm-up suits and hoodies for an entire team plus coaching staff, we can offer significant per-unit discounts.' },  { question: 'Can hoodies and warm-up suits be ordered in matching designs for parents and fans?', answer: 'Yes. Fan and parent versions of team hoodies are a popular addition to program orders. These typically use the same team design without individual player names or numbers. Fan hoodies can be ordered within the same production run as team versions or as a separate run if fan sizing and quantities are collected at a different time.' },
+  { question: 'What is the production lead time for team apparel orders?', answer: 'Standard production for warm-up suits runs 12–14 business days after design approval. Hoodies take 10–14 business days. When ordering both alongside game uniforms as part of a complete kit, allow 14–21 business days for the full package. Rush production is available for programs with urgent timelines.' },
+  { question: 'Can team apparel include matching pieces for coaching staff and trainers?', answer: 'Yes. Coaching staff apparel — polo shirts, warm-up jackets, and hoodies — can be ordered with matching or complementary designs that maintain visual program cohesion. Staff pieces typically use a slightly modified design treatment or carry a \'Coach\' or staff designation to distinguish them from player gear. Staff pieces are produced within the same order.' },
+  { question: 'Is there a minimum order quantity for team apparel?', answer: 'There is no minimum order. Individual warm-up suits, single replacement hoodies, or one-off pieces for late additions can all be produced using your existing design. Team orders of 12 or more pieces receive bulk pricing across all apparel categories.' },
+];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Team Apparel' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Volleyball Team Apparel — Warm Up Suits & Hoodies | The Volleyball Uniforms"
+  description="Custom volleyball warm-up suits and hoodies for teams. Coordinated team apparel with your colors, logo & names. Ideal for travel days and pre-game warm-ups. Get a quote."
+  canonical="https://thevolleyballuniforms.com/team-apparel/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">Custom Volleyball Team Apparel</h1>
+        <p class="text-xl text-navy-300 mb-8 leading-relaxed">Professional warm-up suits and team hoodies for volleyball programs. Coordinated apparel that makes your team look unified from the locker room to the court.</p>
+        <a href="/request-a-quote/" class="btn-primary">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Team Apparel Collection</h2>
+        <p class="section-subtitle mx-auto">Warm-up suits and hoodies designed to coordinate with your game uniforms.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        {apparelProducts.map(p => (
+          <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Your Volleyball Team Needs Quality Team Apparel</h2>
+      <p>A volleyball team's identity extends beyond the court. How your team looks during travel, warm-ups, and team events shapes how others perceive your program — and how your athletes feel about representing it. Well-designed team apparel communicates professionalism, builds team unity, and creates memorable program imagery that players carry with them long after their playing days end.</p>
+
+      <h2>Volleyball Warm-Up Suits</h2>
+      <p>Our <a href="/volleyball-warm-up-suits/">volleyball warm-up suits</a> are engineered to serve multiple functions. Before matches, they keep players warm during extended warm-up periods in cold gymnasiums. During timeouts, they allow substitutes and non-playing players to stay loose and ready. On travel days, they present a unified, professional appearance for your program.</p>
+      <p>Warm-up suits are available as two-piece sets (jacket + pants) and can be fully customized with your team's color scheme, logo, player names, and numbers. The lightweight construction allows them to be worn over game uniforms for quick transitions.</p>
+
+      <h2>Volleyball Hoodies</h2>
+      <p>Our custom <a href="/volleyball-hoodies/">volleyball hoodies</a> are a fan favorite for teams at every level. Comfortable, versatile, and easy to customize, hoodies serve as excellent travel apparel, team gifts, senior recognition items, and fundraising merchandise. Available in pullover and full-zip styles, with options for lightweight performance fabric or classic cotton-poly fleece.</p>
+
+      <h2>Building a Cohesive Team Apparel Package</h2>
+      <p>The most effective team apparel programs use a unified design language across all pieces. This means your warm-up jacket, practice jersey, hoodie, and game uniform all feel like they belong to the same program — consistent colors, consistent typography, consistent logo placement. We can help you develop a complete visual identity package if you are starting from scratch, or apply your existing design standards to all new items.</p>
+      <p>For complete packages that include uniforms alongside warm-up gear and practice apparel, see our <a href="/volleyball-team-kits/">volleyball team kits</a>.</p>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Team Apparel FAQs" />
+  <InlineQuoteSection />
+
+  <CTASection title="Outfit Your Team Beyond the Court" subtitle="Get a quote for coordinated volleyball team apparel in your school or club colors." />
+</BaseLayout>

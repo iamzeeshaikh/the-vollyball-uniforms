@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'youth-volleyball-jerseys')!;
+const related = products.filter(p => ['youth-volleyball-uniforms','kids-volleyball-jerseys','volleyball-practice-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Moisture-Wicking Polyester' },
+  { label: 'Fit', value: 'Youth athletic — proportioned for youth body dimensions' },
+  { label: 'Youth Sizes', value: 'YXS, YS, YM, YL, YXL' },
+  { label: 'Adult Crossover Sizes', value: 'XS, S, M available for older youth players' },
+  { label: 'Neckline', value: 'V-neck or crew neck' },
+  { label: 'Sleeve Options', value: 'Short sleeve or sleeveless' },
+  { label: 'Customization', value: 'Full sublimation — team colors, name, number, logo' },
+  { label: 'Compliance', value: 'Youth league and AAU tournament compliant designs available' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: 'What youth sizes are available for volleyball jerseys?', answer: 'Youth volleyball jerseys are available in YXS, YS, YM, YL, and YXL. For older or larger youth players who have outgrown standard youth sizing, we can bridge to adult XS or S sizes with youth-appropriate proportioning. Include each player\'s height and weight when ordering so we can advise the most accurate size.' },
+  { question: 'Are youth volleyball jerseys the same quality as adult jerseys?', answer: 'Yes. Youth jerseys are produced using the same 100% moisture-wicking polyester and dye-sublimation process as adult jerseys. The difference is in the sizing and pattern proportions — youth jerseys are cut to youth body dimensions. The performance fabric, sublimation permanence, and design quality are identical.' },
+  { question: 'Can youth jerseys be personalized with names and numbers?', answer: 'Absolutely. Individual player names and numbers are sublimated on every youth jersey. For recreational leagues, names and numbers add an exciting personal element for young players. For competitive youth programs, USAV and AAU compliance requires specific number sizes which we accommodate in every youth competitive jersey order.' },
+  { question: 'What is the minimum order for youth volleyball jerseys?', answer: 'There is no minimum order quantity. A single youth jersey can be produced for an individual player. Team orders of 12 or more receive bulk pricing. Most youth league orders fall in the 10–15 player range, which qualifies for team pricing.' },
+  { question: 'Are youth volleyball jerseys durable enough for active play?', answer: 'Yes. The sublimated polyester fabric is highly durable for youth activity levels. Sublimation infuses the design permanently into the fabric — it cannot crack, peel, or fade regardless of how rough young players are on their gear. The fabric is machine washable and maintains its shape and color through a full season of play and washing.' },
+  { question: 'Can a youth league order jerseys for boys and girls on the same order?', answer: 'Yes. Mixed youth league orders are common. Boys and girls can receive the same jersey design in different cuts — a standard athletic cut for boys and a more fitted cut for girls — within the same order. Specify the preferred cut per player.' },
+  { question: 'How should I size youth volleyball jerseys?', answer: "Youth jersey sizing follows height and chest measurement. YXS fits approximately ages 4–5 (height 40-44\"), YS fits ages 6–7 (44-48\"), YM fits ages 8–10 (48-54\"), YL fits ages 11–12 (54-58\"), and YXL fits ages 13–14 (58-62\"). These are approximate guides — individual measurements are more accurate. Review our size guide for detailed youth sizing charts." },
+  { question: 'What is the production time for youth team jersey orders?', answer: 'Standard production takes 10–14 business days after design approval. For youth leagues placing orders at the start of the season, plan ahead to allow comfortable lead time before your first game. Rush production in 5–7 business days is available for programs with tight season-opening deadlines.' },  { question: 'What is the smallest jersey size available for very young players?', answer: 'Our smallest size is YXS, designed for players approximately ages 4–6 with a chest circumference of 22–24 inches. For players who fall below this measurement range, we can produce jerseys to custom body specifications. Contact us with the player\'s exact chest circumference, shoulder width, and desired body length before ordering and we will confirm the best approach.' },
+  { question: 'Can youth jerseys be ordered with numbers only and no player names to reduce cost?', answer: 'Yes. Omitting player names produces a simpler jersey with only the team design and back number. This is a common approach for recreational youth leagues managing tight per-player budgets. The cost difference between a number-only jersey and a named jersey is modest since both require individual production, but number-only orders typically approve and confirm faster than named orders.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Youth Volleyball Jerseys',
+  description: "Custom youth volleyball jerseys in YXS–YXL sizing. Full sublimation, team colors, player names and numbers. Built for youth leagues, clubs, and recreational programs.",
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '74' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Youth Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Youth Volleyball Jerseys — Custom Team Jerseys for Young Players | The Volleyball Uniforms"
+  description="Custom youth volleyball jerseys in YXS–YXL sizing. Full sublimation, team colors, player names & numbers. Perfect for youth leagues, clubs & recreational programs. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/youth-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Youth Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (74 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Custom youth volleyball jerseys built to the same performance standard as adult jerseys — just proportioned for young players. Full sublimation in your league or club colors, individual player names and numbers, and durable construction that holds up to the energy of youth sports.</p>
+          <div class="space-y-3 mb-8">
+            {['Youth sizes YXS through YXL','Same performance fabric as adult jerseys','Full sublimation — names, numbers, logos','Durable through seasons of play and washing','No minimum order quantity','Adult XS/S available for older youth players'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Youth Volleyball Jerseys: Professional Quality for Young Players</h2>
+      <p>Youth volleyball has grown into one of the most active participation sports in the United States, with programs running through recreational leagues, club organizations, AAU tournaments, and middle school athletic departments. Young players deserve jerseys that function as genuine athletic apparel — not oversized hand-me-down adult sizes or low-quality promotional items that shrink and fade after two washes.</p>
+      <p>At The Volleyball Uniforms, our youth volleyball jersey line uses the same performance polyester and dye-sublimation process as our adult products, scaled to youth sizing that fits the bodies of actual young athletes. The result is a jersey that performs correctly, looks professional, and stands up to the enthusiasm young players bring to every practice and game.</p>
+
+      <h2>Youth Sizing That Actually Fits</h2>
+      <p>Adult jerseys sized down are not youth jerseys — the proportions are wrong, the shoulder widths are too wide, and the body lengths are too long. Our youth jerseys are patterned specifically for youth body proportions, covering sizes YXS through YXL. For players transitioning out of youth sizing, we offer adult XS and S with youth-appropriate sleeve lengths.</p>
+      <p>Sizing a youth volleyball team accurately requires individual attention. We recommend collecting each player's height, weight, and chest measurement rather than relying on age ranges alone. Players of the same age can vary significantly in physical development, and the right jersey fit makes a meaningful difference in how a young player feels and moves on the court. See our detailed <a href="/size-guide/">volleyball uniform size guide</a> for youth sizing charts.</p>
+
+      <h2>Performance Fabric for Active Youth Players</h2>
+      <p>Young athletes are demanding on their gear. They dive, roll, slide, and generally put athletic apparel through tests that adult players might avoid. Our 100% moisture-wicking polyester fabric is built for exactly this level of activity — it manages sweat during active play, maintains its shape through intensive use, and withstands frequent machine washing without degrading the fabric or the sublimated design.</p>
+      <p>The dye-sublimation process means the team colors, player name, and number are permanently infused into the polyester fibers. There is nothing to crack, peel, or fade because the design is part of the fabric itself. A youth jersey produced with sublimation will look the same at the end of its second season as it did at the start of the first.</p>
+
+      <h2>Customization for Youth Programs</h2>
+      <p>One of the most meaningful aspects of youth sports participation is the sense of belonging to a team. A custom jersey with a player's own name and number on the back transforms a piece of athletic apparel into a piece of a young player's athletic identity. We encourage every youth program to invest in individual name customization for this reason.</p>
+      <p>Team design customization includes your league or club colors, team logo or mascot, sponsor acknowledgments, and any design elements that reflect your program's identity. For recreational leagues managing tight per-player budgets, simpler designs with strong color blocking can achieve a professional look at a lower design complexity cost.</p>
+
+      <h2>Ordering for Youth Leagues and Clubs</h2>
+      <p>Youth league orders present unique sizing challenges — player rosters change, sizes are harder to predict at the start of the season, and additions are common mid-season. Our process is built for this reality. There is no minimum order, so additions for late-registering players or replacement jerseys for individual players are produced at the same quality level as the original order. We maintain your design on file so every new jersey matches perfectly.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Recreational youth volleyball leagues ages 6–14</li>
+        <li>USAV and AAU junior club volleyball programs</li>
+        <li>Middle school girls' and boys' volleyball teams</li>
+        <li>Youth community center volleyball programs</li>
+        <li>Church and faith-based youth league volleyball</li>
+        <li>Summer camp volleyball programs</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Youth Volleyball Jersey Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Youth Volleyball Jersey FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Outfit Your Youth Volleyball Program" subtitle="Get a free design mockup and quote for custom youth volleyball jerseys in your team colors." />
+</BaseLayout>

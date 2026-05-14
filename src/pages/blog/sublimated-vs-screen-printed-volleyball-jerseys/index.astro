@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Sublimated vs Screen Printed Volleyball Jerseys' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Sublimated Volleyball Jerseys vs Screen Printed Jerseys',
+  author: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  publisher: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  datePublished: '2025-02-03',
+};
+---
+
+<BaseLayout
+  title="Sublimated vs Screen Printed Volleyball Jerseys — Full Comparison | Blog"
+  description="Sublimation vs screen printing for volleyball jerseys. We compare durability, color options, cost, design flexibility, and turnaround time to help you choose the right method."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/blog/sublimated-vs-screen-printed-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="mb-8">
+        <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Comparison</span>
+        <div class="text-gray-400 text-sm mt-3">February 3, 2025 • 8 min read • By The Volleyball Uniforms Team</div>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">Sublimated Volleyball Jerseys vs Screen Printed Jerseys</h1>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">Both printing methods can produce professional volleyball jerseys, but they work very differently and are better suited to different team needs. Here is a complete, honest comparison.</p>
+
+      <div class="prose-custom">
+        <h2>How Each Method Works</h2>
+        <p><strong>Dye-sublimation</strong> uses heat and pressure to convert solid dye into a gas that penetrates and bonds with polyester fibers. The result is color that is literally inside the fabric — it cannot sit on top of fibers because it IS the fiber at the molecular level. This process produces vibrant, permanent color with unlimited design possibilities.</p>
+        <p><strong>Screen printing</strong> applies ink to the surface of the fabric through a stencil (screen). Each color requires a separate screen, and the ink sits on top of the fabric rather than bonding with it. This is a proven, cost-effective method with specific advantages for certain order types.</p>
+
+        <h2>Design Flexibility</h2>
+        <p>This is where sublimation has a clear advantage. Because sublimation uses no screens and the number of colors does not affect cost, designs can incorporate unlimited colors, gradients, photographic imagery, and edge-to-edge patterns without any design constraints or per-color pricing. Our <a href="/sublimated-volleyball-jerseys/">sublimated volleyball jerseys</a> regularly feature complex artwork that would be impossible or prohibitively expensive with screen printing.</p>
+        <p>Screen printing works best with 1–4 solid colors. Each additional color adds cost and complexity. Gradients and photographic images are not feasible with traditional screen printing. For simple designs — a team name, number, and one or two solid accent colors — screen printing performs well.</p>
+
+        <h2>Durability and Longevity</h2>
+        <p>Sublimation wins decisively on durability. Because the color is bonded into the fabric fibers, it cannot crack, peel, fade, or wash out. A well-made sublimated jersey can last 5+ years of regular use and washing without any noticeable color degradation. Teams often wear sublimated jerseys for multiple seasons without replacement due to visual wear.</p>
+        <p>Screen-printed inks sit on top of the fabric and are subject to cracking over time, particularly in areas that flex repeatedly during play — sleeves, underarms, and number areas. Higher-quality screen printing inks (plastisol, discharge) are more durable than cheaper alternatives, but no screen-printed jersey matches the longevity of sublimation.</p>
+
+        <!-- COMPARISON TABLE -->
+        <div class="overflow-x-auto rounded-xl border border-gray-200 my-8 not-prose">
+          <table class="w-full text-sm">
+            <thead class="bg-navy-950 text-white">
+              <tr>
+                <th class="px-4 py-3 text-left">Factor</th>
+                <th class="px-4 py-3 text-center">Sublimation</th>
+                <th class="px-4 py-3 text-center">Screen Print</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Color limit', 'Unlimited', '1–4 colors economically'],
+                ['Gradients/effects', '✅ Fully supported', '❌ Not possible'],
+                ['Print durability', '★★★★★ Permanent', '★★★☆☆ Can crack/peel'],
+                ['Design flexibility', 'Very high', 'Limited'],
+                ['Fabric requirement', 'Polyester only', 'Most fabrics'],
+                ['Cost (simple designs)', 'Moderate', 'Lower for 1–2 colors'],
+                ['Cost (complex designs)', 'No extra charge', 'Increases per color'],
+                ['Minimum quantity', 'Any quantity', 'More economical at 24+'],
+                ['Turnaround', '10–14 days', '7–14 days'],
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td class="px-4 py-3 font-semibold text-gray-700">{row[0]}</td>
+                  <td class="px-4 py-3 text-center text-gray-700">{row[1]}</td>
+                  <td class="px-4 py-3 text-center text-gray-700">{row[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Cost Comparison</h2>
+        <p>For simple, one or two-color designs on a stock jersey, screen printing can be more cost-effective per unit than sublimation, especially for large quantities. This makes it attractive for <a href="/volleyball-practice-jerseys/">practice jerseys</a> where design complexity is not important.</p>
+        <p>For multi-color or fully custom designs, sublimation is almost always the more economical choice. Screen printing charges by the color — a six-color design can cost twice as much per unit as a two-color design. Sublimation pricing is essentially flat regardless of how many colors or how complex the artwork.</p>
+
+        <h2>Which Should You Choose?</h2>
+        <p>Choose <strong>sublimation</strong> when: you want full-color, edge-to-edge custom designs; you need the design to last multiple seasons; your jersey uses player names and numbers (sublimated names and numbers never peel); or your team color scheme requires gradients or complex patterns.</p>
+        <p>Consider <strong>screen printing</strong> when: you need very simple designs quickly and cost is the primary concern; you have cotton or cotton-blend jerseys; or you are producing practice jerseys where longevity is less critical than price.</p>
+        <p>For competitive game-day uniforms at any level, we recommend sublimation. For most custom volleyball jersey orders, the design quality, durability, and long-term value of sublimation justify the investment.</p>
+      </div>
+
+      <div class="mt-12 p-6 bg-navy-50 rounded-2xl border border-navy-100">
+        <h3 class="font-bold text-navy-950 mb-2">Get a Sublimated Jersey Quote</h3>
+        <p class="text-gray-600 text-sm mb-4">Our sublimated volleyball jerseys start from surprisingly competitive pricing — get a free quote to compare.</p>
+        <a href="/request-a-quote/" class="btn-primary">Request a Free Quote</a>
+      </div>
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'women-volleyball-uniforms')!;
+const related = products.filter(p => ['women-volleyball-jerseys','high-school-volleyball-uniforms','college-volleyball-uniforms'].includes(p.slug));
+
+const specs = [
+  { label: 'Jersey Material', value: '100% Moisture-Wicking Polyester or 88/12 Poly-Spandex' },
+  { label: 'Shorts Material', value: '88/12 Polyester-Spandex blend' },
+  { label: "Jersey Cut", value: "Women's athletic — tailored for female body proportions" },
+  { label: 'Shorts Inseam Options', value: '2" or 3" (standard women\'s competition), 4" also available' },
+  { label: 'Shorts Liner', value: 'Attached brief liner standard; removable liner option available' },
+  { label: 'Neckline', value: 'V-neck (default), scoop neck, or crew neck' },
+  { label: 'Sizes Available', value: 'YXS – 3XL in women\'s proportions for both jersey and shorts' },
+  { label: 'Customization', value: 'Full sublimation — matching colors, names, numbers, logos across both pieces' },
+  { label: 'Compliance', value: 'NFHS and NCAA women\'s volleyball uniform standards available' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: "What is included in a women's volleyball uniform set?", answer: "A women's volleyball uniform set includes a jersey and matching shorts produced as a coordinated pair. Both pieces use the same sublimated design, color palette, and player-specific customization (name and number) so they function as a unified game uniform. Libero jerseys in a contrasting color are available as an add-on." },
+  { question: "What inseam length is standard for women's volleyball shorts?", answer: "The 2\" to 3\" inseam is the competitive standard for women's indoor volleyball. This length provides the maximum hip and thigh range of motion required for explosive lateral defense, diving, and serving movements. For programs that prefer more coverage, 4\" inseam is available. We recommend following your league or governing body standards when selecting inseam length." },
+  { question: "Are women's volleyball shorts available with brief liners?", answer: "Yes. Attached brief liners are standard on women's volleyball shorts, providing additional coverage during dynamic floor movements. Players who prefer shorts without liners can request the no-liner option. Mixed preferences within a single order can be accommodated — specify per player." },
+  { question: "Can the jersey and shorts be ordered in different sizes for the same player?", answer: "Absolutely. Jersey and shorts are sized independently for every player. Because women's jersey fit and shorts fit are governed by different body measurements (chest/shoulder for jerseys, hip/waist for shorts), many players require different sizing across the two pieces. Submit jersey size and shorts size separately for each player." },
+  { question: "Do women's volleyball uniforms include a libero jersey?", answer: "Libero jerseys can be added to any women's volleyball uniform order. NFHS and NCAA rules require the libero to wear a jersey that visibly contrasts with teammates. We produce libero jerseys with matching numbers in a contrasting colorway that coordinates with your team's primary uniform design." },
+  { question: "Are women's volleyball uniforms NFHS compliant for high school play?", answer: "Yes. We produce NFHS-compliant women's volleyball uniforms. NFHS rules specify minimum number sizes (front: 4\", back: 6\"), color contrast requirements, permissible design areas, and libero jersey contrast standards. Share your state association's supplemental requirements and we will confirm compliance before production." },
+  { question: "What is the typical timeline for a women's volleyball uniform order?", answer: "Standard production takes 10–14 business days after design approval for jersey + shorts sets. Teams ordering complete kits including warm-up suits and practice gear should allow 14–21 business days. Rush production in 5–7 business days is available for urgent deadlines." },
+  { question: "Can women's volleyball uniforms be ordered for a full varsity and JV program?", answer: "Yes. Many high school programs order coordinated varsity and JV uniforms in a single production run. Varsity and JV teams can share the same design or use a slightly different colorway to distinguish squads. Combined ordering produces better pricing per unit across the entire program." },  { question: 'Are compression-style spandex shorts available as an alternative to traditional volleyball shorts?', answer: 'Yes. Compression spandex shorts in a full brief style — similar to what you see in NCAA and professional women\'s volleyball — are available as an alternative to traditional athletic shorts. These use a fully sublimated 88/12 polyester-spandex blend with compression-fit construction throughout. They\'re produced with the same design as the matching jersey for a coordinated uniform appearance.' },
+  { question: 'Do women\'s volleyball shorts include an anti-ride-up feature?', answer: 'Yes. Our women\'s volleyball shorts include an interior grip band along the hem made from silicone-coated elastic that holds the shorts in position during lateral movements, dives, and floor contact. This is a standard feature on all women\'s volleyball shorts we produce. The grip band prevents ride-up without binding or restricting movement.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: "Women's Volleyball Uniforms",
+  description: "Custom women's volleyball uniform sets — jersey and shorts designed for female athletes. NFHS and NCAA compliant, full sublimation, matching sets with libero option.",
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '187' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+  { label: "Women's Volleyball Uniforms" },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Women's Volleyball Uniforms — Custom Matching Sets | The Volleyball Uniforms"
+  description="Custom women's volleyball uniform sets — jersey & matching shorts in women's-specific athletic cuts. NFHS & NCAA compliant, full sublimation, libero jerseys available. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/women-volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Uniforms</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Women's Volleyball Uniforms</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (187 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Complete women's volleyball uniform sets engineered for female athletes. Women's-specific proportions on both jersey and shorts, full sublimation printing, and compliance support for NFHS and NCAA programs. Designed to make every player on your roster look and perform at their best.</p>
+          <div class="space-y-3 mb-8">
+            {["Women's athletic cut jersey and matching shorts","2\" or 3\" inseam competition shorts","Brief liner standard on shorts","Full sublimation — unlimited design options","NFHS and NCAA compliance support","Libero jersey in contrasting color available",'Sizes YXS – 3XL, jersey and shorts sized separately'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Women's Volleyball Uniforms: Purpose-Built for Female Athletes</h2>
+      <p>The women's volleyball uniform is one of the most specialized pieces of athletic apparel in team sports. It must allow full overhead arm extension for serving and setting, accommodate explosive lateral hip movements for defense, stay securely tucked during dive and sprawl sequences, and comply with governing body regulations for competitive play. A uniform produced from a generic or unisex template cannot achieve all of these requirements simultaneously for female athletes.</p>
+      <p>At The Volleyball Uniforms, our women's uniform line is developed with women's-specific pattern making across both the jersey and the shorts. The proportions, inseam lengths, liner construction, and fit options are all designed around the female athletic body and the specific demands of women's volleyball competition.</p>
+
+      <h2>Jersey Design for Women's Volleyball</h2>
+      <p>Our women's volleyball jerseys feature shorter body lengths that stay tucked during play without excess fabric, narrower shoulder widths matched to women's athletic proportions, and a more fitted silhouette through the torso that doesn't restrict overhead movements. Neckline options include V-neck (the most popular for women's competitive volleyball), scoop neck (preferred for beach volleyball and recreational play), and crew neck for programs that prefer a traditional uniform aesthetic.</p>
+      <p>The standard fabric is 100% moisture-wicking polyester, with an optional 88/12 polyester-spandex blend for players who prefer compression-adjacent stretch properties. Both fabrics support full dye-sublimation printing for unlimited color and design options. See our <a href="/women-volleyball-jerseys/">women's volleyball jerseys</a> page for jersey-specific details.</p>
+
+      <h2>Shorts Designed for Women's Competition</h2>
+      <p>Women's volleyball shorts in our lineup feature the 2" or 3" inseam standard for indoor competitive play, providing full hip range of motion for lateral defense and explosive movements at the net. All shorts include an attached brief liner as standard — a feature specifically requested by women's programs for additional coverage during high-movement sequences. Players preferring no liner can request that option individually.</p>
+      <p>The shorts fabric uses an 88/12 polyester-spandex blend that provides the four-way stretch required for the lateral demands of women's volleyball defense. The elastic waistband with internal drawstring provides a secure, adjustable fit across a range of body proportions. The sublimation design on the shorts coordinates exactly with the jersey design for a true matched-set appearance.</p>
+
+      <h2>Compliance for Women's Governing Bodies</h2>
+      <p>Women's volleyball at the high school and collegiate level is governed by NFHS and NCAA standards that specify exact requirements for jersey number sizing and placement, color contrast between numbers and jersey, shorts length regulations, and libero jersey contrast requirements. Our compliance review process covers every order against the relevant governing body standards before production begins. For programs competing under USAV or AAU rules, we review those standards as well.</p>
+
+      <h2>Libero Jerseys for Women's Programs</h2>
+      <p>NFHS and NCAA regulations require the libero to wear a jersey that contrasts visibly with all other players on the team. We produce libero jerseys as part of every women's volleyball uniform order — using the same sublimation process in a contrasting colorway that coordinates aesthetically with the team's primary design while meeting the mandatory visual contrast requirements.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>High school varsity and JV women's volleyball programs</li>
+        <li>NCAA, NAIA, and NJCAA collegiate women's programs</li>
+        <li>USAV and AAU club volleyball organizations</li>
+        <li>Youth and middle school girls' volleyball leagues</li>
+        <li>Adult recreational and open-division women's teams</li>
+        <li>Beach volleyball pairs competing in sanctioned events</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Women's Volleyball Uniform Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Women's Volleyball Uniform FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Design Your Women's Team Uniforms" subtitle="Get a free design mockup and quote for custom women's volleyball uniform sets tailored to your program." />
+</BaseLayout>

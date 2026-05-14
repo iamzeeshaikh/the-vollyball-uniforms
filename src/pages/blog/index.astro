@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { blogPosts } from '../../data/blog';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Blog' }];
+---
+
+<BaseLayout
+  title="Volleyball Uniform Blog — Tips, Guides & News | The Volleyball Uniforms"
+  description="Expert guides on custom volleyball uniforms, jersey materials, sizing, sublimation printing, bulk ordering, and team apparel. Resources for coaches, ADs, and team managers."
+  canonical="https://thevolleyballuniforms.com/blog/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-4">Volleyball Uniform Blog</h1>
+      <p class="text-xl text-navy-300">Expert guides, buying tips, and educational resources for volleyball coaches, athletic directors, and team managers.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogPosts.map(post => (
+          <article class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="aspect-video bg-gradient-to-br from-navy-900 to-electric-900 relative overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-6xl opacity-20">🏐</span>
+              </div>
+              <div class="absolute top-4 left-4">
+                <span class="bg-gold-500 text-navy-950 text-xs font-bold px-3 py-1 rounded-full">{post.category}</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-400 mb-3">
+                <span>{new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span>•</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h2 class="font-extrabold text-navy-950 text-lg mb-3 group-hover:text-electric-600 transition-colors leading-tight">
+                <a href={`/blog/${post.slug}/`}>{post.title}</a>
+              </h2>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-3">{post.excerpt}</p>
+              <a href={`/blog/${post.slug}/`} class="inline-flex items-center gap-1.5 text-electric-600 font-semibold text-sm group-hover:gap-2.5 transition-all">
+                Read Article
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Ready to Order Custom Volleyball Uniforms?" subtitle="Put what you've learned into action. Request a free quote and design mockup for your team." />
+</BaseLayout>

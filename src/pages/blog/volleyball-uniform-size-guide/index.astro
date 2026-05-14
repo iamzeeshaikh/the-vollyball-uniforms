@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Volleyball Uniform Size Guide' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Volleyball Uniform Size Guide for Youth and Adult Teams',
+  author: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  publisher: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  datePublished: '2025-02-10',
+};
+---
+
+<BaseLayout
+  title="Volleyball Uniform Size Guide for Youth & Adult Teams | Blog"
+  description="Complete volleyball uniform sizing guide. Youth and adult size charts, how to measure players, team roster sizing tips, and how to avoid common sizing mistakes in bulk orders."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/blog/volleyball-uniform-size-guide/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="mb-8">
+        <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Guide</span>
+        <div class="text-gray-400 text-sm mt-3">February 10, 2025 • 5 min read • By The Volleyball Uniforms Team</div>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">Volleyball Uniform Size Guide for Youth and Adult Teams</h1>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">Getting sizes right for a full team order is critical — replacements after production take time and add cost. This guide walks you through everything you need to collect the right measurements and submit an accurate size roster.</p>
+
+      <div class="prose-custom">
+        <h2>Why You Should Never Use Clothing Sizes</h2>
+        <p>The most common sizing mistake in team orders is asking players to submit their "usual t-shirt size" or clothing size. The problem is that clothing sizes vary enormously between brands. A player who wears a Large in one brand might wear a Medium in another. Using clothing sizes produces a wide range of incorrect fits that require expensive replacements.</p>
+        <p>Instead, always collect actual body measurements. A chest circumference measurement in inches or centimeters is consistent across every brand and manufacturer. Convert measurements to jersey sizes using our <a href="/size-guide/">official size guide</a> and you will have an accurate roster.</p>
+
+        <h2>How to Measure Chest for Jersey Sizing</h2>
+        <p>Have players wrap a soft measuring tape around the fullest part of their chest — across the nipple line for men, across the fullest part of the bust for women. The tape should be level all the way around and have about one inch of ease (not pulled tight, not hanging loose). Record this measurement in inches.</p>
+        <p>For youth players, parents can take measurements at home using a fabric measuring tape or even a piece of string and a ruler. Accuracy to the nearest half-inch is sufficient for jersey sizing purposes.</p>
+
+        <h2>Youth vs. Adult Sizing: Key Differences</h2>
+        <p>Youth volleyball jerseys are not simply smaller adult jerseys. They are cut to the proportions of developing bodies — shorter torso lengths, narrower shoulder widths, and different chest-to-length ratios compared to adult garments. A 10-year-old player who measures 34" around the chest falls into our YXL size, which has proportions appropriate for a child — not an adult XS, which would have a much longer body and wider shoulders.</p>
+        <p>Always use the youth size chart for players under approximately 14 years old or under 5'2" in height. Players who fall at the upper end of youth sizing should be measured and compared to both youth and adult charts to find the best fit. See the full charts in our <a href="/size-guide/">volleyball uniform size guide</a>.</p>
+
+        <h2>Shorts Sizing: Waist vs. Hip</h2>
+        <p>Volleyball shorts sizing uses different measurements than jerseys. For women's volleyball shorts, hip measurement is typically the primary reference because the hip-to-waist ratio varies more significantly in women's sizing. For men's shorts, waist is the primary measurement. Collect both waist and hip measurements from female players and submit both with your roster.</p>
+        <p>For youth volleyball uniforms, waist measurement is primary for both boys and girls. Our <a href="/youth-volleyball-uniforms/">youth volleyball uniforms</a> feature elastic waistbands that provide some size adjustment range, but accurate measurement still produces the best fit.</p>
+
+        <h2>Handling Players Between Sizes</h2>
+        <p>When a player's measurement falls between two sizes, size up. A slightly larger jersey allows better freedom of movement during overhead serves, attacks, and diving than a jersey that is too small. The one exception: if a player specifically wants a compression-style fit, sizing down to the lower size may be appropriate. Note these preferences per player in your roster.</p>
+
+        <h2>Building Your Team Size Roster</h2>
+        <p>Your size roster should include: player name, jersey size, shorts size, and any special notes (e.g., "prefers loose fit" or "compression required"). Submit this as a spreadsheet or table with your quote request. For orders that include warm-up suits, add jacket size and pants size to the same document.</p>
+        <p>Include 1–2 spare jerseys in the most common sizes in your order. Rosters change — new players join, existing players need replacements. Having spares on hand means you do not need to wait for a new production run for a single jersey.</p>
+
+        <h2>Turnaround After Size Corrections</h2>
+        <p>Even with careful measurement collection, occasional sizing issues occur. If a jersey arrives and does not fit a player, contact us within 7 days of delivery. We evaluate replacement requests case by case. Errors from inaccurate measurements submitted in the order are not covered under replacement policy, which is why we strongly encourage actual measurement collection over estimated sizes.</p>
+      </div>
+
+      <div class="mt-12 p-6 bg-electric-50 rounded-2xl border border-electric-100">
+        <h3 class="font-bold text-navy-950 mb-2">View Our Full Size Charts</h3>
+        <p class="text-gray-600 text-sm mb-4">Download printable size charts for youth and adult volleyball jerseys, shorts, and warm-up suits.</p>
+        <a href="/size-guide/" class="btn-primary">Visit Size Guide</a>
+      </div>
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

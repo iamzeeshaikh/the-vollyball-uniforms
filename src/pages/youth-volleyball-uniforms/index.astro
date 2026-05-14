@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'youth-volleyball-uniforms')!;
+const related = products.filter(p => ['youth-volleyball-jerseys','kids-volleyball-jerseys','high-school-volleyball-uniforms'].includes(p.slug));
+
+const specs = [
+  { label: 'Jersey Material', value: '100% Moisture-Wicking Polyester' },
+  { label: 'Shorts Material', value: '100% Polyester or 88/12 Polyester-Spandex blend' },
+  { label: 'Youth Sizes', value: 'YXS, YS, YM, YL, YXL (jersey and shorts sized separately)' },
+  { label: 'Girls Shorts Inseam', value: '2" or 3"' },
+  { label: 'Boys Shorts Inseam', value: '5" or 7"' },
+  { label: 'Girls Shorts Liner', value: 'Brief liner available' },
+  { label: 'Customization', value: 'Full sublimation — team colors, player names, numbers, logo' },
+  { label: 'Compliance', value: 'Youth league and AAU tournament guidelines available' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: "What is included in a youth volleyball uniform set?", answer: "A youth volleyball uniform set includes a jersey and matching shorts in coordinated colors with player-specific names and numbers. Both pieces are sublimated with the same design for a true matched set. Youth uniform sets are available in girls' cuts (shorter inseam shorts with liner option) and boys' cuts (longer inseam shorts)." },
+  { question: "How are youth volleyball uniforms sized?", answer: "Youth jerseys and shorts are sized independently by player. Jerseys follow height and chest measurements; shorts follow waist and hip measurements. Because youth athletes develop at different rates, individual measurements are more reliable than age-based size recommendations. Submit height, weight, and key measurements for each player and we will advise the best size." },
+  { question: "Are youth uniforms durable enough for competitive play?", answer: "Yes. Youth volleyball uniforms use the same 100% polyester performance fabric and dye-sublimation process as adult competitive uniforms. The sublimated design is permanently infused into the fabric and cannot crack, peel, or fade. The fabric handles machine washing after every practice and game without degrading over a full season." },
+  { question: "Can a youth league order mixed boys and girls uniforms on the same order?", answer: "Absolutely. Mixed youth league orders are common and fully supported. Boys and girls can receive the same overall design in gender-appropriate cuts — girls receive shorter inseam shorts with liner options, boys receive longer inseam shorts. Specify cut preference per player in your size roster." },
+  { question: "What is the minimum order for youth volleyball uniform sets?", answer: "There is no minimum order. Individual sets can be produced for a single player joining mid-season. Team orders of 12 or more sets receive team pricing. For youth leagues with multiple teams, combined ordering across teams produces the best per-unit pricing." },
+  { question: "Are youth volleyball uniforms compliant with AAU tournament rules?", answer: "Yes. We design youth volleyball uniforms to meet AAU and USAV Junior guidelines for number sizing, placement, and color contrast. Share the specific tournament's uniform requirements with your order and we will confirm compliance before production." },
+  { question: "Can I order matching practice jerseys with the youth game uniform set?", answer: "Yes. Many youth programs order game jerseys, matching game shorts, and practice jerseys in a single production run. Bundling practice and game uniforms produces better pricing and ensures every piece of your team's apparel is visually coordinated. See our volleyball practice jerseys for details." },
+  { question: "How far in advance should I order youth volleyball uniforms?", answer: "Plan to order 3–4 weeks before your first game. Standard production is 10–14 business days after design approval. Allow extra time at the start of the season when collecting sizes from parents — this is often the longest part of the process. Rush production in 5–7 business days is available if your timeline is tight." },  { question: 'What happens if youth players grow significantly between ordering and the start of the season?', answer: 'We recommend ordering at the start of the spring or summer before a fall season to allow time for accurate sizing. If a player grows between the order date and the first game, a replacement piece in the new size can be ordered using the existing design. For youth programs, we suggest ordering a few extra jerseys in the most common sizes to handle late additions and unexpected size changes.' },
+  { question: 'Do you offer multi-season pricing for recurring youth league uniform programs?', answer: 'Yes. Leagues that commit to ordering uniforms for multiple consecutive seasons qualify for multi-season pricing agreements. We maintain the league\'s design on file and streamline each season\'s reorder — you provide an updated roster and sizing information and we handle the rest. Schools and recreational organizations with consistent annual enrollment benefit most from these arrangements.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Youth Volleyball Uniforms',
+  description: "Custom youth volleyball uniform sets — jersey and matching shorts in youth sizes YXS–YXL. Full sublimation, player names and numbers, girls' and boys' cuts available.",
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '89' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+  { label: 'Youth Volleyball Uniforms' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Youth Volleyball Uniforms — Custom Sets for Young Players | The Volleyball Uniforms"
+  description="Custom youth volleyball uniform sets in YXS–YXL. Jersey & matching shorts for girls' and boys' programs. Full sublimation, player names & numbers. No minimums. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/youth-volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Uniforms</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Youth Volleyball Uniforms</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (89 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Complete youth volleyball uniform sets for young players who deserve the same quality as the pros. Jersey and matching shorts in youth sizes with full sublimation, individual names and numbers, and gender-appropriate cuts for girls' and boys' programs.</p>
+          <div class="space-y-3 mb-8">
+            {["Youth sizes YXS–YXL for jersey and shorts","Girls' cuts (2\"–3\" inseam with liner option)","Boys' cuts (5\"–7\" inseam)","Full sublimation — unlimited color options","Individual player names and numbers","No minimum order quantity",'AAU and USAV youth league compliant'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Youth Volleyball Uniforms That Inspire Young Athletes</h2>
+      <p>For young players, wearing a real team uniform with their name and number on the back is one of the formative experiences of youth sports. It signals belonging, creates team identity, and gives young athletes the same feeling of professionalism that they see in the athletes they watch and admire. Youth volleyball uniforms should not be an afterthought — they should be a point of pride for every player who wears them.</p>
+      <p>At The Volleyball Uniforms, we produce youth volleyball uniform sets to the same quality and design standard as our adult competitive line. The same dye-sublimation process, the same performance polyester fabric, the same attention to proportional fit — just sized for the bodies of actual young athletes rather than adapted from adult templates.</p>
+
+      <h2>Proper Youth Sizing Across Jersey and Shorts</h2>
+      <p>Youth volleyball uniform sets require careful independent sizing of jersey and shorts for each player. Jersey fit is governed by shoulder width and chest circumference; shorts fit is governed by waist and hip measurements. These dimensions grow at different rates in young athletes, which means the size that works for the jersey may not be the right size for the shorts. Our process accommodates per-player, per-piece sizing in every order.</p>
+      <p>For youth leagues where parents are collecting sizes, we recommend using our <a href="/size-guide/">volleyball uniform size guide</a> as a reference and collecting actual measurements rather than relying on age ranges. Send the measurement sheet to parents with the registration materials to streamline the size collection process.</p>
+
+      <h2>Gender-Appropriate Cuts for Youth Programs</h2>
+      <p>Youth volleyball programs serve both boys and girls, often in the same league. Our youth uniform sets offer gender-appropriate cuts for both. Girls' volleyball shorts feature the shorter 2" to 3" inseam standard for women's volleyball, with a brief liner option for additional coverage. Boys' volleyball shorts feature the 5" to 7" inseam standard for men's volleyball. The jersey can be produced in a standard athletic cut appropriate for all youth players.</p>
+      <p>For programs running separate girls' and boys' leagues, the same team design can be produced in both cut styles within a single order, ensuring visual consistency across the program while respecting the different uniform conventions for each sport variant.</p>
+
+      <h2>Full Sublimation for Youth Uniforms</h2>
+      <p>Every youth volleyball uniform we produce uses dye-sublimation printing. The sublimation process infuses team colors, logos, player names, and numbers permanently into the polyester fibers. There is no screen printing that cracks after repeated washing, no iron-on lettering that peels away, and no heat transfer vinyl that separates at the edges. The youth uniform a player receives on opening day will look the same at the end of the season as the day it was delivered.</p>
+      <p>For recreational leagues focused on visual identity without individual personalization, we offer simplified uniform designs that achieve a strong team look at accessible price points. For competitive youth clubs, full individual personalization — including names, numbers, and position designations — is available for every piece in the uniform set.</p>
+
+      <h2>Ordering for Youth Leagues and Programs</h2>
+      <p>Youth programs have unique ordering requirements compared to adult competitive teams. Player rosters are less stable, size collection from parents is more logistically complex, and budget constraints are often tighter per player. We have structured our ordering process to address all of these realities: no minimum order, individual piece additions at any time using your existing design, and flexible design options across price points.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Recreational youth volleyball leagues ages 6–14</li>
+        <li>USAV Junior and AAU competitive youth clubs</li>
+        <li>Middle school girls' and boys' volleyball teams</li>
+        <li>Church, community center, and faith-based youth leagues</li>
+        <li>Summer volleyball camps and developmental programs</li>
+        <li>After-school athletics programs with volleyball components</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Youth Volleyball Uniform Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Youth Volleyball Uniform FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Build Your Youth Program's Identity" subtitle="Get a free design mockup and quote for custom youth volleyball uniform sets. No minimum order." />
+</BaseLayout>

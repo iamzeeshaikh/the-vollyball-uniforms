@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'High School and College Volleyball Uniform Buying Guide' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'High School and College Volleyball Uniform Buying Guide',
+  author: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  publisher: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  datePublished: '2025-03-18',
+};
+---
+
+<BaseLayout
+  title="High School & College Volleyball Uniform Buying Guide | Blog"
+  description="A complete buying guide for high school and college volleyball uniforms. NFHS compliance, NCAA regulations, budget planning, team ordering, and program identity tips."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/blog/high-school-college-volleyball-uniform-guide/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="mb-8">
+        <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full">Buying Guide</span>
+        <div class="text-gray-400 text-sm mt-3">March 18, 2025 • 9 min read • By The Volleyball Uniforms Team</div>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">High School and College Volleyball Uniform Buying Guide</h1>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">For athletic directors and coaches at the high school and college level, purchasing volleyball uniforms involves regulatory compliance, budget management, and quality requirements that recreational teams do not face. This guide covers everything you need to know.</p>
+
+      <div class="prose-custom">
+        <h2>High School Volleyball Uniform Requirements</h2>
+        <p>High school volleyball uniforms in the United States are governed by the National Federation of State High School Associations (NFHS). State athletic associations adopt NFHS rules with occasional state-specific modifications. Before placing any order, verify your specific state athletic association's current uniform rules, as there can be variations from the national standard.</p>
+        <h3>NFHS Number Requirements</h3>
+        <p>Under NFHS rules, uniform numbers must be: a single or double digit (0–99, with no double zeros), minimum 4 inches tall on the front, and minimum 6 inches tall on the back. Numbers must clearly contrast with the jersey's base color. The use of numbers that include any dash, dot, slash, letter, or other character is typically not permitted.</p>
+        <h3>Jersey Color and Design Restrictions</h3>
+        <p>NFHS rules specify that the home team wears light-colored jerseys and the visiting team wears dark. The libero jersey must be a clearly contrasting color from the rest of the team. Specific restrictions on logo sizes, school name placement, and advertising are outlined in the NFHS rulebook. Our <a href="/high-school-volleyball-uniforms/">high school volleyball uniforms</a> are designed with these requirements in mind.</p>
+
+        <h2>College Volleyball Uniform Requirements</h2>
+        <p>College volleyball uniforms are governed by the NCAA (for most four-year programs) or the NAIA. Rules differ between divisions and sometimes between conferences. The key principles for NCAA uniforms include:</p>
+        <p><strong>Number regulations:</strong> Similar to high school in requiring single or double digits. Front numbers must be at least 4 inches, back numbers at least 6 inches in height.</p>
+        <p><strong>Color requirements:</strong> The home team typically wears light jerseys; the away team wears dark. The libero must wear a clearly contrasting jersey.</p>
+        <p><strong>Advertising/branding:</strong> Manufacturer logos are permitted within size limits specified in the rulebook. School or team sponsor logos are subject to conference-specific rules that vary widely.</p>
+        <p>Our <a href="/college-volleyball-uniforms/">college volleyball uniforms</a> can be produced to meet any divisional or conference standard. Share your conference's specific requirements when requesting a quote.</p>
+
+        <h2>Budget Planning for Institutional Orders</h2>
+        <p>High school and college programs typically operate on institutional budgets with annual approval cycles. Here is how to plan a volleyball uniform budget:</p>
+        <p><strong>Base uniform cost:</strong> Factor in the cost of game jerseys and shorts per player. Multiply by roster size plus 2–3 spares in common sizes.</p>
+        <p><strong>Libero uniforms:</strong> Add 2–3 libero jerseys in the required contrasting color.</p>
+        <p><strong>Warm-up suits:</strong> Budget for full warm-up sets per player if your program includes them.</p>
+        <p><strong>Practice gear:</strong> Practice jerseys and shorts are typically separate budget line items. See our <a href="/volleyball-practice-jerseys/">volleyball practice jerseys</a> for durable training options at program-friendly prices.</p>
+        <p><strong>Replacement fund:</strong> Allocate 10–15% of the total uniform budget as a contingency for mid-season replacements.</p>
+
+        <h2>Varsity vs. JV Ordering Strategies</h2>
+        <p>For high school programs with multiple teams (varsity + JV + freshman), there are two main approaches:</p>
+        <p><strong>Unified program design:</strong> All teams wear the same design. Varsity wears the primary colors, JV wears a slightly modified version (different color combination using the same design template). This creates strong program cohesion and allows experienced JV players to inherit slightly worn varsity jerseys as replacements.</p>
+        <p><strong>Differentiated designs:</strong> Each team has a completely separate design. Varsity might have the premium sublimated design; JV and freshman use more budget-conscious options. This approach manages costs but can create a visible quality gap between teams.</p>
+
+        <h2>Ordering Timeline for School Programs</h2>
+        <p>School programs should plan uniform orders well ahead of the season. For fall volleyball seasons starting in August or September, submitting your order in June is ideal. This allows time for budget approval, design development, size collection from the full roster after tryouts, and comfortable production and shipping timelines. Orders placed in July for August seasons typically need to use rush production options.</p>
+
+        <h2>Working with Athletic Directors and Boosters</h2>
+        <p>At many schools, the athletic director controls the uniform budget. Coaches benefit from presenting a well-organized quote request that includes all items needed (not just jerseys), a clear visual mockup, and a realistic timeline. Booster organizations often supplement official athletic budgets for uniform upgrades — a well-designed program presentation makes the fundraising case easier to make.</p>
+      </div>
+
+      <div class="mt-12 p-6 bg-electric-50 rounded-2xl border border-electric-100">
+        <h3 class="font-bold text-navy-950 mb-2">Get a School Program Quote</h3>
+        <p class="text-gray-600 text-sm mb-4">We work with high school and college programs of all sizes. Request a comprehensive quote for your program's full uniform needs.</p>
+        <a href="/request-a-quote/" class="btn-primary">Request a Program Quote</a>
+      </div>
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+  title?: string;
+  addSchema?: boolean;
+}
+
+const { faqs, title = 'Frequently Asked Questions', addSchema = true } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-navy-950 mb-10 text-center">{title}</h2>
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-navy-900 hover:text-electric-600 transition-colors">
+            <span class="pr-4">{faq.question}</span>
+            <span class="shrink-0 w-6 h-6 rounded-full bg-navy-100 flex items-center justify-center group-open:bg-electric-600 group-open:text-white transition-colors">
+              <svg class="w-3.5 h-3.5 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-50">{faq.answer}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+{addSchema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

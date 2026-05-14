@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'volleyball-team-kits')!;
+const related = products.filter(p => ['volleyball-warm-up-suits','volleyball-hoodies','sublimated-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Kit Components', value: 'Configurable — jerseys, shorts, practice jerseys, warm-up suits, hoodies, socks' },
+  { label: 'Printing Method', value: 'Dye-sublimation for jerseys; sublimation, screen print, or embroidery for apparel' },
+  { label: 'Sizing', value: 'Individual per-player sizing for all components' },
+  { label: 'Customization', value: 'Full — colors, logos, names, numbers across all pieces' },
+  { label: 'Minimum Quantity', value: 'No minimum — contact for team kit pricing' },
+  { label: 'Packaging', value: 'Individual player packaging with name labeling available' },
+  { label: 'Lead Time', value: '14–21 business days for complete kits (rush available)' },
+  { label: 'Compliance', value: 'NFHS, NCAA, NAIA compliant on request' },
+];
+
+const faqs = [
+  { question: 'What is included in a volleyball team kit?', answer: 'A volleyball team kit is fully configurable. Standard components include game jerseys, matching game shorts, and practice jerseys. Extended kits add warm-up suits, hoodies, team socks, and compression layers. You choose exactly which components to include based on your program\'s needs and budget.' },
+  { question: 'Is ordering a team kit cheaper than ordering items separately?', answer: 'Yes. Bundling multiple apparel types into a single team kit order qualifies for package pricing that produces meaningful savings compared to ordering each item as a separate purchase. The more items included, the better the package pricing.' },
+  { question: 'Can different players have different sizes within the same kit?', answer: 'Yes. Every component in the team kit is sized individually per player. You submit a complete roster with each player\'s size for each item and we produce everything to specification. Player-specific names and numbers are included.' },
+  { question: 'How long does a complete team kit order take?', answer: 'Complete team kits typically take 14–21 business days after design approval across all components. This accounts for the production of multiple item types. Rush options are available if you have a tight season opening deadline.' },
+  { question: 'Can we include warm-up gear for coaches and staff?', answer: 'Yes. Coach and staff apparel — including polo shirts, warm-up jackets, and matching team attire — can be integrated into the team kit order. We often recommend including coaching staff in the order to maintain visual program cohesion.' },
+  { question: 'Can a team kit include items for multiple teams in the same program?', answer: 'Absolutely. School programs with varsity, JV, and freshman teams often place combined kit orders. Multiple teams can share the same design or have slight variations, and the combined quantity often improves pricing across all teams.' },
+  { question: 'Do you offer team kit packages specifically for youth recreational leagues?', answer: 'Yes. We have team kit solutions across various price points, including budget-friendly options appropriate for youth recreational leagues with limited per-player budgets. Contact us with your player count and budget and we will design the best kit package for your situation.' },
+  { question: 'What happens if a new player joins after the kit order is placed?', answer: 'We can produce individual replacement or addition pieces using your team\'s existing design. Contact us and provide the player\'s name, number, and sizes for each required piece. We maintain your design on file for exactly this purpose.' },  { question: 'Can additional items be added to an existing kit order after it is placed?', answer: 'Once a kit order enters production, additions for new players or late-registered roster members are handled as a separate order using your existing design. We maintain your design on file permanently so any addition — a late-registering player, a replacement piece, new coaching staff gear — is produced at the same quality as the original order without requiring a new design consultation.' },
+  { question: 'Do you offer individual player packaging for team kit distribution?', answer: 'Yes. Each player\'s complete kit can be packaged together with all of their jerseys, shorts, warm-up suit, and accessories in a single labeled bag bearing the player\'s name and number. This eliminates the sorting burden for coaches and athletic directors during kit distribution at the start of the season. Individual packaging is available at a small additional charge per player.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Volleyball Team Kits',
+  description: 'Complete volleyball team kit packages including game jerseys, shorts, practice gear, warm-up suits, and accessories — all in a single coordinated order.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '142' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Team Packages', href: '/team-packages/' },
+  { label: 'Volleyball Team Kits' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Volleyball Team Kits — Complete Custom Packages | The Volleyball Uniforms"
+  description="Complete volleyball team kit packages. Jerseys, shorts, warm-ups, hoodies & socks in one coordinated order for schools, clubs & leagues. Free mockup. Get a quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/volleyball-team-kits/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Team Packages</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Volleyball Team Kits</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (142 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">The most complete solution for volleyball programs. A team kit brings all your apparel needs — game jerseys, shorts, practice gear, warm-up suits, and accessories — into a single coordinated order at the best possible pricing.</p>
+          <div class="space-y-3 mb-8">
+            {['Fully configurable — choose your components','Better per-unit pricing than individual orders','Single design approval for all pieces','Individual player sizing per component','Individual packaging with player name labels','NFHS, NCAA, and NAIA compliance support'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Build Your Team Kit</a>
+          <a href="/design-guide/" class="btn-outline w-full justify-center text-sm">View Design Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>The Complete Volleyball Team Kit Advantage</h2>
+      <p>Managing a volleyball program's apparel procurement involves coordinating multiple product types, managing different production timelines, collecting sizes across all items, and ensuring visual consistency across everything your team wears. A complete team kit order through The Volleyball Uniforms consolidates all of this into a single, streamlined process with one design consultation, one approval cycle, one production run, and one delivery.</p>
+      <p>The result is a more cohesive program identity, better pricing through combined order volume, and significantly less administrative burden for coaches and athletic directors.</p>
+
+      <h2>Standard Team Kit Components</h2>
+      <p>Our most complete volleyball team kit includes <a href="/sublimated-volleyball-jerseys/">sublimated game jerseys</a> with player-specific names and numbers, matching game shorts, a libero jersey in the contrasting color, <a href="/volleyball-practice-jerseys/">practice jerseys</a> for daily training, <a href="/volleyball-warm-up-suits/">warm-up suits</a> for pre-game and travel, <a href="/volleyball-hoodies/">team hoodies</a>, and <a href="/volleyball-socks/">custom team socks</a>. Every piece is produced with the same color palette and design language for complete visual cohesion.</p>
+
+      <h2>Budget-Friendly Kit Options</h2>
+      <p>Not every program needs every component. We build team kits around your specific requirements and budget. Entry-level kits for recreational leagues and youth programs can include just jerseys and shorts at very accessible pricing. Competitive program kits can include every piece your team needs from warm-up to game day. The key is that bundling always produces better pricing than ordering piece by piece.</p>
+
+      <h2>Timeline Planning for Team Kit Orders</h2>
+      <p>Complete team kits require the most lead time of any order type because of the variety of items being produced simultaneously. We recommend placing team kit orders 5–7 weeks before your first game or event. This allows comfortable time for design approval across all components, full production, quality control, and shipping. Consult our <a href="/size-guide/">volleyball uniform size guide</a> while collecting your team's measurements to speed up the roster submission process.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>New program launch requiring a complete apparel setup from scratch</li>
+        <li>Annual program refresh replacing end-of-lifecycle uniforms</li>
+        <li>Multi-team school programs outfitting varsity, JV, and freshman squads</li>
+        <li>Competitive club teams building a fully professional program identity</li>
+        <li>Youth leagues standardizing apparel across multiple teams in a season</li>
+        <li>College programs placing annual uniform budget orders</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Team Kit Package Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Team Kit FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Kit Components</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Build Your Complete Team Kit Today" subtitle="Tell us what your program needs and we will create a comprehensive team kit quote." btnText="Build Your Kit" />
+</BaseLayout>

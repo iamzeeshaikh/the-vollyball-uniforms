@@ -1,0 +1,62 @@
+---
+import QuoteForm from './QuoteForm.astro';
+
+interface Props {
+  productName?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  productName = '',
+  title   = 'Get a Free Quote & Design Mockup',
+  subtitle = 'Tell us about your order and we\'ll send a free digital mockup with pricing within 1–2 business hours.',
+} = Astro.props;
+
+const formId = `iq-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<section class="py-20 bg-navy-950">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+
+      <!-- Left: value props -->
+      <div class="lg:col-span-2 text-white">
+        <div class="inline-flex items-center gap-2 bg-gold-500/20 text-gold-300 text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-gold-500/30">
+          <span class="w-2 h-2 bg-gold-400 rounded-full"></span>
+          Free Quote &amp; Mockup
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">{title}</h2>
+        <p class="text-navy-300 text-lg leading-relaxed mb-8">{subtitle}</p>
+
+        <ul class="space-y-4 mb-10">
+          {[
+            { icon: '🎨', text: 'Free full-color design mockup included' },
+            { icon: '⚡', text: 'Response within 1–2 business hours' },
+            { icon: '💰', text: 'Competitive bulk pricing — no hidden fees' },
+            { icon: '🔄', text: 'Unlimited revisions until you approve' },
+            { icon: '📦', text: 'Individual player packaging at no extra cost' },
+          ].map(item => (
+            <li class="flex items-center gap-3 text-navy-200 text-sm">
+              <span class="text-xl shrink-0">{item.icon}</span>
+              {item.text}
+            </li>
+          ))}
+        </ul>
+
+        <div class="bg-navy-900 rounded-xl p-5 border border-navy-800">
+          <p class="text-navy-400 text-xs font-semibold uppercase tracking-wider mb-2">Prefer to talk?</p>
+          <a href="tel:+12125550198" class="text-gold-400 font-bold text-xl hover:text-gold-300 transition-colors">+1 212-555-0198</a>
+          <p class="text-navy-500 text-xs mt-1">Mon – Fri, 9 am – 6 pm EST</p>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="lg:col-span-3 bg-white rounded-2xl p-8 shadow-2xl">
+        <h3 class="text-xl font-extrabold text-navy-950 mb-6">Tell Us About Your Order</h3>
+        <QuoteForm productName={productName} formId={formId} />
+      </div>
+
+    </div>
+  </div>
+</section>

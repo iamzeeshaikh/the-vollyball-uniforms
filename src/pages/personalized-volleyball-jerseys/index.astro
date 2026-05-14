@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'personalized-volleyball-jerseys')!;
+const related = products.filter(p => ['custom-name-volleyball-jerseys', 'custom-number-volleyball-jerseys', 'sublimated-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking interlock' },
+  { label: 'Fit', value: 'Athletic cut (men\'s and women\'s available)' },
+  { label: 'Sizes Available', value: 'YXS – 4XL' },
+  { label: 'Personalization', value: 'Name, number, grad year, position marker, captain designation' },
+  { label: 'Customization Method', value: 'Full dye-sublimation — permanent, crack-proof' },
+  { label: 'Per-Player Variations', value: 'Each jersey individually configured per player specs' },
+  { label: 'Proof Process', value: 'Individual digital proof for each unique jersey' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  {
+    question: 'What is the difference between a "personalized" jersey and a "customized" jersey?',
+    answer: 'In our catalog, a customized jersey refers to team-level design changes — your team colors, logo, and overall graphic layout. A personalized jersey takes customization a step further by incorporating player-specific details that make each jersey unique within the set: names, numbers, grad years, position identifiers, or captain designations. Every personalized jersey in a team order is individually unique to the player wearing it.',
+  },
+  {
+    question: 'Can each player in a team order have different details while keeping the same overall design?',
+    answer: 'Yes — this is exactly how personalized jersey orders work. The team design (colors, patterns, logos) is consistent across all jerseys, while player-specific details (name, number, grad year) vary per jersey. We manage this through a roster spreadsheet where each row represents one player with their individual specifications. Each jersey is then individually produced from the shared design template with unique personal elements.',
+  },
+  {
+    question: 'Can we add special designations for senior players or captains?',
+    answer: 'Absolutely. Senior recognition options include adding the graduation year below the name, a "Senior" descriptor above the number, or a special accent color on the name or number block. Captain designations commonly appear as a "C" or captain\'s stripe detail. These are popular for end-of-season senior night recognition, where the jersey also doubles as a meaningful keepsake. Specify these designations in your roster template.',
+  },
+  {
+    question: 'Can captains have their jersey marked differently from teammates?',
+    answer: 'Yes. Captain designations can be incorporated into the sublimated design in several ways: a small "C" near the name, a different accent color on the jersey trim for the captain(s), or a subtle "Captain" text element. We recommend keeping the differentiation visually minimal so it enhances the jersey without disrupting the team\'s overall design uniformity. Our designers will mock up captain options for your review.',
+  },
+  {
+    question: 'Can a player\'s graduation year be added to the jersey?',
+    answer: 'Yes. Graduation year is a popular personalization for high school and college programs, typically placed below the player name on the back of the jersey. The year is sublimated as part of the design, making it permanent. This is a particularly meaningful detail for senior players who will keep the jersey as a souvenir of their final competitive season.',
+  },
+  {
+    question: 'Can I order a single personalized jersey for one player rather than an entire team?',
+    answer: 'Yes, we accept single-jersey personalized orders. There is no minimum. Single jerseys carry a slightly higher per-unit cost than bulk team orders, but the personalization options are identical. Single personalized jerseys are a popular gift for players joining a team mid-season, for players who lost or damaged their original jersey, or as a standalone gift from parents.',
+  },
+  {
+    question: 'Is a personalized jersey a good gift for a young volleyball player?',
+    answer: 'It\'s one of the most popular gifts we produce for individual players. A fully sublimated jersey with a player\'s name and preferred number, in their team\'s colors, makes a memorable and functional gift. We offer gift packaging upon request and can include a custom message card with the order. For young players especially, a personalized jersey with their own name on the back creates genuine pride in the sport.',
+  },
+  {
+    question: 'Do I get to review a proof for each individual player\'s personalized jersey before production?',
+    answer: 'Yes. We generate a digital proof for every unique jersey in a personalized order. For large team orders (20+ players), we compile all proofs into a single review document for efficient approval. You\'ll verify that each player\'s name, number, grad year, and any special designations are correct before we begin production. We do not print a single jersey until the complete proof sheet is approved.',
+  },  { question: 'Can I approve each individual player\'s jersey proof before production begins?', answer: 'Yes. Every personalized jersey order includes a per-player proof sheet — a visual layout showing exactly how each player\'s name, number, and additional personalization will appear on their specific jersey size. Production does not begin until you confirm every proof is correct. This step prevents errors and ensures each player receives precisely what was intended.' },
+  { question: 'Can personalized jerseys include position-specific design variations for different players?', answer: 'Yes. Position-specific design variations are fully supported — the libero receiving a contrasting colorway as required by competition rules, setters wearing a different sleeve treatment, or captains carrying a distinct design element. All variations are managed within the same order through the per-player proof sheet process.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Personalized Volleyball Jerseys',
+  description: 'Fully personalized volleyball jerseys with custom player names, numbers, colors, and logos sublimated permanently.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '107' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Personalized Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Personalized Volleyball Jerseys — Names, Numbers & More | The Volleyball Uniforms"
+  description="Fully personalized volleyball jerseys with custom player names, numbers, colors & logos. Sublimated for permanent results. Bulk pricing available. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/personalized-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Personalized Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (107 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Every player on your team deserves a jersey that is genuinely, uniquely theirs. Our personalized volleyball jerseys combine team-level custom design with player-specific details — names, numbers, graduation years, captain designations — all sublimated permanently into the fabric. No add-ons, no letters ironed on afterward. Just one complete, individual jersey per player.</p>
+          <div class="space-y-3 mb-8">
+            {['Player name, number, and grad year options', 'Captain and senior recognition designations', 'Per-player digital proof before production', 'Full dye-sublimation — never cracks or peels', 'Single jersey orders accepted', 'Sizes YXS through 4XL'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>What Makes a Jersey Truly Personalized</h2>
+      <p>Team customization gets every player into the same colors and design. Personalization takes that a step further by making each jersey a reflection of the individual wearing it. When a player sees their own name and number printed on a jersey that matches the team's design, the psychological effect on ownership, pride, and connection to the program is measurable. Our personalization options are built into the sublimation process — not added after the fact — which means they're as permanent and professional as any element of the design.</p>
+
+      <h2>What Can Be Personalized on Each Jersey</h2>
+      <p>Beyond name and number — the two most requested personalization elements — we offer several additional per-player customization options. Graduation years appear below the name block and are especially popular for high school and college programs honoring seniors. Position designators such as "S" for setter or "L" for libero can appear as small accent text. Captain designations are available as a "C" marker or a subtle design element. All of these are configured per player in your roster spreadsheet.</p>
+      <h3>Senior Night and Recognition Jerseys</h3>
+      <p>Senior night is one of the most meaningful events in a high school or college volleyball season. Personalized jerseys that include a graduation year or special senior recognition element become a permanent keepsake that players keep long after their competitive career ends. We work with program coordinators to design senior-specific jersey variations that maintain team design continuity while making the senior class feel genuinely celebrated. We work closely with program coordinators to produce <a href="/sublimated-volleyball-jerseys/">fully sublimated recognition jerseys</a> that stand out visually while staying consistent with the team's overall design.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>Personalized jerseys are produced on the same 4.5 oz performance polyester interlock used throughout our jersey lineup. This fabric is selected specifically because it accepts full dye-sublimation with photographic color accuracy — meaning a player's name appears in exactly the color specified, with crisp edge definition, on a surface that resists the mechanical stresses of sport. The pre-shrunk construction ensures that personalized elements remain centered and properly positioned through the life of the jersey.</p>
+
+      <h2>Customization Options</h2>
+      <p>Personalized jerseys start with a fully custom team design — your colors, patterns, logos, and layout — then layer in individual player details. The design process begins with the team template, which is developed first and approved by the program coordinator. Once the template is approved, we apply each player's individual details and generate a per-player proof sheet for final review. Visit our <a href="/request-a-quote/">quote form</a> to begin your team's design consultation.</p>
+
+      <h2>Sizing Information</h2>
+      <p>Personalized jerseys are available in sizes YXS through 4XL, in both men's and women's athletic cuts. Because each jersey is produced individually to carry unique personal details, sizing is entered at the player level — each row in your roster spreadsheet includes both the player's personalization data and their jersey size. Use our <a href="/size-guide/">size guide</a> to help players or parents select the correct size before you finalize the roster.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Personalized team jersey orders receive the same bulk pricing as standard custom orders. Orders of 12 or more jerseys qualify for volume discounts, with increasing savings at higher quantities. Because each jersey requires individual production configuration, our minimum recommended order time is 5–6 weeks from design approval for orders with 20+ individually personalized jerseys.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>High school programs wanting to honor senior players with personalized recognition jerseys</li>
+        <li>College volleyball programs that include player names and numbers for competition compliance</li>
+        <li>Club travel teams that want each player to have a personalized jersey as a program investment</li>
+        <li>Recreational adult leagues where player names help officials and opponents identify players</li>
+        <li>Parents purchasing individual personalized jerseys as gifts for young volleyball players</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Personalized Volleyball Jerseys Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Personalized Volleyball Jerseys FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Make Every Player's Jersey Their Own" subtitle="Individual proofs for every jersey — bulk pricing, senior options, and gift orders welcome." />
+</BaseLayout>

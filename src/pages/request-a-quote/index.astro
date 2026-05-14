@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Request a Quote' }];
+---
+
+<BaseLayout
+  title="Request a Custom Volleyball Uniform Quote | The Volleyball Uniforms"
+  description="Request a free custom volleyball uniform quote. Fill in your team details and get a response within 1–2 business hours. Free design mockup included with every quote."
+  canonical="https://thevolleyballuniforms.com/request-a-quote/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-4">Request a Free Quote</h1>
+      <p class="text-xl text-navy-300">Tell us about your team and we will provide a detailed quote within 1–2 business hours. Every quote includes a free design mockup.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-navy-950 rounded-2xl p-7 text-white">
+            <h2 class="text-xl font-bold mb-5">Why Request a Quote?</h2>
+            <ul class="space-y-4">
+              {[
+                { emoji: '🎨', text: 'Free digital design mockup with every quote' },
+                { emoji: '⚡', text: 'Response within 1–2 business hours' },
+                { emoji: '💰', text: 'Competitive bulk pricing — no hidden fees' },
+                { emoji: '🔄', text: 'Free revisions until you approve' },
+                { emoji: '📦', text: 'Individual player packaging included' },
+                { emoji: '✅', text: '100% satisfaction guarantee' },
+              ].map(item => (
+                <li class="flex items-start gap-3 text-navy-200 text-sm">
+                  <span class="text-lg shrink-0">{item.emoji}</span>
+                  {item.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+            <h3 class="font-bold text-navy-950 mb-3">Prefer to Call?</h3>
+            <p class="text-gray-600 text-sm mb-3">Talk directly with our team about your project.</p>
+            <a href="tel:+12125550198" class="text-electric-600 font-bold text-lg hover:text-electric-700">+1 212-555-0198</a>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+            <h3 class="font-bold text-navy-950 mb-4">How It Works</h3>
+            <div class="space-y-4">
+              {[
+                { n: '1', t: 'Submit Your Quote Request', d: 'Fill in the form with your team details.' },
+                { n: '2', t: 'Get Your Design Mockup', d: 'We create a free mockup based on your specs.' },
+                { n: '3', t: 'Approve & Order', d: 'Review, revise, and approve before we start production.' },
+                { n: '4', t: 'Receive Your Uniforms', d: 'Delivered to your door in 10–14 business days.' },
+              ].map(step => (
+                <div class="flex gap-3">
+                  <div class="w-7 h-7 bg-navy-950 rounded-full flex items-center justify-center text-gold-400 font-bold text-xs shrink-0">{step.n}</div>
+                  <div>
+                    <div class="font-semibold text-navy-950 text-sm">{step.t}</div>
+                    <div class="text-gray-500 text-xs">{step.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl font-extrabold text-navy-950 mb-6">Tell Us About Your Order</h2>
+          <QuoteForm />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

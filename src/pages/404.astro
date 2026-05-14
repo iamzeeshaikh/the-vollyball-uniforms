@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Page Not Found (404) | The Volleyball Uniforms"
+  description="The page you are looking for could not be found. Browse our custom volleyball uniforms, jerseys, and team apparel."
+  noindex={true}
+>
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 min-h-[70vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 text-center w-full">
+      <div class="text-9xl font-extrabold text-gold-400/30 mb-4">404</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Page Not Found</h1>
+      <p class="text-xl text-navy-300 mb-10 max-w-2xl mx-auto">The page you are looking for does not exist or may have been moved. Use the links below to find what you need.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a href="/" class="btn-primary">Back to Home</a>
+        <a href="/request-a-quote/" class="btn-secondary">Request a Quote</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        {[
+          { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+          { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+          { label: 'Practice Gear', href: '/practice-gear/' },
+          { label: 'Team Packages', href: '/team-packages/' },
+        ].map(link => (
+          <a href={link.href} class="bg-navy-800 hover:bg-navy-700 text-white text-sm font-medium py-3 px-4 rounded-xl transition-colors text-center">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

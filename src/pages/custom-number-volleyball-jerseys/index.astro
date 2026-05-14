@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'custom-number-volleyball-jerseys')!;
+const related = products.filter(p => ['custom-name-volleyball-jerseys', 'personalized-volleyball-jerseys', 'blank-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking interlock' },
+  { label: 'Fit', value: 'Athletic cut (men\'s and women\'s)' },
+  { label: 'Sizes Available', value: 'YXS – 4XL' },
+  { label: 'Number Application', value: 'Full dye-sublimation — crack-proof, fade-resistant' },
+  { label: 'Number Placement', value: 'Front chest and back (standard); back-only available' },
+  { label: 'NFHS Number Height', value: 'Front minimum 4\", back minimum 6\"' },
+  { label: 'NCAA Number Height', value: 'Front minimum 4\", back minimum 6\"' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  {
+    question: 'What are the NFHS number size requirements for volleyball jerseys?',
+    answer: 'Under NFHS rules, the number on the front of a volleyball jersey must be at least 4 inches tall, and the number on the back must be at least 6 inches tall. Numbers must contrast clearly with the jersey color. Our templates are pre-set to these minimums by default, and we offer larger sizes if your design benefits from bolder numbers.',
+  },
+  {
+    question: 'How are single-digit and double-digit numbers handled differently?',
+    answer: 'Single-digit numbers are centered on both the front and back panels. Double-digit numbers are treated as a unit — the two digits are spaced and sized together to meet the minimum height requirement as a pair. Our design software automatically adjusts the layout to ensure readability at both sizes without requiring manual adjustments from you.',
+  },
+  {
+    question: 'What color contrast rules apply to jersey numbers?',
+    answer: 'NFHS and NCAA both require that jersey numbers contrast clearly with the jersey background — meaning a light number on a dark jersey, or a dark number on a light jersey. Both governing bodies prohibit numbers that are the same color as the jersey body. Our design team applies a color contrast check to every mockup and will flag any combinations that don\'t meet standards before we go to print.',
+  },
+  {
+    question: 'Is sublimation better than heat-transfer numbers for volleyball jerseys?',
+    answer: 'Yes — for polyester volleyball jerseys, sublimation is significantly more durable. Heat-transfer numbers sit on top of the fabric and can crack or peel after repeated high-temperature washing and aggressive play. Sublimated numbers are bonded into the fabric at the molecular level, making them a permanent part of the jersey. They will not crack, peel, or fade regardless of how many times the jersey is washed.',
+  },
+  {
+    question: 'Can I order a single jersey with a rush number for a player who joins mid-season?',
+    answer: 'Yes. We accommodate single-jersey rush orders for mid-season roster additions. To maintain design consistency, we keep your original artwork on file for the entire season. Provide the player\'s size, number, and name (if applicable) and we\'ll produce a matching jersey. Rush singles typically ship within 7–10 business days of order confirmation.',
+  },
+  {
+    question: 'Can I change player numbers between seasons without reordering everything?',
+    answer: 'Because numbers are sublimated into the fabric, they cannot be altered after production. However, we retain your artwork template on file, so reordering for a new season with updated number assignments is fast — we simply update the roster and run a new proof. Many programs find this an efficient way to refresh their roster numbering annually.',
+  },
+  {
+    question: 'Are any numbers prohibited in volleyball?',
+    answer: 'Yes. Under NFHS rules, only numbers 1 through 99 are legal. Numbers 0 and 00 are not permitted under NFHS volleyball rules (unlike football or basketball). NCAA rules align similarly. We flag prohibited number assignments during the proofing stage so you can reassign before production begins.',
+  },
+  {
+    question: 'Can you add numbers to blank jerseys I already have in stock?',
+    answer: 'Sublimation cannot be applied to pre-made garments — it requires the fabric to be printed before cutting and sewing. If you have existing blank jerseys, the options are heat-transfer numbers (less durable) applied by a local decorator, or reordering fresh sublimated jerseys with numbers built in. We recommend the latter for long-term durability. See our <a href="/blank-volleyball-jerseys/">blank volleyball jerseys</a> page for teams that prefer to add numbers locally.',
+  },  { question: 'Can two players on the same team share the same jersey number?', answer: 'No. NFHS and NCAA rules prohibit duplicate jersey numbers on the same team roster. When you submit your number roster, our system flags duplicates before production begins. We contact the program coordinator to resolve any number conflicts before the order moves to production so your team is always competition-compliant.' },
+  { question: 'Can jersey numbers be combined with letters or position designations?', answer: 'Standard competition jerseys use numeric-only numbering as required by most governing bodies. However, letters can be incorporated as secondary design elements — for example, a small \'L\' indicator for the libero positioned below the number. This treatment does not conflict with number-only compliance requirements when designed correctly, and we confirm the approach against your specific governing body\'s rules before production.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Custom Number Volleyball Jerseys',
+  description: 'Custom numbered volleyball jerseys with sublimated numbers that never crack or peel. NFHS and NCAA compliant sizing.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '97' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: 'Custom Number Volleyball Jerseys' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Number Volleyball Jerseys — NFHS Compliant | The Volleyball Uniforms"
+  description="Custom numbered volleyball jerseys with sublimated numbers that never crack or peel. NFHS and NCAA compliant sizing. Bulk orders welcome. Get a free quote today."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/custom-number-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Custom Number Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.8 / 5 (97 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Numbers on a volleyball jersey do more than identify a player — they signal compliance, command recognition on the court, and hold up through a full competitive season without fading. Our custom number volleyball jerseys use dye-sublimation to permanently bond each number into the polyester fabric, meeting NFHS and NCAA size and contrast requirements from day one.</p>
+          <div class="space-y-3 mb-8">
+            {['Sublimated numbers (never crack or peel)', 'NFHS & NCAA compliant sizing', 'Front and back number placement', 'High color-contrast options', 'Single or double-digit configurations', 'Number + name combination available'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Jersey Numbering Compliance Matters in Volleyball</h2>
+      <p>In both high school and college volleyball, improperly numbered jerseys can result in delay-of-game penalties and, in repeated cases, disciplinary action from match officials. NFHS rules specify that front numbers must measure at least 4 inches in height and back numbers at least 6 inches — and both must contrast clearly with the jersey's dominant color. Our numbering templates are pre-built to these exact specifications so your team is always competition-ready.</p>
+
+      <h2>The Case for Sublimated vs. Applied Numbers</h2>
+      <p>Heat-transfer and tackle-twill numbers remain popular because they're cheap and fast, but they carry a significant durability penalty. Applied numbers peel at the edges after repeated washings, crack under the stress of diving and floor contact, and can become partially detached — creating a safety hazard and a compliance problem mid-match. Sublimated numbers are part of the jersey itself, not a layer added afterward. They can withstand the heat of a dryer, the friction of a gym floor, and a full season of twice-weekly laundering without any degradation.</p>
+      <h3>Number Font Choices and Readability</h3>
+      <p>Scorekeepers and line judges read jersey numbers under varying gym lighting from distances of 30 feet or more. We offer several number font styles optimized for competition readability — block number fonts with consistent stroke widths are the most legible at distance. Decorative or script number styles are available but we recommend them only for recreational leagues where official compliance is less critical. See our <a href="/personalized-volleyball-jerseys/">personalized volleyball jerseys</a> page for designs that combine numbers with player names.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>Every custom number jersey is produced on a 4.5 oz performance polyester interlock. This fabric weight is specifically chosen to accept sharp, high-contrast sublimated numbers while providing the moisture-wicking properties required for competitive play. The interlock construction resists snags and maintains its shape through the physical demands of volleyball — dives, arm swings, and repeated floor contact. Numbers printed on this substrate retain their vibrancy and edge definition through 100+ wash cycles.</p>
+
+      <h2>Customization Options</h2>
+      <p>Numbers are just one element of a fully customizable jersey. Background colors, gradients, team logos, school crests, and sponsor marks are all sublimated together in a single production run. Want your numbers in a specific Pantone color? We match colors precisely for programs with strict brand standards. Visit our <a href="/design-guide/">design guide</a> to learn more about how to prepare artwork for sublimation and what color profiles yield the most accurate results on polyester fabric.</p>
+
+      <h2>Sizing Information</h2>
+      <p>Custom number jerseys are available in youth sizes YXS through YXL and adult sizes XS through 4XL, in both men's and women's athletic cuts. Number placement scales automatically to the jersey size — we never apply a 6-inch back number to a YXS jersey that can't accommodate it. For smaller sizes, numbers are proportionally reduced while still meeting compliance minimums where applicable. Check our <a href="/size-guide/">size guide</a> for detailed measurement tables.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>Ordering numbered jerseys for a full team roster unlocks bulk pricing that makes custom sublimation cost-competitive with inferior heat-transfer alternatives. Programs ordering 12 or more jerseys receive volume discounts, and organizations ordering for multiple squads simultaneously — such as a club with multiple age-group teams — can combine quantities across all squads for a single discount tier.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>High school varsity and JV programs needing NFHS-compliant numbered jerseys for the season</li>
+        <li>College club teams ordering numbered jerseys for NCVF tournament compliance</li>
+        <li>Adult recreational leagues where number identification helps scorekeepers and officials</li>
+        <li>Travel club programs that compete in sanctioned USA Volleyball events with number requirements</li>
+        <li>Youth leagues standardizing on sublimated numbers for durability across multiple seasons</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Custom Number Volleyball Jerseys Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Custom Number Volleyball Jerseys FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Get Compliant, Permanent Numbers on Every Jersey" subtitle="Free mockup with your number roster — bulk pricing for teams of all sizes." />
+</BaseLayout>

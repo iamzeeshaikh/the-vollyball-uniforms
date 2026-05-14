@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Contact Us' }];
+---
+
+<BaseLayout
+  title="Contact The Volleyball Uniforms | Get in Touch Today"
+  description="Contact The Volleyball Uniforms for custom volleyball jerseys & uniforms. Reach us by phone, email, or contact form. New York, NY. Fast response — usually within 2 hours."
+  canonical="https://thevolleyballuniforms.com/contact/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-4">Contact Us</h1>
+      <p class="text-xl text-navy-300">Questions about custom volleyball uniforms? We typically respond within 1–2 business hours.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-2xl font-extrabold text-navy-950 mb-6">Get in Touch</h2>
+            <div class="space-y-5">
+              {[
+                { emoji: '📍', label: 'Address', value: '245 W 29th St, New York, NY 10001', href: null },
+                { emoji: '📞', label: 'Phone', value: '+1 212-555-0198', href: 'tel:+12125550198' },
+                { emoji: '✉️', label: 'Email', value: 'Info@thevolleyballuniforms.com', href: 'mailto:Info@thevolleyballuniforms.com' },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-navy-50 rounded-xl flex items-center justify-center text-xl shrink-0">{item.emoji}</div>
+                  <div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">{item.label}</div>
+                    {item.href ? (
+                      <a href={item.href} class="text-navy-900 font-medium hover:text-electric-600 transition-colors">{item.value}</a>
+                    ) : (
+                      <span class="text-navy-900 font-medium">{item.value}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+            <h3 class="font-bold text-navy-950 mb-3">Business Hours</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div class="flex justify-between"><span>Monday – Friday</span><span class="font-medium">9:00 AM – 6:00 PM ET</span></div>
+              <div class="flex justify-between"><span>Saturday</span><span class="font-medium">10:00 AM – 3:00 PM ET</span></div>
+              <div class="flex justify-between"><span>Sunday</span><span class="font-medium text-gray-400">Closed</span></div>
+            </div>
+          </div>
+          <div class="bg-electric-50 rounded-2xl p-6 border border-electric-100">
+            <h3 class="font-bold text-navy-950 mb-2">Need a Quote?</h3>
+            <p class="text-gray-600 text-sm mb-4">For faster processing, use our dedicated quote request form with all your order details.</p>
+            <a href="/request-a-quote/" class="btn-primary text-sm py-3 px-6">Request a Quote</a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl font-extrabold text-navy-950 mb-6">Send Us a Message</h2>
+          <!-- TODO: Connect this form to a backend endpoint (e.g., Resend, Formspree, or custom API) -->
+          <form action="/api/contact" method="POST" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Full Name *</label>
+                <input type="text" name="name" required placeholder="Your name" class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email *</label>
+                <input type="email" name="email" required placeholder="your@email.com" class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Phone</label>
+                <input type="tel" name="phone" placeholder="+1 (555) 000-0000" class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Subject</label>
+                <input type="text" name="subject" placeholder="How can we help?" class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">Message *</label>
+              <textarea name="message" required rows="6" placeholder="Tell us about your team, what you are looking for, and any questions you have..." class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full justify-center">
+              Send Message
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+            </button>
+            <p class="text-xs text-gray-500 text-center">We respond within 1–2 business hours. Your information is never shared.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'women-volleyball-jerseys')!;
+const related = products.filter(p => ['women-volleyball-uniforms','sublimated-volleyball-jerseys','personalized-volleyball-jerseys'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Moisture-Wicking Polyester or 88/12 Poly-Spandex' },
+  { label: 'Cut', value: "Women's Athletic (tailored for female body proportions)" },
+  { label: 'Fit Options', value: 'Athletic fitted or relaxed' },
+  { label: 'Neckline', value: 'V-neck, scoop neck, or crew neck' },
+  { label: 'Sizes Available', value: 'YXS – 3XL (women\'s sizing)' },
+  { label: 'Sleeve Options', value: 'Short sleeve or sleeveless' },
+  { label: 'Customization', value: 'Full sublimation — names, numbers, logos, full design' },
+  { label: 'Compliance', value: 'NFHS, NCAA, and USAV compliant designs available' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+];
+
+const faqs = [
+  { question: "What makes women's volleyball jerseys different from unisex jerseys?", answer: "Women's volleyball jerseys feature proportional cuts specifically designed for female athletes — including shorter body lengths, narrower shoulder widths, and fitted silhouettes that don't pull, bunch, or restrict overhead movements the way unisex cuts can. The athletic fit is more flattering and more functional for women's volleyball biomechanics." },
+  { question: 'What neckline styles are available?', answer: "V-neck, scoop neck, and crew neck are all available. V-neck is the most popular choice for women's competitive volleyball. Scoop neck is popular for beach volleyball and recreational play. Crew neck is a classic option that some programs prefer for a traditional uniform appearance." },
+  { question: 'Do women\'s jerseys come in a spandex blend?', answer: "Yes. Our 88/12 polyester-spandex blend is available in women's cuts for players who prefer compression-adjacent stretch. This is particularly popular with liberos and defensive specialists whose play style involves extensive lateral floor movements." },
+  { question: 'Are women\'s jerseys NFHS compliant for high school volleyball?', answer: "Yes. We produce NFHS-compliant women's volleyball jerseys for high school programs. This includes proper front number size (minimum 4\"), back number size (minimum 6\"), contrasting number color requirements, and permissible design elements. Share your state association's specific requirements for precise compliance review." },
+  { question: 'Can women\'s jerseys be ordered with matching shorts?', answer: "Absolutely. Complete women's volleyball uniforms (jersey + matching shorts) are our most popular order type for women's programs. The shorts are cut to women's proportions with inseam options from 2\" to 4\" and brief liner options. See our women's volleyball uniforms page." },
+  { question: 'What is the typical fit description for women\'s volleyball jerseys?', answer: "Our standard women's athletic jersey follows the body's contours without feeling restrictive — it stays tucked during play, provides full arm movement overhead, and presents a clean, professional uniform appearance. Players who prefer more room can order one size up for a more relaxed fit." },
+  { question: 'Are plus sizes available in women\'s volleyball jerseys?', answer: "Yes. Women's sizes extend through 3XL in standard women's proportions. For players who need additional custom dimensions, we offer custom sizing at a small per-unit premium. Contact us with specific measurement requirements and we will advise on the best approach." },
+  { question: 'How long does a women\'s team jersey order take?', answer: "Standard production takes 10–14 business days after design approval. For complete women's programs ordering jerseys, shorts, and warm-up suits as a package, allow 14–21 days for the complete kit. Rush production in 5–7 business days is available for urgent needs." },  { question: 'Can women\'s volleyball jerseys be ordered with back ventilation mesh panels?', answer: 'Yes. Mesh ventilation panels across the upper back, shoulder blades, and underarm zones are available on women\'s jerseys. These are particularly popular in warm gym environments and for beach volleyball where heat management is critical. Ventilation panels are incorporated into the design during the mockup phase and do not affect sublimation coverage on the jersey\'s primary display areas.' },
+  { question: 'What design styles are most popular with women\'s volleyball programs?', answer: 'Women\'s volleyball programs frequently request gradient color transitions, asymmetric panel designs, and typography that complements the fitted jersey cut. Chevron patterns, color-blocked designs with contrasting side panels, and floral or geometric accent elements are also common requests. Our design team has produced women\'s volleyball jerseys for programs at every competition level and can present concept options based on your colors and style preferences.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: "Women's Volleyball Jerseys",
+  description: "Custom women's volleyball jerseys in athletic cuts designed for female athletes. Full sublimation, NFHS and NCAA compliant, bulk pricing available.",
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '163' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Jerseys', href: '/volleyball-jerseys/' },
+  { label: "Women's Volleyball Jerseys" },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Women's Volleyball Jerseys — Custom Athletic Cuts | The Volleyball Uniforms"
+  description="Custom women's volleyball jerseys in athletic cuts tailored for female athletes. NFHS & NCAA compliant, full sublimation, bulk pricing. Free design mockup. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/women-volleyball-jerseys/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Jerseys</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">Women's Volleyball Jerseys</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (163 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Custom volleyball jerseys designed for female athletes. Women's-specific proportions, athletic fit options, and full sublimation printing that makes your program look elite at every level of competition.</p>
+          <div class="space-y-3 mb-8">
+            {["Women's athletic cut with tailored proportions",'V-neck, scoop, or crew neckline options','Polyester or poly-spandex blend fabrics','Full sublimation with unlimited colors','NFHS and NCAA compliance support','Sizes YXS – 3XL in women\'s proportions'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Women's Volleyball Jerseys: Designed for Athletic Performance</h2>
+      <p>Women's volleyball is the most widely played team sport among female athletes in the United States, from youth recreational leagues through collegiate programs. The jersey a female player wears during competition should be designed with her athletic body proportions in mind — not adapted from a men's or unisex template. At The Volleyball Uniforms, our women's jersey line uses gender-specific pattern making that results in garments that fit correctly, move correctly, and look correct for every player on the court.</p>
+
+      <h2>Women's-Specific Cut and Proportions</h2>
+      <p>The most visible difference between women's and unisex volleyball jerseys is in the cut. Women's jerseys feature shorter body lengths, narrower shoulder widths, a more fitted silhouette through the torso, and neckline options (particularly the V-neck) that are more appropriate for the women's athletic aesthetic. These proportional differences are not merely cosmetic — a jersey that fits correctly stays tucked properly during play, doesn't restrict overhead arm movements, and doesn't bunch at the waist during dive sequences.</p>
+      <p>For players who prefer a more relaxed or performance-neutral fit, we offer relaxed-cut women's jerseys that provide more room through the torso while maintaining women's-specific shoulder and length proportions.</p>
+
+      <h2>Fabric and Performance Features</h2>
+      <p>Our women's volleyball jerseys use the same premium performance fabrics as our broader jersey line. The standard 100% moisture-wicking polyester provides excellent sweat management and color vibrancy for sublimation. The optional 88/12 polyester-spandex blend is popular among women's competitive programs — the stretch properties support the extreme hip and shoulder movements of the women's game, particularly for liberos and outside hitters who require maximum range of motion in every direction.</p>
+
+      <h2>Customization for Women's Programs</h2>
+      <p>Women's volleyball jerseys can be fully customized with program colors, logos, player names, and numbers using our dye-sublimation process. The permanent sublimated design cannot crack, peel, or fade — it is infused into the polyester fibers and will outlast the jersey's physical lifespan. For <a href="/personalized-volleyball-jerseys/">personalized volleyball jerseys</a> with individual player names on every piece, or <a href="/sublimated-volleyball-jerseys/">sublimated volleyball jerseys</a> with complex design artwork, our process handles all requirements in a single production run.</p>
+
+      <h2>Compliance with Women's Governing Body Rules</h2>
+      <p>Women's volleyball at the high school and collegiate level is governed by specific uniform standards. NFHS rules for women's high school volleyball and NCAA rules for women's college programs specify number sizing, placement, color contrast requirements, and design restrictions. We review every compliance-sensitive order against the relevant governing body standards before production.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>High school varsity and JV women's volleyball programs</li>
+        <li>NCAA, NAIA, and NJCAA collegiate women's volleyball teams</li>
+        <li>Club volleyball organizations competing in AAU and USAV events</li>
+        <li>Youth and middle school girls' volleyball leagues</li>
+        <li>Adult recreational and open league women's teams</li>
+        <li>Beach volleyball pairs and teams</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="Women's Volleyball Jersey Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Women's Volleyball Jersey FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Design Your Women's Team Jerseys" subtitle="Get a free design mockup and quote for custom women's volleyball jerseys tailored to your program." />
+</BaseLayout>

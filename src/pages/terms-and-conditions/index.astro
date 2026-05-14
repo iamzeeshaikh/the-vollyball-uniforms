@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Terms and Conditions' }];
+---
+
+<BaseLayout
+  title="Terms and Conditions | The Volleyball Uniforms"
+  description="Terms and conditions for The Volleyball Uniforms. Read our policies on ordering, cancellation, returns, intellectual property, and website use."
+  canonical="https://thevolleyballuniforms.com/terms-and-conditions/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl font-extrabold text-navy-950 mb-3">Terms and Conditions</h1>
+      <p class="text-gray-500 text-sm mb-10">Last updated: January 1, 2025</p>
+
+      <div class="prose-custom">
+        <p>These Terms and Conditions ("Terms") govern your use of thevolleyballuniforms.com and your ordering relationship with The Volleyball Uniforms. By accessing our website or placing an order, you agree to these Terms.</p>
+
+        <h2>1. Custom Orders and Production</h2>
+        <p>All products sold by The Volleyball Uniforms are custom-made to order. Production begins only after you provide written approval of the design mockup. Once production approval is granted, orders cannot be cancelled. Design changes cannot be made after production approval is signed.</p>
+
+        <h2>2. Quotes and Pricing</h2>
+        <p>All quotes are valid for 30 days from the date of issuance. Prices are subject to change after the quote expiration period. Quotes are not binding orders — a binding order is created only after design approval and confirmation of payment terms.</p>
+
+        <h2>3. Design and Intellectual Property</h2>
+        <p>You represent and warrant that you have the right to use all logos, artwork, names, and other materials you submit for your order. By submitting artwork, you grant us a license to use it solely for the purpose of producing your order. We retain the right to use images of completed products for our portfolio and marketing materials unless you explicitly opt out in writing.</p>
+
+        <h2>4. Sizing Responsibility</h2>
+        <p>You are responsible for verifying the accuracy of all sizes submitted with your order before design approval. We are not responsible for sizing errors arising from incorrect measurements or roster submissions. Custom size replacements may be produced at additional cost.</p>
+
+        <h2>5. Delivery and Shipping</h2>
+        <p>Production timelines begin after written design approval. Stated turnaround times are estimates and may be affected by order complexity, material availability, or force majeure events. We are not responsible for delays caused by shipping carriers once packages are in transit.</p>
+
+        <h2>6. Returns and Replacements</h2>
+        <p>Because all products are custom-made, we do not accept returns. If a product contains a manufacturing defect or deviates materially from the approved design, we will replace the defective items at no cost. Defects must be reported within 7 days of delivery with photographic documentation.</p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>Our liability is limited to the value of the specific order in question. We are not liable for indirect, incidental, or consequential damages including loss of use or loss of revenue resulting from late delivery or product defects.</p>
+
+        <h2>8. Governing Law</h2>
+        <p>These Terms are governed by the laws of the State of New York. Any disputes will be resolved through binding arbitration in New York County, New York.</p>
+
+        <h2>9. Contact</h2>
+        <p>Questions about these Terms can be directed to:<br />
+        Info@thevolleyballuniforms.com<br />
+        +1 212-555-0198</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { products } from '../../data/products';
+
+const gearProducts = products.filter(p => p.category === 'practice-gear');
+
+const faqs = [
+  { question: 'What is the difference between practice jerseys and game jerseys?', answer: 'Practice jerseys are typically made from more durable, budget-friendly fabrics designed to withstand daily training wear and tear. Game jerseys use premium sublimation fabrics and include full customization. Many teams order both — distinctive practice jerseys help coaches quickly identify players during drills.' },
+  { question: 'Do you offer mesh volleyball practice jerseys?', answer: 'Yes. Our mesh practice jerseys feature open-weave polyester panels for maximum air circulation. These are popular for intense summer training when court temperatures are high. They are available in bulk quantities at competitive pricing.' },
+  { question: 'Can practice jerseys be numbered for drill identification?', answer: 'Absolutely. Adding player numbers to practice jerseys is a popular option. Numbers can be applied via heat transfer or included in the sublimation design for permanent identification.' },
+  { question: 'What length options are available for volleyball training shorts?', answer: 'Our volleyball training shorts are available in inseam lengths from 2 inches (spandex style) to 7 inches (loose fit). Women\'s programs typically prefer 2–4 inch inseams for match play range of motion, while men\'s programs often prefer 5–7 inch inseams.' },
+  { question: 'Are volleyball compression shirts suitable for match play?', answer: 'Yes. While compression shirts are primarily designed as a training and base layer garment, many players also wear them during match play for muscle support, moisture management, and additional body coverage. They pair well with game shorts and are common among beach volleyball players.' },
+  { question: 'What size options do volleyball socks come in?', answer: 'Our volleyball socks are available in youth and adult sizes. Adult sizes cover US shoe sizes 5–8 (small), 8–11 (medium), and 11–14 (large). Youth sizes are available for shoe sizes 3–7. Custom team socks can include your school or club colors and logo.' },  { question: 'Can practice gear be ordered in team colors without individual player names or numbers?', answer: 'Yes. Many programs order practice gear in team colors with only the team name or logo — no individual names or numbers. This is the most common approach for training shorts and practice jerseys, as it reduces personalization steps and speeds up the order process while still maintaining a cohesive team appearance.' },
+  { question: 'What is the minimum order quantity for practice gear?', answer: 'There is no minimum order across any category of practice gear. Individual pieces can be ordered for new players joining mid-season. Team orders of 12 or more pieces receive bulk pricing. For programs ordering multiple types of practice gear together, combined order pricing applies across the full package.' },
+  { question: 'How does practice gear hold up to daily use and washing throughout a season?', answer: 'Practice gear is specifically built for daily use and frequent machine washing. The polyester construction resists shape degradation after repeated wash cycles, and sublimated designs maintain their vibrancy through an entire season of practice. We recommend cool wash cycles and low-heat drying to maximize the lifespan of all practice apparel.' },
+  { question: 'Can practice gear include sponsor logos for club programs?', answer: 'Yes. Club programs carrying sponsor logos on practice gear can include sponsor marks on jerseys, shorts, and hoodies through the same sublimation process used for team branding. Logo placement is determined during the design phase and does not add to production cost. Sponsor logos must meet minimum size requirements for clean sublimation reproduction.' },
+];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practice Gear' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Volleyball Practice Gear & Training Apparel | The Volleyball Uniforms"
+  description="Custom volleyball practice jerseys, compression shirts, training shorts & socks for daily training. Durable, breathable & fully customizable for your team. Get a quote."
+  canonical="https://thevolleyballuniforms.com/practice-gear/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-navy-800 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">Volleyball Practice Gear & Training Apparel</h1>
+        <p class="text-xl text-navy-300 mb-8 leading-relaxed">Durable, breathable training apparel built for daily volleyball practice. Custom practice jerseys, compression shirts, training shorts, and team socks — all available in your team colors.</p>
+        <a href="/request-a-quote/" class="btn-primary">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Practice Gear for Volleyball Teams</h2>
+        <p class="section-subtitle mx-auto">From daily training jerseys to court socks — everything your team needs to train hard.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {gearProducts.map(p => (
+          <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why Quality Practice Gear Matters for Volleyball Teams</h2>
+      <p>The best game-day performance starts with quality daily training. Volleyball is a physically demanding sport that requires explosive jumping, rapid lateral movement, and repetitive diving — all of which place significant demands on training apparel. Gear that restricts movement, holds moisture against the skin, or wears out quickly after a few weeks of practice undermines your team's preparation.</p>
+      <p>At The Volleyball Uniforms, our practice gear collection is engineered specifically for volleyball training conditions. Every item is built to withstand the rigors of daily practice while keeping players comfortable and focused on developing their skills.</p>
+
+      <h2>Our Practice Gear Products</h2>
+
+      <h3>Volleyball Practice Jerseys</h3>
+      <p>Our <a href="/volleyball-practice-jerseys/">volleyball practice jerseys</a> are the workhorse of your team's daily training wardrobe. Made from breathable, durable polyester, these jerseys hold up through hard conditioning sessions, drill work, and scrimmages without breaking down. Unlike game jerseys that need to look pristine, practice jerseys are built for function — though we can still add your team name, numbers, and colors.</p>
+
+      <h3>Volleyball Compression Shirts</h3>
+      <p>Our <a href="/volleyball-compression-shirts/">volleyball compression shirts</a> serve a dual purpose: they support the muscles during explosive play and manage moisture through long training sessions. The compression fit helps reduce muscle vibration during jumping, which many players find reduces fatigue over the course of a long practice or tournament day.</p>
+
+      <h3>Volleyball Training Shorts</h3>
+      <p>Designed for full range of motion, our <a href="/volleyball-training-shorts/">volleyball training shorts</a> are available in multiple inseam lengths and fits. The lightweight polyester fabric dries quickly, and a 4-way stretch construction allows the extreme movements volleyball demands — deep squats for serve receive, lateral lunges for defense, and vertical jumps for attack.</p>
+
+      <h3>Volleyball Socks</h3>
+      <p>Often overlooked but critically important, our <a href="/volleyball-socks/">volleyball socks</a> feature cushioned heel and toe zones for impact absorption during jumping, arch support for lateral stability, and a moisture-wicking top layer to keep feet dry. Custom team socks are available in your school or club colors with logo placement.</p>
+
+      <h2>Outfitting Your Team for Practice</h2>
+      <p>The most effective practice setups give coaches the ability to identify players quickly, group them visually for drills, and distinguish between teams during scrimmages. Custom practice jerseys with color-coded numbering make this possible while keeping your team looking organized and professional even during training sessions.</p>
+      <p>For schools and clubs with multiple teams, coordinated practice gear across all squads reinforces program identity. We can produce matching practice apparel for varsity, junior varsity, and club teams — with subtle design differences to distinguish each group.</p>
+
+      <h2>Care and Durability</h2>
+      <p>All practice gear is machine washable and designed to maintain its shape and performance properties over extended use. We recommend washing on a cool cycle and air drying to maximize the lifespan of sublimated or printed designs. Under normal training conditions — 3 to 5 practice sessions per week — our practice jerseys and shorts are engineered to last 2+ seasons.</p>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Practice Gear FAQs" />
+  <InlineQuoteSection />
+
+  <CTASection title="Gear Up Your Team for Daily Training" subtitle="Get a quote for custom volleyball practice gear with your team colors and branding." />
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { products } from '../../data/products';
+
+const uniformProducts = products.filter(p => p.category === 'volleyball-uniforms');
+
+const faqs = [
+  { question: 'What is included in a volleyball uniform set?', answer: 'A complete volleyball uniform set typically includes a jersey and matching shorts. Some teams also add libero jerseys, warm-up suits, and socks to form a complete kit. We can build any combination you need as a single coordinated order.' },
+  { question: 'Do you offer NFHS-compliant volleyball uniforms for high school teams?', answer: 'Yes. Our high school volleyball uniforms are designed with NFHS compliance in mind, including proper number sizing, placement requirements, and permissible design elements. We review all high school orders against current NFHS guidelines.' },
+  { question: 'Can college teams order NCAA-compliant uniforms?', answer: 'Absolutely. We are experienced with NCAA volleyball uniform regulations and can produce compliant uniforms for Division I, II, and III programs. We recommend sharing your conference\'s specific requirements when requesting a quote.' },
+  { question: 'How do you handle different sizing within one team order?', answer: 'Every player on your roster can have a different size — that is completely standard for our team orders. You submit a size roster (player name + size per piece) and we produce each item to specification. Individual name and number customization is included.' },
+  { question: 'Can I order matching libero uniforms with a different color?', answer: 'Yes. Libero uniforms in a contrasting or complementary color are a standard part of our volleyball uniform packages. We ensure the design elements and fonts remain consistent while differentiating the libero as required by rules.' },
+  { question: 'What is the difference between a jersey and a full uniform?', answer: 'A jersey refers to the top garment only. A full volleyball uniform set includes both the jersey and matching shorts, sized and designed to coordinate. We offer both individual jerseys and complete uniform sets depending on your team\'s needs.' },
+  { question: 'How far in advance should we order for the start of a season?', answer: 'We recommend placing your order 4–6 weeks before your first game. This allows time for design approval, production, and shipping with some buffer for any sizing adjustments. Rush production is available if you are closer to the season start date.' },  { question: 'How far in advance should I order volleyball uniforms before the season begins?', answer: 'Most teams order 5–7 weeks before their first game. Standard production runs 10–14 business days after design approval, with additional time needed for size collection and mockup review. For full multi-item packages including game uniforms, practice jerseys, and warm-ups, allow the full 7 weeks. Rush production is available for programs with tighter timelines.' },
+  { question: 'Can I order a sample uniform set before committing to a full team order?', answer: 'Yes. Sample sets — jersey and shorts — are available for programs that want to verify fit, fabric quality, and color accuracy before their full roster order goes into production. Sample costs apply as a credit toward your full team order. Turnaround on samples follows standard production timing.' },
+  { question: 'What happens if a player\'s uniform does not fit correctly upon delivery?', answer: 'We provide detailed size charts and recommend collecting actual body measurements rather than relying on self-reported clothing sizes. If a sizing issue results from a production error on our end, we replace the piece at no charge. If the issue stems from a measurement submitted by the program, we produce a replacement at cost with priority turnaround.' },
+];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="Custom Volleyball Uniforms for Schools & Clubs | The Volleyball Uniforms"
+  description="Order custom volleyball uniforms for high school, college, youth & club teams. Complete sets with jerseys & shorts. NFHS & NCAA compliant. Free mockups. Request a quote."
+  canonical="https://thevolleyballuniforms.com/volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-br from-navy-950 to-electric-900 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">Custom Volleyball Uniforms for Schools, Colleges & Clubs</h1>
+        <p class="text-xl text-navy-300 mb-8 leading-relaxed">Complete volleyball uniform sets for high school programs, college teams, youth organizations, and competitive clubs. Every uniform is made to order with your colors, logo, and player details.</p>
+        <a href="/request-a-quote/" class="btn-primary">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Our Volleyball Uniform Collections</h2>
+        <p class="section-subtitle mx-auto">Shop by team type or customize a complete uniform set from scratch.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {uniformProducts.map(p => (
+          <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Complete Volleyball Uniforms for Every Level of Play</h2>
+      <p>A great volleyball uniform does more than identify your team — it builds confidence, promotes cohesion, and withstands the physical demands of competitive play. At The Volleyball Uniforms, we produce complete custom uniform sets for programs ranging from recreational youth leagues to NCAA college programs.</p>
+
+      <h2>Types of Volleyball Uniforms We Produce</h2>
+
+      <h3>High School Volleyball Uniforms</h3>
+      <p>High school volleyball programs require uniforms that balance style, performance, and regulatory compliance. Our <a href="/high-school-volleyball-uniforms/">high school volleyball uniforms</a> are designed with NFHS guidelines in mind, including proper number sizing and placement. We work with athletic directors and coaches to ensure every detail meets your school's requirements.</p>
+
+      <h3>College Volleyball Uniforms</h3>
+      <p>College programs demand the highest production standards. Our <a href="/college-volleyball-uniforms/">college volleyball uniforms</a> are crafted from tournament-grade fabrics and use dye-sublimation printing for lasting color vibrancy. We accommodate NCAA compliance requirements for Division I, II, and III programs, as well as NAIA and junior college specifications.</p>
+
+      <h3>Youth Volleyball Uniforms</h3>
+      <p>Youth programs need uniforms that are comfortable, durable, and appropriately sized for growing athletes. Our youth volleyball uniform line uses lightweight, breathable fabrics and is available in a complete size range from YXS through YXL. The construction is reinforced at stress points to withstand active play.</p>
+
+      <h3>Women's and Men's Volleyball Uniforms</h3>
+      <p>We produce gender-specific uniform cuts optimized for the biomechanics of each game. Women's uniforms feature a tailored athletic cut with shorter inseam options and brief liners, while men's uniforms use a wider shoulder and longer torso construction appropriate for the men's game. Both are available in any color combination.</p>
+
+      <h2>What Makes a Complete Volleyball Uniform Set</h2>
+      <p>A standard volleyball uniform set includes a jersey and matching shorts. However, most programs also order complementary pieces to create a fully coordinated team appearance. Here is what we recommend for a complete volleyball uniform package:</p>
+      <ul>
+        <li>Game jersey with player name, number, and team logo</li>
+        <li>Matching game shorts with team branding</li>
+        <li>Libero jersey in contrasting color with matching design language</li>
+        <li>Warm-up jacket and pants for pre-game and travel</li>
+        <li>Practice jerseys for daily training</li>
+        <li>Custom team socks</li>
+      </ul>
+
+      <h2>Fabric and Construction Details</h2>
+      <p>Our volleyball uniforms are built from premium performance fabrics. Standard jerseys use 150–180 GSM moisture-wicking polyester with 4-way stretch capability. The shorts feature the same moisture management properties with an elastic waistband, brief liner (optional), and side seam vents for air circulation.</p>
+      <p>Construction follows athletic apparel standards with flatlock seams that prevent chafing during diving and floor movement. Hem edges are double-stitched for durability. All logos, names, and numbers are applied via sublimation or heat transfer depending on the design.</p>
+
+      <h2>The Ordering Process for Team Uniforms</h2>
+      <p>Ordering complete volleyball uniforms for your team follows a clear process. You begin by requesting a quote through our <a href="/request-a-quote/">quote request form</a>, where you provide your team size, required items, and any design references. Our team creates a complimentary digital mockup within 1–2 business days. After your approval, production begins and typically completes in 10–14 business days.</p>
+      <p>For teams with complex sizing requirements or multiple item types, we assign a dedicated account manager who coordinates the entire process from mockup to delivery.</p>
+
+      <h2>Compliance and Regulations</h2>
+      <p>Volleyball uniform regulations vary by governing body. NFHS rules for high school play specify number sizes, jersey colors, and libero uniform requirements. NCAA rules for college play have their own set of standards. We stay current with all major governing body regulations and can advise your program on compliance before production begins. Simply mention your governing body when requesting a quote and we will factor their requirements into your design.</p>
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="Volleyball Uniforms FAQs" />
+  <InlineQuoteSection />
+
+  <CTASection title="Design Your Team's Uniforms Today" subtitle="Get a free mockup and quote for complete custom volleyball uniform sets within 1–2 business days." />
+</BaseLayout>

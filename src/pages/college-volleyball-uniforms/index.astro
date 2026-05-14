@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecsTable from '../../components/SpecsTable.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const product = products.find(p => p.slug === 'college-volleyball-uniforms')!;
+const related = products.filter(p => ['high-school-volleyball-uniforms', 'women-volleyball-uniforms', 'men-volleyball-uniforms'].includes(p.slug));
+
+const specs = [
+  { label: 'Primary Material', value: '100% Performance Polyester' },
+  { label: 'Fabric Weight', value: '4.5 oz/yd² moisture-wicking interlock' },
+  { label: 'Fit', value: 'Athletic performance fit' },
+  { label: 'Sizes Available', value: 'XS – 4XL (men\'s and women\'s cuts)' },
+  { label: 'Customization', value: 'Full dye-sublimation: names, numbers, logos, school colors' },
+  { label: 'Compliance', value: 'NCAA and NAIA compliant designs available' },
+  { label: 'Set Contents', value: 'Jersey + shorts; libero jersey optional add-on' },
+  { label: 'Care', value: 'Machine wash cool, tumble dry low' },
+  { label: 'Packaging', value: 'Individual player packaging available' },
+];
+
+const faqs = [
+  {
+    question: 'Are your college volleyball uniforms NCAA compliant?',
+    answer: 'Yes. We design every college uniform set with NCAA and NAIA compliance in mind. Number sizing, placement, color contrast, and libero jersey distinction all meet current rulebook specifications. If you have a specific conference or divisional requirement, share it with our design team and we\'ll accommodate it in your mockup.',
+  },
+  {
+    question: 'Can we order uniforms for multiple teams (varsity and JV) in a single order?',
+    answer: 'Absolutely. Many college programs order varsity and JV sets simultaneously to keep designs consistent while differentiating squads with subtle color variations or numbering ranges. We handle multi-squad orders under a single project and provide separate sorted packaging for each team.',
+  },
+  {
+    question: 'What are the libero jersey rules for college play, and can you supply a compliant set?',
+    answer: 'Under NCAA rules, the libero must wear a jersey that clearly contrasts with all other players on the court. We produce libero jerseys as part of your complete uniform package — same sublimation process, matching team branding, but with a compliant contrasting design. You specify the color scheme and we ensure it meets NCAA contrast requirements.',
+  },
+  {
+    question: 'How quickly can you produce rush orders for a college program?',
+    answer: 'Standard production is 14–18 business days after artwork approval. Rush production (7–10 business days) is available for an additional fee. We recommend contacting us at least six weeks before your first competition date to allow for mockup review, revisions, and standard shipping.',
+  },
+  {
+    question: 'What is the minimum order quantity for college uniform sets?',
+    answer: 'Our minimum is 6 sets per order, which covers a small practice roster. Most college programs order 15–25 sets for a full competition roster plus backups. There are no upper limits, and per-unit pricing decreases significantly at higher quantities.',
+  },
+  {
+    question: 'What fabric options are available for our specific climate and arena conditions?',
+    answer: 'Our standard fabric is a 4.5 oz performance polyester with built-in moisture-wicking technology suitable for most indoor arenas. For warm-climate programs or outdoor events, we offer a lighter 3.8 oz mesh-back option that increases airflow. Both fabrics accept full dye-sublimation printing.',
+  },
+  {
+    question: 'Do you provide dedicated design support for college branding guidelines?',
+    answer: 'Yes. College programs often have strict brand standards — specific Pantone colors, logo usage rules, and typography guidelines. Share your athletic department brand guide and our designers will work within those parameters. We provide digital mockups before production and will revise until your compliance office approves.',
+  },
+  {
+    question: 'What is the typical delivery timeline for a full college uniform program?',
+    answer: 'From initial design consultation to delivery, most college programs complete the process in 4–6 weeks. This includes up to two rounds of mockup revisions (1–3 business days each), production (14–18 business days), and shipping (2–5 business days depending on your location). Expedited options are available.',
+  },  { question: 'Can you accommodate large collegiate rosters of 30 or more players?', answer: 'Yes. Large collegiate rosters — including varsity, JV, practice squad, and redshirt players — are all managed within the same order. We assign a dedicated account manager for collegiate program orders who coordinates individual sizing, jersey numbers, and any compliance-related adjustments across every piece in the full roster.' },
+  { question: 'What is your process for mid-season jersey replacements or additions?', answer: 'We maintain every team\'s design on file permanently. For mid-season additions — a transfer student joining the program, a replacement for a lost jersey, or a new position player — you submit the player\'s name, number, and size and we produce the matching piece. Mid-season replacement turnaround follows the same standard production timeline as the original order.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'College Volleyball Uniforms',
+  description: 'Premium college volleyball uniforms for NCAA and NAIA programs with full sublimation and compliance-ready designs.',
+  brand: { '@type': 'Brand', name: 'The Volleyball Uniforms' },
+  url: `https://thevolleyballuniforms.com/${product.slug}/`,
+  image: product.images.map(img => `https://thevolleyballuniforms.com${img}`),
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+    url: `https://thevolleyballuniforms.com/${product.slug}/`,
+    seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '82' , bestRating: '5', worstRating: '1' },
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Volleyball Uniforms', href: '/volleyball-uniforms/' },
+  { label: 'College Volleyball Uniforms' },
+];
+import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
+---
+
+<BaseLayout
+  title="College Volleyball Uniforms — NCAA-Ready Custom Sets | The Volleyball Uniforms"
+  description="Premium college volleyball uniforms for NCAA & NAIA programs. Full sublimation, compliance-ready designs, complete sets. Free mockup & bulk pricing. Get a quote."
+  schema={schema}
+  canonical="https://thevolleyballuniforms.com/college-volleyball-uniforms/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ProductGallery images={product.images} productName={product.name} />
+        <div>
+          <div class="text-sm text-electric-600 font-semibold mb-2">Volleyball Uniforms</div>
+          <h1 class="text-4xl font-extrabold text-navy-950 mb-4 leading-tight">College Volleyball Uniforms</h1>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="flex gap-0.5">{[1,2,3,4,5].map(() => <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}</div>
+            <span class="text-sm text-gray-500">4.9 / 5 (82 reviews)</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">Engineered for the demands of collegiate competition, our college volleyball uniforms combine tournament-grade fabrics with full dye-sublimation printing. Whether you're outfitting an NCAA Division I program or a growing NAIA squad, every set arrives ready for game day — compliant, branded, and built to last a full season and beyond.</p>
+          <div class="space-y-3 mb-8">
+            {['Tournament-grade polyester fabric', 'NCAA/NAIA compliance support', 'Full dye-sublimation printing', 'Complete jersey + shorts sets', 'Libero jersey option included', 'Individual player packaging'].map(f => (
+              <div class="flex items-center gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-electric-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {f}
+              </div>
+            ))}
+          </div>
+          <a href="/request-a-quote/" class="btn-primary w-full justify-center mb-4">Request a Quote</a>
+          <a href="/size-guide/" class="btn-outline w-full justify-center text-sm">View Size Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 prose-custom">
+      <h2>Why College Volleyball Programs Need Premium Uniforms</h2>
+      <p>At the college level, volleyball uniforms are more than team apparel — they are a representation of your athletic program, your institution, and your brand. Recruits notice the quality of gear during campus visits. Opponents see your program's identity from across the net. Fans in the stands connect your colors to every point scored. When you invest in premium college volleyball uniforms, you're signaling a commitment to excellence that resonates well beyond match day. Our uniforms use tournament-grade polyester that withstands an entire season of washing, diving, and practice without fading or pilling, so your team looks sharp from preseason scrimmages through conference championships.</p>
+
+      <h2>NCAA and NAIA Compliance</h2>
+      <p>Compliance is non-negotiable at the collegiate level. Both the NCAA and NAIA publish detailed rulebooks governing number size, placement, color contrast between the libero and other players, and permissible logo dimensions. A non-compliant uniform can result in a delay of game or, in extreme cases, a forfeit. Our design team stays current with every rulebook update and builds compliance into your mockup from the start — you simply approve the design and we handle the technical execution.</p>
+      <h3>Libero Uniform Requirements</h3>
+      <p>The libero position carries the most specific uniform rules in collegiate volleyball. The libero jersey must clearly contrast with all other players on the court at all times. We produce libero jerseys as a coordinated add-on to your full set — same sublimation quality, matching school branding, but with a distinctly contrasting design that satisfies both NCAA and NAIA standards. See our <a href="/women-volleyball-uniforms/">women's volleyball uniforms</a> page for full details on how the libero option integrates into a complete set.</p>
+
+      <h2>Complete College Uniform Sets</h2>
+      <p>A complete college uniform set from The Volleyball Uniforms includes a sublimated game jersey, matching shorts, and optional libero jersey — all produced in a single production run so colors and fabric batches are perfectly consistent. Each piece is cut to the same athletic-performance spec, ensuring the jersey and shorts move together during dives, jumps, and lateral cuts. Sets can be ordered in both men's and women's cuts within the same program order, with separate sizing charts applied to each group.</p>
+
+      <h2>Design and Branding Options</h2>
+      <p>College athletic programs often have detailed brand standards that govern Pantone colors, logo usage, and typography. Our design team works within your existing brand guidelines. If your athletic department has an approved logo package, share the vector files and we'll incorporate them exactly. If you're developing a new visual identity, our designers can create concepts based on your school colors and vision. Visit our <a href="/design-guide/">design guide</a> for more on the artwork submission process and what file formats we accept.</p>
+
+      <h2>Material and Fabric Details</h2>
+      <p>Our college-grade volleyball uniforms are constructed from a 4.5 oz performance polyester interlock fabric with integrated moisture-wicking technology. The tight weave provides enough structure to hold vibrant sublimation colors while the moisture-management finish pulls sweat away from the skin during high-intensity rallies. The fabric is pre-shrunk and tested for colorfastness through 50+ wash cycles, ensuring your uniforms maintain their appearance throughout a full collegiate season and into the following year.</p>
+
+      <h2>Customization Options</h2>
+      <p>Every element of a college volleyball uniform can be customized through dye-sublimation: player names, numbers, school logos, mascots, and background patterns. Unlike screen printing or heat transfers, sublimation infuses the dye directly into the polyester fibers, making the design a permanent part of the fabric rather than a layer on top. Colors cannot crack, peel, or fade. Explore your options by submitting your artwork through our <a href="/request-a-quote/">quote request form</a> where you can attach logo files and describe your vision.</p>
+
+      <h2>Sizing Information</h2>
+      <p>College rosters include athletes at every point on the size spectrum, from petite setters to tall outside hitters. We offer sizes XS through 4XL in both men's and women's athletic cuts. Women's cuts feature a tapered waist and slightly shorter body length for a fit that moves with female athletes during play. Men's cuts offer a longer torso and wider shoulder build. Visit our <a href="/size-guide/">size guide</a> for detailed measurements and fit recommendations for college-level athletes.</p>
+
+      <h2>Bulk Order Benefits</h2>
+      <p>College programs that order 15 or more sets unlock significant per-unit price reductions. Programs ordering for multiple squads simultaneously — varsity, JV, and practice — receive the combined quantity discount applied across the entire order. We also offer priority production scheduling for programs that establish themselves as returning customers, ensuring you get on our production calendar early for each new season.</p>
+
+      <h2>Use Cases</h2>
+      <ul>
+        <li>NCAA Division I, II, and III programs seeking compliance-ready competition uniforms</li>
+        <li>NAIA college programs needing complete branded sets on a budget-conscious timeline</li>
+        <li>Community colleges building a volleyball program identity from the ground up</li>
+        <li>Club volleyball teams at college level competing in NCVF or NIRSA events</li>
+        <li>Athletic departments replacing aging uniforms mid-cycle with a full matching refresh</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <SpecsTable specs={specs} title="College Volleyball Uniforms Specifications" />
+    </div>
+  </section>
+
+  <FAQSection faqs={faqs} title="College Volleyball Uniforms FAQs" />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold text-navy-950 mb-8">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map(p => <ProductCard name={p.name} slug={p.slug} image={p.images[0]} description={p.shortDescription} />)}
+      </div>
+    </div>
+  </section>
+
+  <InlineQuoteSection productName={product.name} />
+
+
+  <CTASection title="Ready to Outfit Your College Program?" subtitle="Request a free mockup and bulk pricing quote — no commitment required." />
+</BaseLayout>
