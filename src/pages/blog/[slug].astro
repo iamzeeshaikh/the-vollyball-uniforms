@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { blogContent, getBlogContent } from '../../data/blogContent';
+
+export function getStaticPaths() {
+  return blogContent.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getBlogContent(slug!);
+if (!post) return Astro.redirect('/blog/');
+
+const url = `https://thevolleyballuniforms.com/blog/${post.slug}/`;
+const related = blogContent.filter((p) => p.slug !== post.slug).slice(0, 2);
+
+const dateLabel = new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: post.title },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.metaDescription,
+  author: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  publisher: { '@type': 'Organization', name: 'The Volleyball Uniforms' },
+  datePublished: post.publishDate,
+  dateModified: post.publishDate,
+  image: post.image,
+  mainEntityOfPage: url,
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: post.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title={post.metaTitle}
+  description={post.metaDescription}
+  schema={[articleSchema, faqSchema]}
+  canonical={url}
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="mb-8">
+        <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">{post.category}</span>
+        <div class="text-gray-400 text-sm mt-3">{dateLabel} • {post.readTime} • By The Volleyball Uniforms Team</div>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">{post.title}</h1>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">{post.intro}</p>
+
+      <div class="prose-custom">
+        {post.sections.map((section) => (
+          <>
+            <h2>{section.heading}</h2>
+            <div set:html={section.body} />
+          </>
+        ))}
+
+        <h2>Frequently Asked Questions</h2>
+        {post.faq.map((f) => (
+          <>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </>
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 bg-electric-50 rounded-2xl border border-electric-100">
+        <h3 class="font-bold text-navy-950 mb-2">{post.cta.title}</h3>
+        <p class="text-gray-600 text-sm mb-4">{post.cta.text}</p>
+        <a href={post.cta.href} class="btn-primary">{post.cta.label}</a>
+      </div>
+
+      {related.length > 0 && (
+        <div class="mt-12">
+          <h3 class="font-bold text-navy-950 mb-4">Keep Reading</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {related.map((r) => (
+              <a href={`/blog/${r.slug}/`} class="block p-5 rounded-2xl border border-gray-200 hover:border-electric-400 transition-colors">
+                <span class="text-electric-600 text-xs font-bold uppercase tracking-wide">{r.category}</span>
+                <div class="font-semibold text-navy-950 mt-1">{r.title}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>
