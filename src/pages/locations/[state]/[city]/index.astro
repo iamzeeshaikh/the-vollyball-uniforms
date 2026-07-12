@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import CTASection from '../../../../components/CTASection.astro';
+import QuoteForm from '../../../../components/QuoteForm.astro';
+import { products } from '../../../../data/products';
+import { allCityParams, getLocationCity, vbLinkTargets, vbAnchor, vbPick } from '../../../../data/locations';
+
+export function getStaticPaths() {
+  return allCityParams().map((p) => ({ params: p }));
+}
+
+const { state: stateSlug, city: citySlug } = Astro.params;
+const found = getLocationCity(stateSlug!, citySlug!);
+if (!found) return Astro.redirect('/locations/');
+const { state, city } = found;
+
+const getP = (s: string) => products.find((p) => p.slug === s);
+const siblings = state.cities.filter((c) => c.slug !== city.slug);
+const basePath = `/locations/${state.slug}/${city.slug}/`;
+
+// Varied internal links — unique target, anchor, and sentence per page.
+const seedKey = city.slug + state.slug;
+const lt = vbLinkTargets(seedKey, 4);
+const L = lt.map((s, i) => ({ href: `/${s}/`, text: vbAnchor(s, seedKey, i) }));
+const styleGrid = vbLinkTargets('style-' + seedKey, 4).map(getP).filter(Boolean) as NonNullable<ReturnType<typeof getP>>[];
+const answerLine = vbPick([
+  { pre: `A staple for ${city.name} programs is our `, post: `, printed in your exact team colors and built for a long season.` },
+  { pre: `${city.name} teams most often start with our `, post: `.` },
+  { pre: `One of the most-ordered picks for ${city.name} coaches is our `, post: `, made to move on the court.` },
+], seedKey, 0);
+const sceneLine = vbPick([
+  { pre: `Whatever level your program plays at in ${city.name}, our `, post: ` keep your team looking sharp match after match.` },
+  { pre: `To match the intensity of ${city.name} volleyball, coaches turn to our `, post: `.` },
+  { pre: `Our `, post: ` fit the way ${city.name} teams compete.` },
+], seedKey, 1);
+const whoLine = vbPick([
+  { pre: `From club and travel squads to varsity and youth, ${city.name} programs order it all — including our `, post: `.` },
+  { pre: `Whatever the roster, our `, post: ` outfit ${city.name} teams at every level.` },
+  { pre: `Popular across ${city.name} programs are our `, post: `.` },
+], seedKey, 2);
+const whyLine = vbPick([
+  { pre: `Ready to build your team's look? Explore our `, post: ` or start a ${city.name} team quote today.` },
+  { pre: `Weighing fabrics and cuts? Our `, post: ` are a great place to begin.` },
+  { pre: `Not sure where to start? Our `, post: ` are a solid first stop for ${city.name} coaches.` },
+], seedKey, 3);
+
+const levels = [
+  'Club and travel volleyball teams',
+  'High school varsity and JV programs',
+  'College and collegiate club teams',
+  'Youth and junior development clubs',
+  'Beach and sand volleyball squads',
+  'Rec leagues and adult tournaments',
+];
+
+const faqs = [
+  { question: `Do you make custom volleyball uniforms for ${city.name} teams?`, answer: city.faqCityAnswer },
+  { question: `What is the minimum order for a ${city.name} team?`, answer: `We build full-team orders and keep minimums practical for ${city.name} programs, from a club roster to a varsity squad. Send your player count and we'll confirm pricing and per-uniform cost.` },
+  { question: `Can you match our exact ${city.name} club or school colors?`, answer: `Yes. Every uniform is fully dye-sublimated to your exact colors, logo, and design, so your ${city.name} team's identity is reproduced precisely on every jersey and every reorder.` },
+  { question: `Are your uniforms sublimated or screen printed?`, answer: `We specialize in full dye-sublimation, where the design is infused into the fabric so names, numbers, and logos never crack, peel, or fade — ideal for the wear of a long club or school season.` },
+  { question: `Are your high school uniforms NFHS compliant?`, answer: `Yes. Our high school volleyball uniforms follow NFHS standards by default, including number sizing and placement and libero color-contrast rules, so your ${city.name} program is game-ready.` },
+  { question: `Do you offer full team kits, not just jerseys?`, answer: `Yes. We outfit ${city.name} teams head to toe — jerseys, shorts or spandex, practice gear, warm-ups, hoodies, and more — so your whole program looks unified.` },
+  { question: `Can you print custom names and numbers?`, answer: `Absolutely. Custom names, numbers, captain designations, and libero jerseys are all part of your team order, so every ${city.name} player's uniform is ready out of the box.` },
+  { question: `How fast can you deliver before our season or tournament?`, answer: `We plan production around your season and tournament dates. Order early for the best turnaround, and if you have a qualifier or opening-match deadline in ${city.name}, tell us and we'll confirm timing up front.` },
+  { question: `Do you send a design proof before production?`, answer: `Always. You'll approve a design mockup showing your colors, logo, and layout before anything is produced, so your ${city.name} uniforms come out exactly as intended.` },
+  { question: `How do we get a quote for our ${city.name} team?`, answer: `Send your team name, colors, roster count, and any design ideas through our quote form. We'll come back with pricing, fabric options, and a timeline for your ${city.name} program.` },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Custom Volleyball Uniforms — ${city.name}, ${state.abbr}`,
+  serviceType: 'Custom volleyball uniform and team kit manufacturing',
+  description: city.metaDescription,
+  areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'State', name: `${state.name}, USA` } },
+  provider: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+  url: `https://thevolleyballuniforms.com${basePath}`,
+};
+---
+<BaseLayout title={city.metaTitle} description={city.metaDescription} canonical={`https://thevolleyballuniforms.com${basePath}`} schema={serviceSchema}>
+  <div class="bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'Locations', href: '/locations/' }, { label: state.name, href: `/locations/${state.slug}/` }, { label: city.name }]} />
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-navy-950 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">{state.name} · USA</span>
+        <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">{city.h1}</h1>
+        <p class="mt-4 max-w-xl text-lg text-navy-200 leading-relaxed">{city.intro}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/request-a-quote/" class="btn-primary py-3 px-6 text-sm">Get a Team Quote</a>
+          <a href={`/locations/${state.slug}/`} class="inline-flex items-center rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white hover:border-gold-400 transition-colors">All {state.name} Cities</a>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-white/12 bg-white/5 p-6">
+        <p class="border-b border-white/12 pb-3 font-extrabold text-gold-400">🏐 {city.stat}</p>
+        <ul class="mt-3 space-y-2.5 text-sm text-navy-100">
+          {['Full dye-sublimation in your colors', 'Lightweight, moisture-wicking fabric', 'Complete team kits, head to toe', 'Free design mockup · team pricing'].map((t) => (
+            <li class="flex items-start gap-2"><span class="text-gold-400">✓</span>{t}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Answer -->
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-950">Custom Volleyball Uniforms in {city.name}</h2>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        The Volleyball Uniforms designs and builds custom, fully sublimated volleyball uniforms and team kits for programs across {city.name} and {state.name}. Every uniform is printed to your exact colors, logo, and roster — the fastest way to get {city.signatureSector} looking sharp on the court. {answerLine.pre}<a href={L[0].href} class="text-electric-600 font-semibold underline">{L[0].text}</a>{answerLine.post}
+      </p>
+    </div>
+  </section>
+
+  <!-- Local scene -->
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-electric-600">On the Ground in {city.name}</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-navy-950">{city.sceneHeading}</h2>
+        <p class="mt-4 text-gray-600 leading-relaxed">{city.localScene}</p>
+        <p class="mt-4 text-gray-600 leading-relaxed">{sceneLine.pre}<a href={L[1].href} class="text-electric-600 font-semibold underline">{L[1].text}</a>{sceneLine.post}</p>
+        <h3 class="mt-6 text-lg font-bold text-navy-950">Areas We Serve Near {city.name}</h3>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {city.areas.map((a) => <span class="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-sm text-navy-900">{a}</span>)}
+        </div>
+      </div>
+      <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-bold text-navy-950">Get a {city.name} Team Quote</h3>
+        <p class="mt-2 text-sm text-gray-600">Send your team name, colors, and roster count for a fast, free quote.</p>
+        <QuoteForm productName={`Volleyball Uniforms — ${city.name}, ${state.abbr}`} formId="city-quote" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Style grid -->
+  <section class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-electric-600">Uniform Styles</span>
+      <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-navy-950">Styles {city.name} Teams Order</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {styleGrid.map((p) => (
+          <a href={`/${p.slug}/`} class="group overflow-hidden rounded-2xl border border-gray-200 bg-white hover:shadow-lg transition-shadow">
+            <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+              <img src={p.images[0]} alt={`${p.name} for ${city.name} teams`} loading="lazy" width="400" height="300" class="h-full w-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-navy-950">{p.name}</h3>
+              <p class="mt-1 text-sm text-gray-500">{p.shortDescription.slice(0, 78)}…</p>
+              <span class="mt-2 inline-block text-sm font-semibold text-electric-600">View {p.name} →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Built for the court -->
+  <section class="bg-navy-950 text-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">Built for the Court</span>
+      <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold">Made for {city.name} Volleyball</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {[
+          { t: 'Full dye-sublimation', d: `Colors, names, and numbers are infused into the fabric, so they never crack or fade through a full ${city.name} club or school season.` },
+          { t: 'Moisture-wicking performance', d: 'Lightweight, breathable interlock keeps players cool and dry through long tournament days and back-to-back matches.' },
+          { t: 'NFHS-ready & libero-set', d: 'High school kits meet NFHS number and libero rules by default, and every order can include a contrasting libero jersey.' },
+        ].map((x) => (
+          <div class="rounded-2xl border border-white/12 bg-white/5 p-6">
+            <h3 class="text-lg font-bold text-gold-400">{x.t}</h3>
+            <p class="mt-2 text-sm text-navy-100 leading-relaxed">{x.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we outfit -->
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-electric-600">Every Level</span>
+      <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-navy-950">Who We Outfit in {city.name}</h2>
+      <p class="mt-4 text-gray-600 leading-relaxed">{whoLine.pre}<a href={L[2].href} class="text-electric-600 font-semibold underline">{L[2].text}</a>{whoLine.post}</p>
+      <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+        {levels.map((x) => <li class="flex items-start gap-2 text-navy-900"><span class="text-electric-600">🏐</span>{x}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-electric-600">Why Us</span>
+      <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-navy-950">Why {city.name} Coaches Order From Us</h2>
+      <p class="mt-4 text-gray-600 leading-relaxed">{city.deliveryNote}</p>
+      <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+        {['Full dye-sublimation in your exact colors', 'Lightweight, moisture-wicking performance fabric', 'Complete head-to-toe team kits', 'Free design mockup on every order', 'Team pricing with practical minimums', 'Turnaround planned around your season'].map((t) => (
+          <li class="flex items-start gap-2 text-navy-900"><span class="text-electric-600">✓</span>{t}</li>
+        ))}
+      </ul>
+      <p class="mt-4 text-gray-600 leading-relaxed">{whyLine.pre}<a href={L[3].href} class="text-electric-600 font-semibold underline">{L[3].text}</a>{whyLine.post}</p>
+    </div>
+  </section>
+
+  <!-- Nearby -->
+  {siblings.length > 0 && (
+    <section class="py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-electric-600">Also Serving</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-navy-950">Other {state.name} Cities We Outfit</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-3">
+          {siblings.map((c) => (
+            <a href={`/locations/${state.slug}/${c.slug}/`} class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-navy-950">{c.name}, {state.abbr}</h3>
+              <p class="mt-1 text-sm text-gray-500">{c.intro.slice(0, 95)}…</p>
+              <span class="mt-2 inline-block text-sm font-semibold text-electric-600">Volleyball uniforms in {c.name} →</span>
+            </a>
+          ))}
+        </div>
+        <p class="mt-5"><a href="/locations/" class="text-electric-600 font-semibold underline">View all USA volleyball uniform locations →</a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <FAQSection faqs={faqs} title={`${city.name} Volleyball Uniforms — FAQs`} />
+    </div>
+  </section>
+
+  <CTASection title={`Kit Out Your ${city.name} Team`} subtitle={`Send your team name, colors, and roster for a free design mockup and quote. We'll deliver in time for your season.`} />
+</BaseLayout>
