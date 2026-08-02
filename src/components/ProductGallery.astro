@@ -5,6 +5,10 @@ interface Props {
 }
 
 const { images, productName } = Astro.props;
+
+// scripts/optimize-images.mjs writes a 900px main view and a 220px thumbnail
+// next to each source photo, so a phone never pulls five full-size JPEGs.
+const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i, `${suffix}.webp`);
 ---
 
 <div class="space-y-4">
@@ -12,7 +16,7 @@ const { images, productName } = Astro.props;
   <div class="aspect-square md:aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100">
     <img
       id="gallery-main"
-      src={images[0]}
+      src={rendition(images[0], '-900')}
       alt={`${productName} - Main product view`}
       class="w-full h-full object-cover"
       width="800"
@@ -26,11 +30,11 @@ const { images, productName } = Astro.props;
     {images.map((img, i) => (
       <button
         class="gallery-thumb aspect-square overflow-hidden rounded-lg border-2 border-transparent hover:border-electric-500 transition-all"
-        data-src={img}
+        data-src={rendition(img, '-900')}
         data-alt={`${productName} - View ${i + 1}`}
       >
         <img
-          src={img}
+          src={rendition(img, '-220')}
           alt={`${productName} - Thumbnail ${i + 1}`}
           class="w-full h-full object-cover"
           loading="lazy"
