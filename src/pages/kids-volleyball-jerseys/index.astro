@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Recreational leagues that span ages 5 through 12 in a single program routinely produce a single jersey order that requires sizes from YXS through YXL. We handle mixed-size orders with individual jersey production per the submitted roster — every jersey is produced to the exact size specified rather than rounded to a nearest batch. Packaging is sorted by team or by individual player depending on how your program handles distribution. There is no minimum order, so late registrations, mid-season additions, and replacement jerseys for individual players are all handled as single-piece orders using your existing design file. Contact us about large league orders of 50+ jerseys for dedicated account management and coordinated delivery.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

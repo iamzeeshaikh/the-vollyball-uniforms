@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -117,6 +120,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Leagues and multi-team programs that order socks for all teams simultaneously unlock bulk pricing that reduces the per-pair cost significantly compared to ordering team by team. Custom sock minimum orders are lower than jersey minimums — contact us for the specific threshold for your customization type. Programs maintaining a sock inventory — ordering extra pairs in common sizes at the start of the season — can handle mid-season replacements without reordering from scratch. Socks are the highest-turnover item in a volleyball apparel program, washing more frequently than any other piece and prone to individual pair replacements throughout the season. Building a buffer of 15–20% additional pairs into your initial order is the most practical approach to managing this turnover without incurring rush reorder costs mid-season.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

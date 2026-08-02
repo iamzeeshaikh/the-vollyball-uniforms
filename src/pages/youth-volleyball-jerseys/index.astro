@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -99,6 +101,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -120,6 +123,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Youth league jersey budgets are constrained by per-player registration fees and parent expectations for value. Bulk team orders of 12 or more jerseys unlock pricing tiers that make fully sublimated youth jerseys competitive in cost with screen-printed alternatives while delivering significantly better durability. For recreational leagues managing tight budgets, a simplified design — solid or two-color base with team name and number — achieves a professional result at lower design complexity cost than a full-coverage artwork jersey. For youth clubs investing in a competitive program identity, full-coverage sublimation across name, number, and team design is available at bulk order pricing. Contact us with your player count and budget range and we will recommend the right configuration for your program.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

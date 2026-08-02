@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -117,6 +120,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Team-branded compression shirts in school or club colors create a coordinated appearance during pre-game warmups, travel days, and tournament arrival. A team arriving at a tournament in matching sublimated compression shirts communicates organizational quality in the same way warm-up suits do, at a lower per-unit cost. Programs that include compression shirts in their <a href="/volleyball-team-kits/">volleyball team kit</a> typically use them as travel and warm-up wear rather than as in-game garments, extending the team's visual identity beyond the court. Full sublimation on the compression fabric produces vibrant team colors, logos, and optional player names that maintain their appearance through the compression and release cycles of normal wear. See the <a href="/design-guide/">design guide</a> for compression-specific artwork specifications.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

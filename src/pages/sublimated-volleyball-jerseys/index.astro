@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -99,6 +101,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -118,6 +121,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Screen printing has real advantages in specific contexts — it works on cotton and mixed fabrics, it's available same-day from local decorators, and for very simple one-color logo applications it can be cost-effective. For volleyball jerseys specifically, its disadvantages are significant: it requires separate runs for each color, cannot reproduce gradients or photographic imagery, creates an ink layer that cracks with athletic stress and frequent washing, and cannot match the color accuracy achievable with sublimation on polyester. For any program ordering jerseys intended for competitive use over more than one season, sublimation produces a better outcome at comparable or lower cost when order quantities reach team scale. Contact us for a direct pricing comparison for your order size and design requirements.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

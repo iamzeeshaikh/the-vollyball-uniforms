@@ -15,6 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
     const quantity = (data.get('quantity') as string | null)?.trim() ?? '';
     const deadline = (data.get('deadline') as string | null)?.trim() ?? '';
     const message  = (data.get('message')  as string | null)?.trim() ?? '';
+    const artwork  = data.get('artwork');
 
     if (!name || !email || !team) {
       return new Response(
@@ -28,6 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
     const smtpPass = import.meta.env.SMTP_PASS;
     const smtpTo   = import.meta.env.SMTP_TO   ?? smtpUser;
     const fromName = import.meta.env.SMTP_FROM_NAME ?? 'The Volleyball Uniforms';
+    const fromMail = import.meta.env.SMTP_FROM_EMAIL ?? smtpUser;
 
     if (!smtpHost || !smtpUser || !smtpPass) {
       console.error('SMTP environment variables are not configured.');
@@ -77,6 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
             ${row('Quantity',    quantity)}
             ${row('Needed By',   deadline)}
             ${row('Details',     message)}
+            ${row('Artwork',     artwork instanceof File && artwork.size ? `${artwork.name} (attached)` : '')}
           </table>
         </td></tr>
         <!-- Footer -->
@@ -95,11 +98,15 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`;
 
     await transporter.sendMail({
-      from:    `"${fromName}" <${smtpUser}>`,
+      from:    `"${fromName}" <${fromMail}>`,
       to:      smtpTo,
       replyTo: email,
       subject: `New Quote Request — ${team}${product ? ` | ${product}` : ''}`,
       html,
+      attachments:
+        artwork instanceof File && artwork.size
+          ? [{ filename: artwork.name, content: Buffer.from(await artwork.arrayBuffer()) }]
+          : undefined,
     });
 
     return new Response(

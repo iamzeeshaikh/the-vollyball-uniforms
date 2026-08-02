@@ -1,0 +1,475 @@
+---
+/**
+ * Volleyball kit configurator: the choices a coach actually specifies — garment
+ * set, fabric, cut, decoration, names and numbers, roster size and add-ons —
+ * with roster-based indicative pricing. The running specification stays visible
+ * while scrolling: sticky beside the options on desktop, a fixed bar on phones.
+ */
+interface Props {
+  productName?: string;
+  id?: string;
+}
+const { productName = 'Custom volleyball uniforms', id = 'configurator' } = Astro.props;
+
+const groups = [
+  {
+    key: 'garment',
+    label: 'Garment set',
+    multi: false,
+    options: [
+      { id: 'jersey', label: 'Game jersey', hint: 'Sublimated or cut & sew', price: 32 },
+      { id: 'jersey-shorts', label: 'Jersey + shorts', hint: 'Full match kit', price: 58 },
+      { id: 'long-sleeve', label: 'Long-sleeve jersey', hint: 'Indoor / cooler gyms', price: 38 },
+      { id: 'practice', label: 'Practice jersey', hint: 'Lightweight training top', price: 22 },
+      { id: 'libero', label: 'Libero contrast set', hint: 'Contrast jersey included', price: 62 },
+      { id: 'warmup', label: 'Warm-up suit', hint: 'Jacket and pants', price: 74 },
+    ],
+  },
+  {
+    key: 'fabric',
+    label: 'Fabric',
+    multi: false,
+    options: [
+      { id: 'poly-interlock', label: 'Poly interlock', hint: 'Smooth print surface', price: 0 },
+      { id: 'micro-mesh', label: 'Micro mesh', hint: 'Breathable, light', price: 3 },
+      { id: 'stretch', label: '4-way stretch', hint: 'Compression fit', price: 7 },
+      { id: 'wicking', label: 'Moisture-wicking knit', hint: 'Cool-touch training', price: 4 },
+      { id: 'spandex-blend', label: 'Poly-spandex blend', hint: 'Best for fitted cuts', price: 6 },
+    ],
+  },
+  {
+    key: 'cut',
+    label: 'Cut & fit',
+    multi: false,
+    options: [
+      { id: 'womens-fitted', label: "Women's fitted", hint: 'Standard match cut' },
+      { id: 'womens-racerback', label: "Women's racerback", hint: 'Open shoulder' },
+      { id: 'mens-standard', label: "Men's standard", hint: 'Straight cut' },
+      { id: 'youth', label: 'Youth', hint: 'YS–YXL' },
+      { id: 'mixed', label: 'Mixed roster', hint: 'Adult and youth sizes' },
+    ],
+  },
+  {
+    key: 'decoration',
+    label: 'Decoration',
+    multi: true,
+    options: [
+      { id: 'sublimation', label: 'Full sublimation', hint: 'Edge-to-edge print', price: 8 },
+      { id: 'screen', label: 'Screen print', hint: 'Bold, cost-effective', price: 4 },
+      { id: 'twill', label: 'Tackle twill', hint: 'Stitched numbers', price: 12 },
+      { id: 'embroidery', label: 'Embroidery', hint: 'Logos and crests', price: 7 },
+      { id: 'heat', label: 'Heat transfer', hint: 'Fast turnaround', price: 5 },
+    ],
+  },
+  {
+    key: 'markings',
+    label: 'Names & numbers',
+    multi: true,
+    options: [
+      { id: 'front-number', label: 'Front numbers', hint: 'Chest numbering', price: 3 },
+      { id: 'back-number', label: 'Back numbers', hint: 'Large rear numbers', price: 3 },
+      { id: 'player-name', label: 'Player names', hint: 'Nameplate per player', price: 5 },
+      { id: 'team-name', label: 'Team name / wordmark', hint: 'Front script', price: 4 },
+      { id: 'libero-mark', label: 'Libero marking', hint: 'Contrast panel or number', price: 3 },
+      { id: 'captain', label: 'Captain patch', hint: 'Leadership mark', price: 3 },
+    ],
+  },
+  {
+    key: 'addOn',
+    label: 'Add-ons',
+    multi: true,
+    options: [
+      { id: 'shorts', label: 'Matching shorts', hint: 'Same fabric and colours', price: 24 },
+      { id: 'kneepads', label: 'Team knee pads', hint: 'Colour matched', price: 16 },
+      { id: 'socks', label: 'Team socks', hint: 'Custom stripe or colour', price: 8 },
+      { id: 'bag', label: 'Player bags', hint: 'Named kit bags', price: 22 },
+      { id: 'sample', label: 'Pre-production sample', hint: 'One stitched sample', price: 12 },
+      { id: 'rush', label: 'Rush production', hint: 'Priority queue', price: 10 },
+    ],
+  },
+];
+
+const rosters = [6, 10, 12, 15, 20, 30, 45];
+---
+
+<section id={id} class="py-16 bg-gray-50 scroll-mt-24" data-configurator>
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-electric-600 mb-3">
+        Build your kit
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-navy-950 mb-3">
+        Customize your volleyball uniforms
+      </h2>
+      <p class="text-gray-600 leading-relaxed">
+        Pick your garment, fabric, decoration and roster size. Your specification builds as you go —
+        send it over and we reply with firm pricing and a free design mockup.
+      </p>
+    </div>
+
+    <form class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 items-start" data-cfg-form novalidate>
+      <input type="hidden" name="product" value={`${productName} (configurator)`} />
+      <input type="hidden" name="message" data-cfg-spec />
+      <input type="hidden" name="quantity" data-cfg-qty />
+
+      <div class="min-w-0 space-y-6">
+        {groups.map(group => (
+          <fieldset class="bg-white border border-gray-200 rounded-2xl p-5 min-w-0">
+            <legend class="text-sm font-bold uppercase tracking-wider text-navy-950 px-1">
+              {group.label}
+              {group.multi && <span class="ml-2 font-medium normal-case tracking-normal text-gray-400">choose any</span>}
+            </legend>
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {group.options.map(option => (
+                <button
+                  type="button"
+                  class="cfg-option text-left rounded-xl border border-gray-200 px-4 py-3 transition-colors hover:border-electric-400 min-h-[3rem]"
+                  data-group={group.key}
+                  data-multi={group.multi ? 'true' : 'false'}
+                  data-value={option.id}
+                  data-label={option.label}
+                  data-price={String(option.price ?? 0)}
+                  aria-pressed="false"
+                >
+                  <span class="block text-sm font-semibold text-navy-950">{option.label}</span>
+                  {option.hint && <span class="block text-xs text-gray-500 mt-0.5">{option.hint}</span>}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+
+        <fieldset class="bg-white border border-gray-200 rounded-2xl p-5 min-w-0">
+          <legend class="text-sm font-bold uppercase tracking-wider text-navy-950 px-1">Roster size</legend>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {rosters.map(count => (
+              <button
+                type="button"
+                class="cfg-option rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-navy-950 transition-colors hover:border-electric-400 min-h-[3rem]"
+                data-group="roster"
+                data-multi="false"
+                data-value={String(count)}
+                data-label={`${count} players`}
+                data-price="0"
+                aria-pressed="false"
+              >
+                {count}
+              </button>
+            ))}
+            <input
+              type="number"
+              min="1"
+              placeholder="Other"
+              data-cfg-roster
+              class="w-28 rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-electric-500"
+            />
+          </div>
+        </fieldset>
+
+        <fieldset class="bg-white border border-gray-200 rounded-2xl p-5 min-w-0 space-y-3">
+          <legend class="text-sm font-bold uppercase tracking-wider text-navy-950 px-1">Your details</legend>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" name="name" required placeholder="Full name *" autocomplete="name"
+              class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
+            <input type="email" name="email" required placeholder="Email *" autocomplete="email"
+              class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
+            <input type="tel" name="phone" placeholder="Phone" autocomplete="tel"
+              class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
+            <input type="text" name="team" required placeholder="Team / school *"
+              class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
+          </div>
+          <input type="text" data-cfg-colours placeholder="Team colours (e.g. navy, gold, white)"
+            class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
+          <textarea data-cfg-notes rows="3" placeholder="Season start, delivery date, or a design you want matched…"
+            class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base resize-none focus:outline-none focus:ring-2 focus:ring-electric-500"></textarea>
+          <label class="block">
+            <span class="block text-sm font-semibold text-navy-950 mb-1.5">
+              Upload artwork or logo <span class="font-normal text-gray-500">(optional)</span>
+            </span>
+            <input type="file" name="artwork" accept=".pdf,.ai,.eps,.svg,.png,.jpg,.jpeg,.zip"
+              class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-2.5 text-sm" />
+          </label>
+        </fieldset>
+      </div>
+
+      <aside class="cfg-summary min-w-0 lg:sticky lg:top-24" data-summary-panel data-visible="false">
+        <div class="cfg-summary-card bg-white border border-gray-200 rounded-2xl overflow-hidden">
+          <button type="button" data-summary-toggle aria-expanded="false"
+            class="w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-gray-200 text-left lg:pointer-events-none">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-gray-500">Your specification</span>
+            <span class="text-xs font-bold text-electric-600 lg:hidden" data-summary-hint>Show</span>
+          </button>
+
+          <dl class="px-5 cfg-summary-list" data-summary-list data-open="false">
+            {[...groups.slice(0, 3), { key: 'roster', label: 'Roster size' }, ...groups.slice(3)].map(group => (
+              <div class="flex items-start justify-between gap-4 py-2.5 border-b border-gray-100 last:border-0">
+                <dt class="text-sm text-gray-500">{group.label}</dt>
+                <dd class="text-sm text-right max-w-[60%] text-gray-400 italic" data-summary-value={group.key}>
+                  Not selected
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="m-5 rounded-xl bg-navy-950 text-white text-center px-4 py-4">
+            <p class="text-[11px] font-bold uppercase tracking-widest text-white/60">Indicative price range</p>
+            <p class="text-2xl font-extrabold mt-2" data-summary-price>Choose a garment and roster</p>
+            <p class="text-xs text-white/70 mt-1" data-summary-per hidden></p>
+          </div>
+
+          <div class="px-5 pb-5">
+            <p class="text-xs text-gray-500 mb-3">
+              Indicative only. Final pricing depends on artwork, fabric availability and delivery date.
+            </p>
+            <p class="hidden mb-3 rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-700" data-cfg-error></p>
+            <button type="submit" class="btn-primary w-full justify-center" data-cfg-submit>
+              Send my specification
+            </button>
+          </div>
+        </div>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<style>
+  .cfg-option[aria-pressed='true'] {
+    border-color: #3b82f6;
+    background: rgb(59 130 246 / 0.07);
+    box-shadow: inset 0 0 0 1px rgb(59 130 246 / 0.45);
+  }
+
+  /* On phones the summary is a fixed bar so selections stay readable while the
+     visitor scrolls through the options. */
+  @media (max-width: 1023px) {
+    .cfg-summary {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 40;
+      max-height: 80vh;
+      overflow-y: auto;
+      transform: translateY(110%);
+      transition: transform 0.2s ease;
+    }
+    .cfg-summary[data-visible='true'] {
+      transform: translateY(0);
+    }
+    .cfg-summary-card {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: 0 -10px 30px rgb(15 19 64 / 0.22);
+    }
+    .cfg-summary-list[data-open='false'] {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-configurator]').forEach((section) => {
+    const form = section.querySelector<HTMLFormElement>('[data-cfg-form]');
+    const panel = section.querySelector<HTMLElement>('[data-summary-panel]');
+    if (!form || !panel) return;
+
+    const specField = form.querySelector<HTMLInputElement>('[data-cfg-spec]')!;
+    const qtyField = form.querySelector<HTMLInputElement>('[data-cfg-qty]')!;
+    const rosterInput = form.querySelector<HTMLInputElement>('[data-cfg-roster]')!;
+    const coloursInput = form.querySelector<HTMLInputElement>('[data-cfg-colours]')!;
+    const notesInput = form.querySelector<HTMLTextAreaElement>('[data-cfg-notes]')!;
+    const priceEl = section.querySelector<HTMLElement>('[data-summary-price]')!;
+    const perEl = section.querySelector<HTMLElement>('[data-summary-per]')!;
+    const errorEl = section.querySelector<HTMLElement>('[data-cfg-error]')!;
+    const submit = section.querySelector<HTMLButtonElement>('[data-cfg-submit]')!;
+
+    const labels: Record<string, string> = {
+      garment: 'Garment set',
+      fabric: 'Fabric',
+      cut: 'Cut & fit',
+      roster: 'Roster size',
+      decoration: 'Decoration',
+      markings: 'Names & numbers',
+      addOn: 'Add-ons',
+    };
+
+    // Bulk pricing: the bigger the roster, the lower the per-player rate.
+    const qtyScale: Array<[number, number]> = [
+      [45, 0.82],
+      [30, 0.88],
+      [20, 0.93],
+      [15, 1],
+      [10, 1.06],
+      [6, 1.14],
+      [1, 1.3],
+    ];
+
+    const selected: Record<string, Array<{ label: string; price: number }>> = {};
+
+    function players() {
+      const custom = Number(rosterInput.value);
+      if (custom > 0) return custom;
+      return Number(selected.roster?.[0]?.label.replace(/\D/g, '') ?? 0);
+    }
+
+    function render() {
+      const count = players();
+
+      for (const key of Object.keys(labels)) {
+        const el = section.querySelector<HTMLElement>(`[data-summary-value="${key}"]`);
+        if (!el) continue;
+        const text =
+          key === 'roster'
+            ? count
+              ? `${count} players`
+              : ''
+            : (selected[key] ?? []).map((item) => item.label).join(', ');
+        el.textContent = text || 'Not selected';
+        el.classList.toggle('italic', !text);
+        el.classList.toggle('text-gray-400', !text);
+        el.classList.toggle('font-semibold', Boolean(text));
+        el.classList.toggle('text-navy-950', Boolean(text));
+      }
+
+      const base = selected.garment?.[0]?.price ?? 0;
+      let estimate: { low: number; high: number; per: number } | null = null;
+      if (base && count) {
+        const extras = Object.entries(selected)
+          .filter(([key]) => key !== 'garment' && key !== 'roster')
+          .flatMap(([, items]) => items)
+          .reduce((total, item) => total + item.price, 0);
+        const scale = qtyScale.find(([threshold]) => count >= threshold)?.[1] ?? 1.3;
+        const per = (base + extras) * scale;
+        const total = per * count;
+        estimate = { low: Math.round(total * 0.9), high: Math.round(total * 1.15), per: Math.round(per) };
+      }
+
+      priceEl.textContent = estimate
+        ? `$${estimate.low.toLocaleString()} – $${estimate.high.toLocaleString()}`
+        : 'Choose a garment and roster';
+      perEl.textContent = estimate ? `about $${estimate.per} per player` : '';
+      perEl.hidden = !estimate;
+
+      const spec = Object.keys(labels)
+        .map((key) => {
+          const value =
+            key === 'roster'
+              ? count
+                ? `${count} players`
+                : 'Not selected'
+              : (selected[key] ?? []).map((item) => item.label).join(', ') || 'Not selected';
+          return `${labels[key]}: ${value}`;
+        })
+        .concat(
+          coloursInput.value ? `Team colours: ${coloursInput.value}` : '',
+          estimate
+            ? `Indicative budget: $${estimate.low.toLocaleString()} – $${estimate.high.toLocaleString()} (about $${estimate.per} per player)`
+            : 'Indicative budget: pending review',
+          notesInput.value ? `Notes: ${notesInput.value}` : '',
+        )
+        .filter(Boolean)
+        .join('\n');
+
+      specField.value = spec;
+      qtyField.value = count ? String(count) : '';
+
+      const chosen =
+        Object.entries(selected).filter(([key, items]) => key !== 'roster' && items.length).length +
+        (count ? 1 : 0);
+      const hint = section.querySelector<HTMLElement>('[data-summary-hint]');
+      const list = section.querySelector<HTMLElement>('[data-summary-list]');
+      if (hint) {
+        const open = list?.dataset.open === 'true';
+        hint.textContent = `${chosen ? `${chosen} selected · ` : ''}${open ? 'Hide' : 'Show'}`;
+      }
+    }
+
+    section.querySelectorAll<HTMLButtonElement>('.cfg-option').forEach((button) => {
+      button.addEventListener('click', () => {
+        const group = button.dataset.group!;
+        const multi = button.dataset.multi === 'true';
+        const entry = { label: button.dataset.label!, price: Number(button.dataset.price ?? 0) };
+        const pressed = button.getAttribute('aria-pressed') === 'true';
+
+        if (multi) {
+          const current = selected[group] ?? [];
+          selected[group] = pressed
+            ? current.filter((item) => item.label !== entry.label)
+            : [...current, entry];
+          button.setAttribute('aria-pressed', String(!pressed));
+        } else {
+          section
+            .querySelectorAll<HTMLButtonElement>(`.cfg-option[data-group="${group}"]`)
+            .forEach((sibling) => sibling.setAttribute('aria-pressed', 'false'));
+          if (pressed) {
+            delete selected[group];
+          } else {
+            selected[group] = [entry];
+            button.setAttribute('aria-pressed', 'true');
+          }
+          if (group === 'roster') rosterInput.value = '';
+        }
+        render();
+      });
+    });
+
+    [rosterInput, coloursInput, notesInput].forEach((input) =>
+      input.addEventListener('input', () => {
+        if (input === rosterInput) {
+          section
+            .querySelectorAll<HTMLButtonElement>('.cfg-option[data-group="roster"]')
+            .forEach((sibling) => sibling.setAttribute('aria-pressed', 'false'));
+          delete selected.roster;
+        }
+        render();
+      }),
+    );
+
+    const toggle = section.querySelector<HTMLButtonElement>('[data-summary-toggle]');
+    const list = section.querySelector<HTMLElement>('[data-summary-list]');
+    toggle?.addEventListener('click', () => {
+      const open = list?.dataset.open !== 'true';
+      if (list) list.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+      render();
+    });
+
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      new IntersectionObserver(
+        ([entry]) => panel.setAttribute('data-visible', String(entry.isIntersecting)),
+        { rootMargin: '-10% 0px -20% 0px' },
+      ).observe(section);
+    } else {
+      if (list) list.dataset.open = 'true';
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      errorEl.classList.add('hidden');
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/api/quote/', { method: 'POST', body: new FormData(form) });
+        const json = await res.json();
+        if (json.success) {
+          window.location.href = '/thank-you/';
+          return;
+        }
+        throw new Error(json.error ?? 'Unknown error');
+      } catch (err) {
+        errorEl.textContent =
+          err instanceof Error
+            ? `${err.message} — please try again or email Info@thevolleyballuniforms.com.`
+            : 'Could not send. Please try again.';
+        errorEl.classList.remove('hidden');
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Send my specification';
+      }
+    });
+
+    render();
+  });
+</script>

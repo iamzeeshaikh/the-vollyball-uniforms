@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -118,6 +121,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Senior night hoodies — individually personalized with each player's name, number, graduation year, and sometimes a program motto or season record — are among the most valued items we produce for volleyball programs. Players keep these hoodies for years after their careers end. The production timeline for senior night hoodies requires planning: design approval, per-player proof review, and standard production take 3–4 weeks minimum. Orders placed at least 6 weeks before the senior night event allow comfortable time for all steps including any proof revisions. We offer premium gift packaging for senior night hoodies — each player's hoodie individually packaged with their name on the exterior of the package — at a modest additional cost. Contact us when your senior night date is confirmed so we can build your production timeline backward from that date.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

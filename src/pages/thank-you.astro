@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  'We review your roster size, team colors and design direction.',
+  'You get written pricing with fabric and decoration options.',
+  'We send a free design mockup before anything is cut or printed.',
+];
+---
+
+<BaseLayout
+  title="Thank You — Your Request Is With Us"
+  description="Your custom volleyball uniform request has been received. Our team replies with pricing and a free design mockup within 1–2 business hours."
+  noindex={true}
+>
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-4">Thank you — we have your request</h1>
+      <p class="text-lg text-gray-600 leading-relaxed mb-10">
+        Your details are with our uniform team. We reply with pricing, fabric options and a free
+        design mockup within 1–2 business hours.
+      </p>
+
+      <ol class="bg-white border border-gray-200 rounded-2xl p-6 text-left space-y-4 mb-10">
+        {steps.map((step, i) => (
+          <li class="flex items-center gap-3 text-gray-800">
+            <span class="w-7 h-7 shrink-0 rounded-full bg-navy-950 text-white text-xs font-bold flex items-center justify-center">
+              {i + 1}
+            </span>
+            {step}
+          </li>
+        ))}
+      </ol>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-primary">Back to home</a>
+        <a href="/volleyball-uniforms/" class="btn-secondary">Browse volleyball uniforms</a>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-8">
+        Need it sooner? Email
+        <a href="mailto:Info@thevolleyballuniforms.com" class="text-electric-600 font-semibold underline">Info@thevolleyballuniforms.com</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

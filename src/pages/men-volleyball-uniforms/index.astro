@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>NCAA men's volleyball programs (primarily DI and DII) operate under strict institutional brand guidelines — specific Pantone colors, approved logo variations, and conference uniform display requirements. Club men's programs competing in NCVF or USA Volleyball regional leagues have significantly more design latitude. Both contexts use the same fabric and construction quality, but the design process differs: collegiate programs typically provide vector artwork and Pantone specifications from their athletic department, while club programs frequently start from a color palette and design brief. High school boys volleyball programs follow NFHS compliance requirements on number sizing and contrast. We configure the design consultation process to match your program's context — share your competition level and any governing body requirements when submitting your quote request and we will structure the process accordingly.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

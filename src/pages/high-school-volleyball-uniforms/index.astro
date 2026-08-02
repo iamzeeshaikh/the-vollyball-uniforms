@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Athletic departments that commit to ordering uniforms from us across multiple seasons benefit from a locked-in design archive and streamlined reorder process. Your design is stored indefinitely — every season's reorder produces jerseys that match the original exactly without requiring a new design consultation. Multi-year pricing agreements lock in per-unit rates that protect against cost increases over the agreement period. Programs that refresh their uniform design every two to three years can budget that refresh as a one-time design consultation cost rather than a full production premium. Schools that bundle uniform orders for multiple sports — girls volleyball, boys volleyball if applicable, and other teams — qualify for institutional pricing across the combined annual volume. Contact us to discuss a multi-season agreement for your program.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

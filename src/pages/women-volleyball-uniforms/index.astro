@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -100,6 +102,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -119,6 +122,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>NFHS and NCAA compliance review for women's volleyball uniforms covers jersey number dimensions (minimum 4-inch front, 6-inch back), number color contrast against the jersey body, permissible logo size and placement, shorts length regulations, and libero jersey contrast requirements. State-level NFHS amendments introduce additional variables — some states specify minimum shorts inseam lengths, restrict certain color combinations, or define additional logo placement restrictions. We check every order against the relevant governing body rules before production and flag any compliance issues for resolution before a single jersey is produced. Share your state's supplemental rulebook addendum alongside your order if you are in a state with known local amendments and we will confirm compliance against both the base NFHS standard and the state-specific requirements.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -117,6 +120,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Warm-up suits ordered as part of a complete <a href="/volleyball-team-kits/">volleyball team kit</a> receive package pricing that is lower per piece than ordering suits standalone. Including warm-up suits in the same order as game uniforms and practice gear also allows the entire design system to be coordinated in a single consultation — one approved design language applied across every piece rather than multiple separate approvals. Production timing for warm-up suits is 12–14 business days, slightly longer than jersey-only orders due to the multi-component construction. For programs ordering a complete kit before the season, placing the full order 6–7 weeks before the first game ensures all components — including warm-up suits — arrive with time to confirm fit before competition begins.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

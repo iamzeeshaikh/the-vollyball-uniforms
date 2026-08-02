@@ -17,3 +17,6 @@ Thumbs.db
 .vscode/
 .idea/
 .vercel
+
+# macOS AppleDouble sidecars created on the external drive
+._*

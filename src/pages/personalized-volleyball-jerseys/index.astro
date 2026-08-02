@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>A jersey order with only team numbers requires significantly less per-jersey data management than a fully personalized order with names, graduation years, and captain designations. Standard numbered jersey orders typically move from design approval to production entry within one business day. Personalized orders with names require roster verification, per-player proof generation, and proof approval — a process that adds 2–4 business days before production begins, depending on how quickly the program coordinator reviews and approves the proof sheet. For programs with tight timelines, submitting a complete, finalized roster (no pending name changes) at the time of design approval is the most effective way to compress turnaround. Rush production is available for both order types.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

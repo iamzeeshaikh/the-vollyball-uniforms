@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Color contrast between the jersey number and the jersey body is one of the most commonly flagged compliance issues in volleyball uniform review. NFHS requires numbers to clearly contrast with the background — light numbers on dark jerseys, dark numbers on light jerseys. The standard does not specify a numerical contrast ratio, but match officials have discretion to flag numbers they judge as insufficiently visible. Navy numbers on a royal blue jersey, dark gray numbers on black, and dark red numbers on maroon are all common examples of combinations that fail contrast review even when the colors are technically different. Our design team applies a contrast check to every number placement mockup and flags combinations that fall below visibility standards before any jersey enters production. For programs with strict color palettes, we discuss alternative number treatment options — such as a white border around a dark number on a dark background — to achieve both compliance and design consistency. Visit our <a href="/design-guide/">design guide</a> for artwork color specifications.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

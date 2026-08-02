@@ -43,6 +43,25 @@ const { images, productName } = Astro.props;
 <script>
   const main = document.getElementById('gallery-main') as HTMLImageElement;
   const thumbs = document.querySelectorAll('.gallery-thumb');
+
+  // Warm the other views once the page is idle so a thumbnail click swaps the
+  // main image instantly instead of waiting on a fresh download.
+  const warm = () => {
+    thumbs.forEach(thumb => {
+      const src = thumb.getAttribute('data-src');
+      if (!src) return;
+      const img = new Image();
+      img.fetchPriority = 'low';
+      img.decoding = 'async';
+      img.src = src;
+    });
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warm);
+  } else {
+    setTimeout(warm, 400);
+  }
+
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
       const src = thumb.getAttribute('data-src');

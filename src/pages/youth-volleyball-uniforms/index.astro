@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -99,6 +101,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -119,6 +122,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Multi-team youth league orders — where a single league coordinator manages orders for six to twelve teams — require organizational infrastructure that individual team orders do not. We support multi-team orders with a coordinator-level account that tracks every team's design, size roster, and production status in one place. Leagues can order all teams simultaneously on a unified timeline or phase teams in as their rosters are finalized. Package delivery can be sorted by team with team-labeled packaging for simplified distribution at pickup. Combined quantity across all teams produces better per-unit pricing than ordering teams individually — share your total expected player count when requesting a quote and we will apply the combined quantity discount accordingly.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

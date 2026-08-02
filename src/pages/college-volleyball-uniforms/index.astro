@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Club volleyball programs at colleges and universities operate under fundamentally different constraints than varsity programs. Club programs — competing in NCVF, NIRSA, or independent recreational leagues — have no institutional brand restrictions and significantly more design freedom. Budget constraints are typically tighter per player since funding comes from player dues rather than athletic department allocation. Varsity programs have larger budgets, institutional color standards, conference compliance requirements, and more players requiring individual sizing. We handle both program types routinely and can configure the design process and pricing structure to match your context. Club programs can often work from a simpler design template to keep costs accessible, while varsity programs receive full design consultation with compliance review included as standard.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

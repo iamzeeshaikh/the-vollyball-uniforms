@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -123,6 +125,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -142,6 +145,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Name legibility depends heavily on the contrast between the name color and the jersey's background color. A white name on a royal blue jersey reads cleanly at distance. A navy name on a black jersey does not — even though both are dark colors, the contrast is insufficient for readability. Our design team applies a contrast check to every name placement as part of the standard mockup process and will flag any color combinations that fall below readability standards. For jerseys with gradient or multi-color background panels in the name zone, we will recommend a name treatment that maintains legibility across the full range of background tones. For programs with strict institutional color standards that limit name color options, we discuss alternatives before production rather than producing jerseys with visibility problems. Visit our <a href="/size-guide/">size guide</a> to prepare accurate sizing alongside your name roster, and our <a href="/request-a-quote/">quote form</a> to start the design process.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

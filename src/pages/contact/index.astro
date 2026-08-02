@@ -66,8 +66,8 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Contact Us' }];
         <!-- Contact Form -->
         <div class="lg:col-span-2">
           <h2 class="text-2xl font-extrabold text-navy-950 mb-6">Send Us a Message</h2>
-          <!-- TODO: Connect this form to a backend endpoint (e.g., Resend, Formspree, or custom API) -->
-          <form action="/api/contact" method="POST" class="space-y-5">
+          <form class="space-y-5" data-contact-form novalidate>
+            <input type="hidden" name="team" value="Contact page enquiry" />
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Full Name *</label>
@@ -90,7 +90,14 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Contact Us' }];
               <label class="block text-sm font-semibold text-gray-700 mb-1.5">Message *</label>
               <textarea name="message" required rows="6" placeholder="Tell us about your team, what you are looking for, and any questions you have..." class="w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-electric-500 transition-all resize-none"></textarea>
             </div>
-            <button type="submit" class="btn-primary w-full justify-center">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Upload artwork <span class="font-normal text-gray-500">(optional)</span>
+              </label>
+              <input type="file" name="artwork" accept=".pdf,.ai,.eps,.svg,.png,.jpg,.jpeg,.zip" class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-electric-500" />
+            </div>
+            <p class="hidden rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-700" data-contact-error></p>
+            <button type="submit" class="btn-primary w-full justify-center" data-contact-submit>
               Send Message
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
             </button>
@@ -101,3 +108,36 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Contact Us' }];
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (contactForm) {
+    const error = contactForm.querySelector<HTMLElement>('[data-contact-error]')!;
+    const submit = contactForm.querySelector<HTMLButtonElement>('[data-contact-submit]')!;
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+
+      error.classList.add('hidden');
+      submit.disabled = true;
+
+      try {
+        const res = await fetch('/api/quote/', { method: 'POST', body: new FormData(contactForm) });
+        const json = await res.json();
+        if (json.success) {
+          window.location.href = '/thank-you/';
+          return;
+        }
+        throw new Error(json.error ?? 'Unknown error');
+      } catch (err) {
+        error.textContent =
+          err instanceof Error
+            ? `${err.message} — please try again or email Info@thevolleyballuniforms.com.`
+            : 'Could not send. Please try again.';
+        error.classList.remove('hidden');
+        submit.disabled = false;
+      }
+    });
+  }
+</script>

@@ -56,6 +56,13 @@ const submitId  = `${formId}-submit`;
         placeholder="Team colors, design ideas, logo details, budget, or any specific questions..."
         class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all resize-none"></textarea>
     </div>
+    <div>
+      <label for={`${formId}-artwork`} class="block text-sm font-semibold text-gray-700 mb-1.5">
+        Upload artwork <span class="font-normal text-gray-500">(optional)</span>
+      </label>
+      <input type="file" id={`${formId}-artwork`} name="artwork" accept=".pdf,.ai,.eps,.svg,.png,.jpg,.jpeg,.zip"
+        class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-electric-500" />
+    </div>
     <button id={submitId} type="submit" class="btn-primary w-full justify-center text-base py-4">
       <span class="submit-label flex items-center gap-2 justify-center">
         Submit Quote Request
@@ -112,15 +119,15 @@ const submitId  = `${formId}-submit`;
       btn.querySelector('.loading-label').classList.add('flex');
 
       try {
-        const res = await fetch('/api/quote', {
+        const res = await fetch('/api/quote/', {
           method: 'POST',
           body: new FormData(form),
         });
         const json = await res.json();
 
         if (json.success) {
-          form.classList.add('hidden');
-          success.classList.remove('hidden');
+          window.location.href = '/thank-you/';
+          return;
         } else {
           throw new Error(json.error ?? 'Unknown error');
         }

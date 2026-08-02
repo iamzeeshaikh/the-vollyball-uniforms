@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -117,6 +120,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>School athletic programs, competitive clubs, and recreational leagues have distinct procurement contexts that affect how we structure kit packages. School programs work within institutional purchasing processes — district purchase orders, athletic director approval chains, and budget cycles set months in advance. We provide formal quote documents, specification sheets for administration review, and invoicing formats that comply with school district requirements. Club programs move faster with less bureaucratic overhead — design decisions are made by club leadership and orders process directly. Recreational leagues managing multiple teams simultaneously benefit from a coordinator-level account structure where a single contact manages the full league order while individual team coaches submit their rosters and sizes independently. Contact us with your program type and we will explain how the ordering process typically works for programs like yours.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

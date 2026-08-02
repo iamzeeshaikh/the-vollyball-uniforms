@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -100,6 +102,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <!-- SEO CONTENT -->
   <section class="py-16 bg-gray-50">
@@ -120,6 +123,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Our blank volleyball jerseys are available in a 140–160 GSM weight range. The lighter end of this range (around 140 GSM) prioritizes breathability and is well suited to practice use in warm gyms. The heavier end (around 160 GSM) provides more structure, which benefits programs that plan to apply heat transfer decoration — heavier fabric holds the application more cleanly. Both weights use the same 100% moisture-wicking polyester construction. For size reference, visit our <a href="/size-guide/">volleyball jersey size guide</a> — blank jerseys follow the same size specifications as our custom line.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">

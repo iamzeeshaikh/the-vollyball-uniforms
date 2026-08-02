@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
+import QuickQuoteSection from '../../components/QuickQuoteSection.astro';
+import VolleyballConfigurator from '../../components/VolleyballConfigurator.astro';
 import SpecsTable from '../../components/SpecsTable.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -98,6 +100,7 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       </div>
     </div>
   </section>
+  <QuickQuoteSection productName={product.name} />
 
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 prose-custom">
@@ -117,6 +120,8 @@ import InlineQuoteSection from '../../components/InlineQuoteSection.astro';
       <p>Practice jerseys can be ordered at any time independently of game uniform orders. For new programs building an apparel system from scratch, ordering practice jerseys and game uniforms together produces the best per-unit pricing through combined quantity. For established programs that already have game uniforms and are adding or replacing practice jerseys mid-cycle, standalone practice jersey orders are fully supported with no minimum quantity. We maintain your program's game jersey design on file so practice jerseys can be ordered in coordinating colors that match your existing uniform system. See our complete <a href="/practice-gear/">volleyball practice gear</a> collection for training shorts, compression shirts, and socks that complement a practice jersey program.</p>
     </div>
   </section>
+
+  <VolleyballConfigurator productName={product.name} />
 
   <section class="py-12 bg-white">
     <div class="max-w-5xl mx-auto px-4">
