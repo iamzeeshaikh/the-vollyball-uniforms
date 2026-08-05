@@ -29,19 +29,5 @@ const props = Astro.props;
       <slot />
     </main>
     <Footer />
-    <!-- Chat widget loads after the page is interactive so it stays out of the
-         critical path and off the main thread during first paint. -->
-    <script is:inline>
-      (function () {
-        var load = function () {
-          var s = document.createElement('script');
-          s.src = 'https://chat.zeeops.dev/widget.js?siteId=volleyballuniforms';
-          s.async = true;
-          document.body.appendChild(s);
-        };
-        if (document.readyState === 'complete') setTimeout(load, 1200);
-        else window.addEventListener('load', function () { setTimeout(load, 1200); });
-      })();
-    </script>
   </body>
 </html>
