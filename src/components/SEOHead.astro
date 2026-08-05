@@ -23,6 +23,59 @@ const {
 
 const canonicalURL = canonical || Astro.url.href;
 const fullTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
+
+// Central Product JSON-LD enrichment for Google Product / Merchant listing snippets.
+// Fills merchant-listing fields (sku, itemCondition, shippingDetails, return policy)
+// on every Product node so individual pages don't have to repeat them.
+function enrichProductNode(node: any) {
+  if (!node || node['@type'] !== 'Product') return node;
+  const productUrl: string = node.url || canonicalURL;
+  const slug =
+    new URL(productUrl, siteConfig.url).pathname.split('/').filter(Boolean).pop() || 'product';
+  let offers = node.offers;
+  if (offers) {
+    offers = {
+      '@type': 'Offer',
+      itemCondition: 'https://schema.org/NewCondition',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'USD',
+      priceValidUntil: '2027-08-04',
+      url: productUrl,
+      ...offers,
+      // Shipping details mirror the site's stated policy (FAQ / terms):
+      // 10-14 business day production, 2-5 business day tracked delivery, US market.
+      // No shipping price is advertised on the site, so no shippingRate is claimed here.
+      shippingDetails: offers.shippingDetails ?? {
+        '@type': 'OfferShippingDetails',
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+        },
+      },
+      // Terms & Conditions section 6: custom-made products, returns not accepted
+      // (defective items replaced free within 7 days of delivery).
+      hasMerchantReturnPolicy: offers.hasMerchantReturnPolicy ?? {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'US',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+        merchantReturnLink: `${siteConfig.url}/terms-and-conditions/`,
+      },
+    };
+  }
+  return {
+    sku: slug,
+    ...node,
+    url: productUrl,
+    brand: node.brand ?? { '@type': 'Brand', name: siteConfig.name },
+    ...(offers ? { offers } : {}),
+  };
+}
+
+const schemaList = schema
+  ? (Array.isArray(schema) ? schema : [schema]).map(enrichProductNode)
+  : undefined;
 ---
 
 <title>{fullTitle}</title>
@@ -56,6 +109,6 @@ const fullTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteCo
 <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 <!-- Schema -->
-{schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(schema) ? schema : [schema])} />
+{schemaList && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaList)} />
 )}

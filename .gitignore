@@ -20,3 +20,4 @@ Thumbs.db
 
 # macOS AppleDouble sidecars created on the external drive
 ._*
+.astro/
