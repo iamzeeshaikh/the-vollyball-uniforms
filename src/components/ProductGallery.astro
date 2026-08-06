@@ -21,6 +21,7 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
       class="w-full h-full object-cover"
       width="800"
       height="600"
+      loading="eager"
       fetchpriority="high"
       decoding="async"
     />
@@ -29,7 +30,10 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
   <div class="grid grid-cols-5 gap-2">
     {images.map((img, i) => (
       <button
-        class="gallery-thumb aspect-square overflow-hidden rounded-lg border-2 border-transparent hover:border-electric-500 transition-all"
+        type="button"
+        aria-label={`View image ${i + 1}`}
+        aria-current={i === 0 ? 'true' : 'false'}
+        class={`gallery-thumb aspect-square overflow-hidden rounded-lg border-2 hover:border-electric-500 transition-all ${i === 0 ? 'border-electric-500' : 'border-transparent'}`}
         data-src={rendition(img, '-900')}
         data-alt={`${productName} - View ${i + 1}`}
       >
@@ -38,6 +42,7 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
           alt={`${productName} - Thumbnail ${i + 1}`}
           class="w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
           width="160"
           height="160"
         />
@@ -52,15 +57,17 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
 
   // Warm the other views once the page is idle so a thumbnail click swaps the
   // main image instantly instead of waiting on a fresh download.
+  const warmed = new Set<string>();
+  const warmSrc = (src: string | null) => {
+    if (!src || warmed.has(src)) return;
+    warmed.add(src);
+    const img = new Image();
+    img.fetchPriority = 'low';
+    img.decoding = 'async';
+    img.src = src;
+  };
   const warm = () => {
-    thumbs.forEach(thumb => {
-      const src = thumb.getAttribute('data-src');
-      if (!src) return;
-      const img = new Image();
-      img.fetchPriority = 'low';
-      img.decoding = 'async';
-      img.src = src;
-    });
+    thumbs.forEach(thumb => warmSrc(thumb.getAttribute('data-src')));
   };
   const scheduleWarm = () => {
     if ('requestIdleCallback' in window) requestIdleCallback(warm);
@@ -70,6 +77,10 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
   else window.addEventListener('load', scheduleWarm);
 
   thumbs.forEach(thumb => {
+    // Hover/touch warming: start the fetch before the click even lands.
+    thumb.addEventListener('pointerenter', () => warmSrc(thumb.getAttribute('data-src')));
+    thumb.addEventListener('touchstart', () => warmSrc(thumb.getAttribute('data-src')), { passive: true });
+
     thumb.addEventListener('click', () => {
       const src = thumb.getAttribute('data-src');
       const alt = thumb.getAttribute('data-alt');
@@ -77,8 +88,14 @@ const rendition = (src: string, suffix: string) => src.replace(/\.(jpe?g|png)$/i
         main.src = src;
         main.alt = alt || '';
       }
-      thumbs.forEach(t => t.classList.remove('border-electric-500'));
+      thumbs.forEach(t => {
+        t.classList.remove('border-electric-500');
+        t.classList.add('border-transparent');
+        t.setAttribute('aria-current', 'false');
+      });
+      thumb.classList.remove('border-transparent');
       thumb.classList.add('border-electric-500');
+      thumb.setAttribute('aria-current', 'true');
     });
   });
 </script>
