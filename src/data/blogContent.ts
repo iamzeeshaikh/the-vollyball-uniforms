@@ -27,7 +27,7 @@ export const blogContent: BlogContent[] = [
   {
     slug: "volleyball-jersey-design-ideas",
     title: "Volleyball Jersey Design Ideas That Stand Out on the Court",
-    metaTitle: "Volleyball Jersey Design Ideas That Stand Out | Blog",
+    metaTitle: "Volleyball Jersey Design Ideas That Stand Out",
     metaDescription:
       "Fresh custom volleyball jersey design ideas — color schemes, sublimated patterns, bold numbers, and home/away looks that make your team unmistakable on the court.",
     category: "Design",
@@ -73,7 +73,7 @@ export const blogContent: BlogContent[] = [
   {
     slug: "womens-volleyball-uniforms-guide",
     title: "Women's Volleyball Uniforms: Fit, Style & Buying Guide",
-    metaTitle: "Women's Volleyball Uniforms: Fit, Style & Buying Guide | Blog",
+    metaTitle: "Women's Volleyball Uniforms: Fit, Style & Buying Guide",
     metaDescription:
       "A complete guide to women's volleyball uniforms — fit and cut, spandex shorts, fabrics, sizing, and coordinated sets that keep players comfortable and confident.",
     category: "Buying Guide",
@@ -119,7 +119,7 @@ export const blogContent: BlogContent[] = [
   {
     slug: "volleyball-practice-gear-essentials",
     title: "Volleyball Practice Gear Essentials for Every Team",
-    metaTitle: "Volleyball Practice Gear Essentials for Every Team | Blog",
+    metaTitle: "Volleyball Practice Gear Essentials for Every Team",
     metaDescription:
       "The practice gear every volleyball team needs — practice jerseys, compression tops, shorts, and socks — to train hard, stay comfortable, and protect game uniforms.",
     category: "Education",
@@ -165,7 +165,7 @@ export const blogContent: BlogContent[] = [
   {
     slug: "how-to-order-team-volleyball-uniforms",
     title: "How to Order Team Volleyball Uniforms: A Step-by-Step Guide",
-    metaTitle: "How to Order Team Volleyball Uniforms Step by Step | Blog",
+    metaTitle: "How to Order Team Volleyball Uniforms Step by Step",
     metaDescription:
       "A step-by-step guide to ordering team volleyball uniforms — planning the design, collecting sizes, choosing a kit or package, requesting a quote, and reordering.",
     category: "Buying Guide",
@@ -211,7 +211,7 @@ export const blogContent: BlogContent[] = [
   {
     slug: "volleyball-warm-ups-and-team-apparel",
     title: "Volleyball Warm-Ups & Team Apparel: Completing the Look",
-    metaTitle: "Volleyball Warm-Ups & Team Apparel Guide | Blog",
+    metaTitle: "Volleyball Warm-Ups & Team Apparel Guide",
     metaDescription:
       "Warm-up suits, hoodies, and sideline apparel that complete your volleyball team's look — why they matter, what to include, and how to keep it all coordinated.",
     category: "Education",

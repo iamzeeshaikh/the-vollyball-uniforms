@@ -22,7 +22,17 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || Astro.url.href;
-const fullTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
+// Google truncates around 65 characters. Past that the brand suffix costs us the
+// tail of the page title, which is the part that actually differentiates the
+// result. Most pages hard-code the suffix into their own title prop, so the trim
+// happens on the way out and covers both those and the composed ones.
+const TITLE_BUDGET = 65;
+const BRAND_SUFFIX = ` | ${siteConfig.name}`;
+const withBrand = title.includes(siteConfig.name) ? title : `${title}${BRAND_SUFFIX}`;
+const fullTitle =
+  withBrand.length > TITLE_BUDGET && withBrand.endsWith(BRAND_SUFFIX)
+    ? withBrand.slice(0, -BRAND_SUFFIX.length)
+    : withBrand;
 
 // Central Product JSON-LD enrichment for Google Product / Merchant listing snippets.
 // Fills merchant-listing fields (sku, itemCondition, shippingDetails, return policy)
