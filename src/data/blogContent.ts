@@ -227,7 +227,7 @@ export const blogContent: BlogContent[] = [
       },
       {
         heading: "Hoodies for the sideline and beyond",
-        body: `<p>Hoodies are the most versatile piece of team apparel — worn on the bench, traveling to tournaments, and around school or town long after game day. A branded team hoodie doubles as comfortable sideline wear and everyday gear players are proud to wear, extending your program's visibility well beyond the court. Adding <a href="/volleyball-hoodies/">volleyball hoodies</a> in team colors turns sideline apparel into year-round team pride.</p> <p>Because hoodies get worn far beyond the gym, they quietly market your program around school and the community all season long. Every player wearing team gear in public is a small, free advertisement for the program and its identity.</p>`,
+        body: `<p>Hoodies are the most versatile piece of team apparel — worn on the bench, traveling to tournaments, and around school or town long after game day. A branded team hoodie doubles as comfortable sideline wear and everyday gear players are proud to wear, extending your program's visibility well beyond the court. Adding <a href="/volleyball-hoodies/">custom volleyball hoodies</a> in team colors turns sideline apparel into year-round team pride.</p> <p>Because hoodies get worn far beyond the gym, they quietly market your program around school and the community all season long. Every player wearing team gear in public is a small, free advertisement for the program and its identity.</p>`,
       },
       {
         heading: "Complete team apparel head to toe",

@@ -376,22 +376,24 @@ export const VB_LINK_POOL = [
   "personalized-volleyball-jerseys", "volleyball-practice-jerseys", "volleyball-warm-up-suits",
   "youth-volleyball-jerseys", "kids-volleyball-jerseys", "volleyball-hoodies", "blank-volleyball-jerseys",
 ];
+// Every variant is 3-8 words. This pool feeds each location page, so a
+// two-word variant like "practice jerseys" repeated across the whole site.
 export const VB_ANCHORS: Record<string, string[]> = {
   "high-school-volleyball-uniforms": ["high school volleyball uniforms", "NFHS-ready high school kits", "varsity volleyball uniforms"],
-  "youth-volleyball-uniforms": ["youth volleyball uniforms", "junior team uniforms", "youth club kits"],
+  "youth-volleyball-uniforms": ["youth volleyball uniforms", "junior team uniforms", "youth club uniform kits"],
   "college-volleyball-uniforms": ["college volleyball uniforms", "collegiate club uniforms"],
-  "women-volleyball-uniforms": ["women's volleyball uniforms", "women's team kits"],
-  "men-volleyball-uniforms": ["men's volleyball uniforms", "men's team kits"],
-  "sublimated-volleyball-jerseys": ["sublimated volleyball jerseys", "full-sublimation jerseys", "dye-sublimated jerseys"],
-  "volleyball-team-kits": ["full team kits", "head-to-toe team kits", "complete uniform kits"],
-  "custom-name-volleyball-jerseys": ["custom name jerseys", "name-and-number jerseys"],
+  "women-volleyball-uniforms": ["women's volleyball uniforms", "women's team uniform kits"],
+  "men-volleyball-uniforms": ["men's volleyball uniforms", "men's team uniform kits"],
+  "sublimated-volleyball-jerseys": ["sublimated volleyball jerseys", "full-sublimation volleyball jerseys", "dye-sublimated volleyball jerseys"],
+  "volleyball-team-kits": ["full volleyball team kits", "head-to-toe team kits", "complete uniform kits"],
+  "custom-name-volleyball-jerseys": ["custom name jerseys", "name-and-number volleyball jerseys"],
   "custom-number-volleyball-jerseys": ["custom number jerseys", "numbered team jerseys"],
-  "personalized-volleyball-jerseys": ["personalized volleyball jerseys", "fully personalized jerseys"],
-  "volleyball-practice-jerseys": ["practice jerseys", "practice-day jerseys"],
-  "volleyball-warm-up-suits": ["warm-up suits", "team warm-up suits"],
-  "youth-volleyball-jerseys": ["youth volleyball jerseys", "junior jerseys"],
-  "kids-volleyball-jerseys": ["kids volleyball jerseys", "youth-size jerseys"],
-  "volleyball-hoodies": ["team hoodies", "custom volleyball hoodies"],
+  "personalized-volleyball-jerseys": ["personalized volleyball jerseys", "fully personalized team jerseys"],
+  "volleyball-practice-jerseys": ["volleyball practice jerseys", "practice-day team jerseys"],
+  "volleyball-warm-up-suits": ["team warm-up suits", "volleyball warm-up suits"],
+  "youth-volleyball-jerseys": ["youth volleyball jerseys", "junior volleyball jerseys"],
+  "kids-volleyball-jerseys": ["kids volleyball jerseys", "youth-size team jerseys"],
+  "volleyball-hoodies": ["custom volleyball hoodies", "sideline team hoodies"],
   "blank-volleyball-jerseys": ["blank volleyball jerseys", "blank team jerseys"],
 };
 export function vbSeed(text: string): number {
