@@ -223,7 +223,7 @@ export const siteConfig = {
   domain: 'thevolleyballuniforms.com',
   url: 'https://thevolleyballuniforms.com',
   email: 'Info@thevolleyballuniforms.com',
-  phone: '+1 212-555-0198',
+  phone: '+1 213-449-3746',
   address: '245 W 29th St, New York, NY 10001, United States',
   description: 'Premium custom volleyball uniforms, jerseys, and team apparel for schools, colleges, clubs, and leagues. Bulk orders welcome.',
 };

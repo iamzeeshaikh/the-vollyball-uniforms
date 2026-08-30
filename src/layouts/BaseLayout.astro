@@ -15,6 +15,7 @@ interface Props {
 }
 
 const props = Astro.props;
+import WhatsAppButton from '../components/WhatsAppButton.astro'
 ---
 
 <!DOCTYPE html>
@@ -46,5 +47,9 @@ const props = Astro.props;
         else window.addEventListener('load', function () { setTimeout(load, 1200); });
       })();
     </script>
+    <!-- WhatsApp: bottom-LEFT, because the ZeeOps chat widget owns bottom-right.
+       The prefilled text names this site, since one WhatsApp number serves all
+       five sports sites and nothing else in the message would tell them apart. -->
+  <WhatsAppButton text="Hi! I'd like a quote for custom volleyball uniforms." />
   </body>
 </html>
