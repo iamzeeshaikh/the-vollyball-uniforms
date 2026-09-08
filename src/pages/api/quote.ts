@@ -97,12 +97,38 @@ export const POST: APIRoute = async ({ request }) => {
 </body>
 </html>`;
 
+    // Where this enquiry came from, written by the SITE.
+    //
+    // The ZeeOps Gmail intake files a lead either by a label somebody put on
+    // the thread or by finding one of our own domains in the mail. This mail
+    // named neither, so the label was the only thing holding it up — and an
+    // enquiry with the same gap sat unfiled for four hours on 8 Sep 2026 and
+    // had to be entered by hand. "Page URL:" is the exact marker it matches.
+    //
+    // Read from the Referer the browser sends with this POST, never from the
+    // form body, so a cached copy of an older script cannot leave it out. It
+    // goes in a PLAIN-TEXT part as well: the intake reads the plain body, and
+    // relying on Gmail to render one out of the HTML is a dependency worth not
+    // having.
+    const SITE = 'https://thevolleyballuniforms.com';
+    const referer = request.headers.get('referer') ?? '';
+    const pageUrl = referer.startsWith(SITE) ? referer : `${SITE}/`;
+    const source = `--- where this came from ---\nPage URL: ${pageUrl}`;
+    const htmlWithSource = html.replace(
+      '</body>',
+      `<p style="margin:16px 0 0;font-size:12px;color:#94a3b8">Page URL: <a href="${pageUrl}" style="color:#94a3b8">${pageUrl}</a></p></body>`,
+    );
+
     await transporter.sendMail({
       from:    `"${fromName}" <${fromMail}>`,
       to:      smtpTo,
       replyTo: email,
       subject: `New Quote Request — ${team}${product ? ` | ${product}` : ''}`,
-      html,
+      text: [
+        `Name: ${name}`, `Email: ${email}`, team && `Team: ${team}`,
+        product && `Product: ${product}`, '', source,
+      ].filter(Boolean).join('\n'),
+      html: htmlWithSource,
       attachments:
         artwork instanceof File && artwork.size
           ? [{ filename: artwork.name, content: Buffer.from(await artwork.arrayBuffer()) }]
