@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thevolleyballuniforms.com/sitemap-index.xml
+Sitemap: https://thevolleyballuniforms.com/sitemap.xml

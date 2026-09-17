@@ -1,0 +1,28 @@
+---
+// Visible starting price for a product page.
+//
+// Reads the SAME `product.price` value that the page's Product/Offer JSON-LD
+// uses (see `offerPrice` in src/data/products.ts). A shopper who arrives from a
+// Google product listing therefore always sees the price that listing showed —
+// the two cannot drift apart.
+import type { Product } from '../data/products';
+import { displayPrice } from '../data/products';
+
+interface Props {
+  product: Product;
+  note?: string;
+}
+
+const {
+  product,
+  note = 'Bulk team pricing: the larger your order, the lower the per-unit price. Request a quote for your exact roster and design.',
+} = Astro.props;
+---
+
+<div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
+  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+    <span class="text-3xl font-extrabold text-navy-950">{displayPrice(product)}</span>
+    <span class="text-sm font-semibold text-gray-600">per {product.priceUnit}</span>
+  </div>
+  <p class="mt-1.5 text-sm text-gray-500 leading-relaxed">{note}</p>
+</div>

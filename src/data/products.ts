@@ -1,11 +1,38 @@
 export interface Product {
   name: string;
   slug: string;
+  /** Starting price in USD, per `priceUnit`. Single source of truth: the visible
+   * price line on the product page and the Product/Offer JSON-LD both read this,
+   * so the rendered page and the Merchant listing can never drift apart. */
+  price: number;
+  /** What one unit of `price` buys, e.g. "jersey", "uniform set", "pair". */
+  priceUnit: string;
   folder: string;
   category: string;
   shortDescription: string;
   images: string[];
 }
+
+/** "32.00" — the exact string form used in the Offer's `price` field. */
+export function offerPrice(product: Product): string {
+  return product.price.toFixed(2);
+}
+
+/** "From $32.00" — the visible headline price on the product page. */
+export function displayPrice(product: Product): string {
+  return `From $${offerPrice(product)}`;
+}
+
+/**
+ * Offer.priceValidUntil, computed as build date + 1 year so it can never go
+ * stale the way a hard-coded date does. Google drops listings whose
+ * priceValidUntil is in the past.
+ */
+export const PRICE_VALID_UNTIL: string = (() => {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() + 1);
+  return d.toISOString().slice(0, 10);
+})();
 
 export interface Category {
   name: string;
@@ -18,6 +45,8 @@ export const products: Product[] = [
   {
     name: 'Blank Volleyball Jerseys',
     slug: 'blank-volleyball-jerseys',
+    price: 32,
+    priceUnit: "jersey",
     folder: 'blank-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'High-quality blank volleyball jerseys ready for customization or team use.',
@@ -26,6 +55,8 @@ export const products: Product[] = [
   {
     name: 'College Volleyball Uniforms',
     slug: 'college-volleyball-uniforms',
+    price: 58,
+    priceUnit: "uniform set",
     folder: 'college-volleyball-uniforms',
     category: 'volleyball-uniforms',
     shortDescription: 'Premium college volleyball uniforms built for performance and team pride.',
@@ -34,6 +65,8 @@ export const products: Product[] = [
   {
     name: 'Custom Name Volleyball Jerseys',
     slug: 'custom-name-volleyball-jerseys',
+    price: 37,
+    priceUnit: "jersey",
     folder: 'custom-name-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'Personalized volleyball jerseys with custom player names.',
@@ -42,6 +75,8 @@ export const products: Product[] = [
   {
     name: 'Custom Number Volleyball Jerseys',
     slug: 'custom-number-volleyball-jerseys',
+    price: 35,
+    priceUnit: "jersey",
     folder: 'custom-number-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'Custom numbered volleyball jerseys for team identification.',
@@ -50,6 +85,8 @@ export const products: Product[] = [
   {
     name: 'High School Volleyball Uniforms',
     slug: 'high-school-volleyball-uniforms',
+    price: 58,
+    priceUnit: "uniform set",
     folder: 'high-school-volleyball-uniforms',
     category: 'volleyball-uniforms',
     shortDescription: 'Durable and stylish volleyball uniforms for high school teams.',
@@ -58,6 +95,8 @@ export const products: Product[] = [
   {
     name: 'Kids Volleyball Jerseys',
     slug: 'kids-volleyball-jerseys',
+    price: 32,
+    priceUnit: "jersey",
     folder: 'kids-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'Comfortable, fun volleyball jerseys designed specifically for young players.',
@@ -66,6 +105,8 @@ export const products: Product[] = [
   {
     name: 'Men Volleyball Jerseys',
     slug: 'men-volleyball-jerseys',
+    price: 32,
+    priceUnit: "jersey",
     folder: 'men-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: "Performance volleyball jerseys crafted for men's teams.",
@@ -74,6 +115,8 @@ export const products: Product[] = [
   {
     name: 'Men Volleyball Uniforms',
     slug: 'men-volleyball-uniforms',
+    price: 58,
+    priceUnit: "uniform set",
     folder: 'men-volleyball-uniforms',
     category: 'volleyball-uniforms',
     shortDescription: "Complete men's volleyball uniform sets for leagues and tournaments.",
@@ -82,6 +125,8 @@ export const products: Product[] = [
   {
     name: 'Personalized Volleyball Jerseys',
     slug: 'personalized-volleyball-jerseys',
+    price: 40,
+    priceUnit: "jersey",
     folder: 'personalized-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'Fully personalized volleyball jerseys with names, numbers, and logos.',
@@ -90,6 +135,8 @@ export const products: Product[] = [
   {
     name: 'Sublimated Volleyball Jerseys',
     slug: 'sublimated-volleyball-jerseys',
+    price: 40,
+    priceUnit: "jersey",
     folder: 'sublimated-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'All-over sublimation printed volleyball jerseys with vibrant, permanent colors.',
@@ -98,6 +145,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Compression Shirts',
     slug: 'volleyball-compression-shirts',
+    price: 39,
+    priceUnit: "shirt",
     folder: 'volleyball-compression-shirts',
     category: 'practice-gear',
     shortDescription: 'Performance compression shirts for volleyball training and match play.',
@@ -106,6 +155,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Hoodies',
     slug: 'volleyball-hoodies',
+    price: 28,
+    priceUnit: "hoodie",
     folder: 'volleyball-hoodies',
     category: 'team-apparel',
     shortDescription: 'Custom volleyball hoodies for team warmups, travel, and off-court style.',
@@ -114,6 +165,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Practice Jerseys',
     slug: 'volleyball-practice-jerseys',
+    price: 22,
+    priceUnit: "jersey",
     folder: 'volleyball-practice-jerseys',
     category: 'practice-gear',
     shortDescription: 'Durable and breathable practice jerseys for daily volleyball training.',
@@ -122,6 +175,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Socks',
     slug: 'volleyball-socks',
+    price: 8,
+    priceUnit: "pair",
     folder: 'volleyball-socks',
     category: 'practice-gear',
     shortDescription: 'Cushioned, performance volleyball socks designed for court grip and comfort.',
@@ -130,6 +185,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Team Kits',
     slug: 'volleyball-team-kits',
+    price: 58,
+    priceUnit: "player kit",
     folder: 'volleyball-team-kits',
     category: 'team-packages',
     shortDescription: 'Complete volleyball team kit packages for clubs, schools, and leagues.',
@@ -138,6 +195,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Training Shorts',
     slug: 'volleyball-training-shorts',
+    price: 24,
+    priceUnit: "pair",
     folder: 'volleyball-training-shorts',
     category: 'practice-gear',
     shortDescription: 'Lightweight volleyball training shorts built for freedom of movement.',
@@ -146,6 +205,8 @@ export const products: Product[] = [
   {
     name: 'Volleyball Warm Up Suits',
     slug: 'volleyball-warm-up-suits',
+    price: 74,
+    priceUnit: "suit",
     folder: 'volleyball-warm-up-suits',
     category: 'team-apparel',
     shortDescription: 'Coordinated volleyball warm-up suits for pre-game and travel.',
@@ -154,6 +215,8 @@ export const products: Product[] = [
   {
     name: 'Women Volleyball Jerseys',
     slug: 'women-volleyball-jerseys',
+    price: 32,
+    priceUnit: "jersey",
     folder: 'women-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: "Stylish and performance-driven volleyball jerseys for women's teams.",
@@ -162,6 +225,8 @@ export const products: Product[] = [
   {
     name: 'Women Volleyball Uniforms',
     slug: 'women-volleyball-uniforms',
+    price: 58,
+    priceUnit: "uniform set",
     folder: 'women-volleyball-uniforms',
     category: 'volleyball-uniforms',
     shortDescription: "Complete women's volleyball uniform sets tailored for peak performance.",
@@ -170,6 +235,8 @@ export const products: Product[] = [
   {
     name: 'Youth Volleyball Jerseys',
     slug: 'youth-volleyball-jerseys',
+    price: 32,
+    priceUnit: "jersey",
     folder: 'youth-volleyball-jerseys',
     category: 'volleyball-jerseys',
     shortDescription: 'Age-appropriate volleyball jerseys for youth leagues and tournaments.',
@@ -178,6 +245,8 @@ export const products: Product[] = [
   {
     name: 'Youth Volleyball Uniforms',
     slug: 'youth-volleyball-uniforms',
+    price: 58,
+    priceUnit: "uniform set",
     folder: 'youth-volleyball-uniforms',
     category: 'volleyball-uniforms',
     shortDescription: 'Complete youth volleyball uniform sets for young competitive players.',

@@ -5,13 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/vercel-runtime.mjs",
+    "build": "astro build && node scripts/vercel-runtime.mjs && node scripts/sitemap.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/node": "^8.3.4",
-    "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.3",
     "@astrojs/vercel": "^7.8.2",
     "astro": "^4.16.18",
