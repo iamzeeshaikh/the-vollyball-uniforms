@@ -7,15 +7,32 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
 
-    const name     = (data.get('name')     as string | null)?.trim() ?? '';
-    const email    = (data.get('email')    as string | null)?.trim() ?? '';
-    const phone    = (data.get('phone')    as string | null)?.trim() ?? '';
-    const team     = (data.get('team')     as string | null)?.trim() ?? '';
-    const product  = (data.get('product')  as string | null)?.trim() ?? '';
-    const quantity = (data.get('quantity') as string | null)?.trim() ?? '';
-    const deadline = (data.get('deadline') as string | null)?.trim() ?? '';
-    const message  = (data.get('message')  as string | null)?.trim() ?? '';
+    // Visitor input: trim, cap length (truncate, never reject) and keep CR/LF
+    // out of anything that ends up in a mail header.
+    const field = (key: string, max: number) => {
+      const raw = data.get(key);
+      return (typeof raw === 'string' ? raw : '').trim().slice(0, max);
+    };
+    const line = (v: string) => v.replace(/[\r\n]+/g, ' ').trim();
+    const esc = (v: unknown) =>
+      String(v ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+    const name     = line(field('name', 200));
+    const email    = line(field('email', 254));
+    const phone    = line(field('phone', 100));
+    const team     = line(field('team', 200));
+    const product  = line(field('product', 200));
+    const quantity = line(field('quantity', 100));
+    const deadline = line(field('deadline', 100));
+    const message  = field('message', 5000);
     const artwork  = data.get('artwork');
+    const artworkName = artwork instanceof File ? artwork.name.slice(0, 200) : '';
+    const replyTo = /^[^\s@<>,;"']+@[^\s@<>,;"']+\.[A-Za-z0-9-]+$/.test(email) ? email : undefined;
 
     if (!name || !email || !team) {
       return new Response(
@@ -46,11 +63,14 @@ export const POST: APIRoute = async ({ request }) => {
       auth: { user: smtpUser, pass: smtpPass },
     });
 
-    const row = (label: string, value: string) =>
+    // Every value is HTML-escaped before it reaches the mail body; the row
+    // helper escapes plain values itself, so pass raw strings (or pre-escaped
+    // markup with `raw: true`).
+    const row = (label: string, value: string, raw = false) =>
       value
         ? `<tr>
             <td style="padding:10px 16px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;background:#f9fafb;border-bottom:1px solid #e5e7eb;width:160px;vertical-align:top">${label}</td>
-            <td style="padding:10px 16px;font-size:15px;color:#111827;border-bottom:1px solid #e5e7eb;white-space:pre-wrap">${value}</td>
+            <td style="padding:10px 16px;font-size:15px;color:#111827;border-bottom:1px solid #e5e7eb;white-space:pre-wrap">${raw ? value : esc(value)}</td>
            </tr>`
         : '';
 
@@ -72,14 +92,14 @@ export const POST: APIRoute = async ({ request }) => {
         <tr><td style="padding:8px 0">
           <table width="100%" cellpadding="0" cellspacing="0">
             ${row('Full Name',   name)}
-            ${row('Email',       `<a href="mailto:${email}" style="color:#2563eb">${email}</a>`)}
+            ${row('Email',       `<a href="mailto:${esc(email)}" style="color:#2563eb">${esc(email)}</a>`, true)}
             ${row('Phone',       phone)}
             ${row('Team / Org',  team)}
             ${row('Product',     product)}
             ${row('Quantity',    quantity)}
             ${row('Needed By',   deadline)}
             ${row('Details',     message)}
-            ${row('Artwork',     artwork instanceof File && artwork.size ? `${artwork.name} (attached)` : '')}
+            ${row('Artwork',     artwork instanceof File && artwork.size ? `${artworkName} (attached)` : '')}
           </table>
         </td></tr>
         <!-- Footer -->
@@ -87,7 +107,7 @@ export const POST: APIRoute = async ({ request }) => {
           <td style="background:#f9fafb;padding:20px 32px;border-top:1px solid #e5e7eb">
             <p style="margin:0;font-size:12px;color:#6b7280">
               Submitted via <strong>thevolleyballuniforms.com</strong>.
-              Reply directly to this email to respond to ${name}.
+              Reply directly to this email to respond to ${esc(name)}.
             </p>
           </td>
         </tr>
@@ -116,13 +136,13 @@ export const POST: APIRoute = async ({ request }) => {
     const source = `--- where this came from ---\nPage URL: ${pageUrl}`;
     const htmlWithSource = html.replace(
       '</body>',
-      `<p style="margin:16px 0 0;font-size:12px;color:#94a3b8">Page URL: <a href="${pageUrl}" style="color:#94a3b8">${pageUrl}</a></p></body>`,
+      `<p style="margin:16px 0 0;font-size:12px;color:#94a3b8">Page URL: <a href="${esc(pageUrl)}" style="color:#94a3b8">${esc(pageUrl)}</a></p></body>`,
     );
 
     await transporter.sendMail({
       from:    `"${fromName}" <${fromMail}>`,
       to:      smtpTo,
-      replyTo: email,
+      replyTo,
       subject: `New Quote Request — ${team}${product ? ` | ${product}` : ''}`,
       text: [
         `Name: ${name}`, `Email: ${email}`, team && `Team: ${team}`,
@@ -131,7 +151,7 @@ export const POST: APIRoute = async ({ request }) => {
       html: htmlWithSource,
       attachments:
         artwork instanceof File && artwork.size
-          ? [{ filename: artwork.name, content: Buffer.from(await artwork.arrayBuffer()) }]
+          ? [{ filename: artworkName || 'artwork', content: Buffer.from(await artwork.arrayBuffer()) }]
           : undefined,
     });
 
@@ -140,9 +160,11 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (err: any) {
-    console.error('Quote form error:', err);
+    // Log the detail server-side; the visitor only gets a generic message so
+    // SMTP/config errors never leak to the browser.
+    console.error('Quote form error:', err?.message ?? err);
     return new Response(
-      JSON.stringify({ success: false, error: err?.message ?? 'Failed to send. Please try again.' }),
+      JSON.stringify({ success: false, error: 'Failed to send. Please try again.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
