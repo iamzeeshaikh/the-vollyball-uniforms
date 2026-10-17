@@ -35,20 +35,24 @@ const articleSchema = {
   image: post.image,
   mainEntityOfPage: url,
 };
+import { extraFaqs, plainText } from '../../lib/page-faqs';
+const postFaqs = [...post.faq, ...extraFaqs(`/blog/${post.slug}/`)
+  .filter((x) => !post.faq.some((f) => f.q.trim().toLowerCase() === x.question.trim().toLowerCase()))
+  .map((x) => ({ q: x.question, a: x.answer }))];
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: post.faq.map((f) => ({
+  mainEntity: postFaqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
+    acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) },
   })),
 };
 ---
 <BaseLayout
   title={post.metaTitle}
   description={post.metaDescription}
-  schema={[articleSchema, faqSchema]}
+  schema={postFaqs.length ? [articleSchema, faqSchema] : [articleSchema]}
   canonical={url}
 >
   <div class="bg-gray-50 border-b border-gray-200">
@@ -73,11 +77,11 @@ const faqSchema = {
           </>
         ))}
 
-        <h2>Frequently Asked Questions</h2>
-        {post.faq.map((f) => (
+        {postFaqs.length > 0 && <h2>Frequently Asked Questions</h2>}
+        {postFaqs.map((f) => (
           <>
             <h3>{f.q}</h3>
-            <p>{f.a}</p>
+            <p set:html={f.a} />
           </>
         ))}
       </div>

@@ -1,0 +1,753 @@
+{
+ "/about/": {
+  "h2": "Questions About Our Company and Team",
+  "faqs": [
+   {
+    "q": "Why was The Volleyball Uniforms started in the first place?",
+    "a": "We saw teams stuck choosing between cheap uniforms that fit poorly and expensive custom orders that took months and came with requirements most programs could not meet. We built a process that pairs premium production with service shaped around coaches, athletic directors and team managers."
+   },
+   {
+    "q": "Which levels of play do your uniforms serve today?",
+    "a": "We outfit everything from first-year youth rec clubs in small towns to established college programs, plus high schools, adult leagues and travel clubs. The common thread is that every team deserves a uniform that looks professional, performs well and arrives on time."
+   },
+   {
+    "q": "How do you check quality before uniforms leave your facility?",
+    "a": "Every uniform is inspected for color accuracy, print quality and construction before it ships. If a piece does not meet our standard, it is flagged and corrected first. We do not send out anything we would not be comfortable wearing ourselves."
+   },
+   {
+    "q": "Where is The Volleyball Uniforms based and where do you ship?",
+    "a": "We are based in New York City, in the heart of the American apparel industry, and we ship tracked orders to teams across all 50 states. Our production partnerships keep quality high and turnaround times reliable wherever your program plays."
+   },
+   {
+    "q": "Do you treat small team orders differently from large programs?",
+    "a": "No. Every order ends up on real players who wear those jerseys with pride, so a single youth roster gets the same design care, proofing and inspection as a multi-team college program. Order size changes the pricing, not the attention it receives."
+   },
+   {
+    "q": "How do you keep uniform orders on schedule for the season?",
+    "a": "We plan production with honest, workable timelines and keep you updated from mockup to shipping. Standard production runs 10 to 14 business days after you approve the design, and rush production in 5 to 7 business days is available when a season or tournament is close."
+   },
+   {
+    "q": "Who will I be working with when I place an order?",
+    "a": "You work with our team from start to finish, from the first quote request through design, sizing and delivery. Our designers build your free mockup and revise it with you, and the same team answers questions until the uniforms reach your door."
+   },
+   {
+    "q": "What does your mission mean for the uniforms we receive?",
+    "a": "Our mission is to help every volleyball program look and perform its best. In practice that means performance fabrics built for volleyball movement, sublimated designs that do not crack or peel, consistent sizing across the roster and delivery before the first game."
+   },
+   {
+    "q": "How do you keep prices accessible without cutting quality?",
+    "a": "Our production partnerships span domestic and international facilities, which lets us offer premium uniforms at accessible prices with reliable turnaround. Sublimation also helps, since adding colors to a design does not add cost the way it does with screen printing."
+   },
+   {
+    "q": "How do we start working with your team on new uniforms?",
+    "a": "Send your products, rough quantity, colors and deadline through our <a href=\"/request-a-quote/\">free quote request form</a>. We reply with pricing and a free design mockup, revise it until you approve, and then send a PayPal invoice before production begins."
+   }
+  ]
+ },
+ "/blog/": {
+  "h2": "Questions About Our Volleyball Uniform Guides",
+  "faqs": [
+   {
+    "q": "Who are the volleyball uniform guides on the blog written for?",
+    "a": "The guides are written for coaches, athletic directors, team managers and club organizers who order uniforms for a team. They also help parents and players who want to understand fabrics, sizing, fit and printing before their program places an order."
+   },
+   {
+    "q": "Which guide should I read first before ordering team uniforms?",
+    "a": "Start with our <a href=\"/blog/how-to-order-team-volleyball-uniforms/\">step-by-step guide to ordering uniforms</a>, which covers planning the design, collecting sizes, choosing a kit and requesting a quote. Then read the size guide and the materials guide to fill in the details for your roster."
+   },
+   {
+    "q": "Is there a guide that compares sublimation with screen printing?",
+    "a": "Yes. The sublimated versus screen printed comparison covers how each method works, design flexibility, durability and cost. It explains why sublimation suits full-color game jerseys and when simple screen printing can still make sense for basic practice tops."
+   },
+   {
+    "q": "Where can coaches find NFHS and NCAA uniform rule information?",
+    "a": "The high school and college buying guide covers NFHS number rules, light and dark jersey requirements, libero contrast, NCAA considerations and budget planning. Rules vary by state association and conference, so check your current rulebook and share it with us when you request a quote."
+   },
+   {
+    "q": "Do the blog guides cover sizing for youth and adult players?",
+    "a": "Yes. The uniform size guide explains why body measurements beat clothing sizes, how to measure chest, how youth cuts differ from adult cuts and how to size shorts by waist or hip. The women's uniforms guide adds tips for fitted jerseys and spandex shorts."
+   },
+   {
+    "q": "Is there advice on gear beyond the game-day uniform?",
+    "a": "Several guides cover it. The practice gear guide explains practice jerseys, compression tops, shorts and socks, while the warm-ups guide and the training and travel apparel guide cover warm-up suits, hoodies and sideline wear that keep a program coordinated off the court."
+   },
+   {
+    "q": "Can the design ideas guide help a team plan a new look?",
+    "a": "Yes. It covers building a strong color identity, using sublimation for gradients and patterns, keeping numbers bold and readable, adding accents with restraint and designing home and away jerseys as a matching set. It also lists the mistakes that make jerseys look busy."
+   },
+   {
+    "q": "How do the guides explain the bulk ordering timeline?",
+    "a": "The bulk orders guide breaks the process into steps, from defining what you need and requesting a quote to design approval, production and shipping. It also shows how to work backward from your first game date so uniforms arrive with a comfortable buffer."
+   },
+   {
+    "q": "Do the guides explain which fabrics work best for each position?",
+    "a": "The materials guide does. It compares polyester, polyester-spandex blends and mesh panels, explains moisture-wicking and care, and notes how liberos, setters, hitters and middles place different demands on a jersey, which helps you pick one fabric for a mixed roster."
+   },
+   {
+    "q": "What should I do after reading the guides?",
+    "a": "When you are ready, send us your team details, colors and deadline. We reply with pricing and a free design mockup, revise it until you are happy and only start production after you approve, so nothing prints before your sign-off."
+   }
+  ]
+ },
+ "/contact/": {
+  "h2": "Questions About Contacting Our Team",
+  "faqs": [
+   {
+    "q": "How quickly does your team reply to contact messages?",
+    "a": "We typically reply within one to two business hours. If you send a message in the evening or over the weekend, expect an answer early on the next business day. Check your spam folder if you have not heard back within a couple of hours."
+   },
+   {
+    "q": "What are your business hours for questions about uniforms?",
+    "a": "Our team works Monday through Friday, 9 am to 6 pm Eastern time. Messages that arrive outside those hours are read and answered once the team is back, usually within one to two business hours of opening."
+   },
+   {
+    "q": "Should I use the contact form or the quote form?",
+    "a": "Use our <a href=\"/request-a-quote/\">dedicated quote request form</a> when you are ready for pricing, because it collects products, quantities, colors and deadline in one place. The contact form is best for general questions about fabrics, sizing, timelines or an existing order."
+   },
+   {
+    "q": "What details help you answer my question faster?",
+    "a": "Tell us your team name, the products you are asking about, a rough quantity, your colors and the date you need uniforms. If your question is about an existing order, include the name the order is under so we can find it right away."
+   },
+   {
+    "q": "Can I ask about fabric and fit before requesting a quote?",
+    "a": "Yes. Send us a message about how your team plays, the positions you are outfitting and any fit preferences. We can explain polyester versus polyester-spandex blends, athletic versus relaxed fits and mesh panels so you know exactly what to request."
+   },
+   {
+    "q": "Can I share my team logo when I send a message?",
+    "a": "If you already have a logo or reference images, mention it in your message and we will tell you how to share the files with our design team. If you do not have artwork yet, describe your idea and we can build a design from scratch."
+   },
+   {
+    "q": "Can I contact you with questions about an order in production?",
+    "a": "Yes. Send a message with the name your order is under and your question. We keep you updated through production and send tracking information as soon as the shipment leaves, so you always know where your uniforms are."
+   },
+   {
+    "q": "How do I ask about rush production for a tournament?",
+    "a": "Message us with your tournament or first match date and what you need. Rush production is available in 5 to 7 business days after design approval, so the sooner we hear from you, the easier it is to fit your order into the schedule."
+   },
+   {
+    "q": "Can I ask how payment works before committing to an order?",
+    "a": "Of course. Payment is handled by PayPal invoice, sent after you approve your design mockup. Nothing goes into production before that approval, so you can ask questions, review the design and request revisions with no commitment until you are ready."
+   },
+   {
+    "q": "Can leagues and clubs contact you about several teams at once?",
+    "a": "Yes. Leagues, clubs and school programs often reach out about several squads at the same time. Tell us how many teams you have and what each one needs, and we can plan one coordinated order with consistent colors and design across every team."
+   }
+  ]
+ },
+ "/locations/": {
+  "h2": "Questions About Ordering From Your State",
+  "faqs": [
+   {
+    "q": "Do you only make uniforms for the cities listed here?",
+    "a": "No. The states and cities listed are a sample of where we work. We outfit volleyball teams in every corner of the country, so if your town is not shown, send your team and colors through our <a href=\"/request-a-quote/\">free team quote form</a>."
+   },
+   {
+    "q": "Does my location change how long uniforms take to arrive?",
+    "a": "Production time is the same everywhere, 10 to 14 business days after design approval, with rush production in 5 to 7 business days. Only transit time varies, and tracked shipping typically takes 2 to 5 business days depending on your location."
+   },
+   {
+    "q": "Can clubs with teams in several states order together?",
+    "a": "Yes. Clubs and associations with squads in more than one state can place one consolidated order, with every team produced from the same approved design. Tell us where each team is based when you request a quote and we will plan shipping with you."
+   },
+   {
+    "q": "How do I find the right page for my state or city?",
+    "a": "Pick your state from the list, then choose the closest city underneath it. Each state and city page covers local teams and how ordering works. If your city is missing, use your state page or request a quote directly, since we serve the whole country."
+   },
+   {
+    "q": "Do I need to visit a showroom to order uniforms?",
+    "a": "No. Everything is handled remotely. You send your team details and ideas, review a free digital mockup, approve the design and receive your uniforms by tracked shipping. Teams order the same way whether they play in Seattle, Miami or a small town."
+   },
+   {
+    "q": "Can you design uniforms around our city or region?",
+    "a": "Yes. Many teams like to nod to where they play through colors, a skyline, a regional motif or the club name. Sublimation prints gradients and full-color graphics edge to edge, so local elements can be built into the design without extra cost per color."
+   },
+   {
+    "q": "How do we order uniforms before a tournament in another state?",
+    "a": "Tell us the tournament date and where you need the uniforms delivered. We work backward from that date, using standard production of 10 to 14 business days or rush in 5 to 7, and ship tracked so you can follow the package."
+   },
+   {
+    "q": "Can a small rural team order the same uniforms as big clubs?",
+    "a": "Yes. A youth rec team in a small town gets the same fabrics, sublimation printing, free mockup and design revisions as a large club in Chicago or Dallas. You order through the same process and we ship tracked to your school, club or home."
+   },
+   {
+    "q": "Can uniforms be shipped to a school instead of a home?",
+    "a": "Yes. Completed orders are individually packaged and shipped directly to your school, club or home address, whichever works best. Tell us the delivery address when you approve the design, and you receive tracking details as soon as the shipment leaves our facility."
+   },
+   {
+    "q": "What happens after I find my state and request a quote?",
+    "a": "We reply within one to two business hours with pricing and a free design mockup. You request changes until it is right, approve it and receive a PayPal invoice, and production begins. Standard orders finish in 10 to 14 business days before tracked shipping."
+   }
+  ]
+ },
+ "/request-a-quote/": {
+  "h2": "Questions About Requesting Your Free Quote",
+  "faqs": [
+   {
+    "q": "What information should I include in my quote request?",
+    "a": "Include the products you need, an estimated quantity, your team colors or logo files, your deadline and any special requirements such as NFHS rules or unusual sizes. The more detail you share, the faster and more accurate your quote and mockup will be."
+   },
+   {
+    "q": "Does requesting a quote commit our team to an order?",
+    "a": "No. A quote is free and carries no obligation. You receive pricing and a design mockup, request any changes you like and only commit once you approve the final design and pay the PayPal invoice that follows."
+   },
+   {
+    "q": "How soon will I receive pricing after submitting the form?",
+    "a": "Our team usually responds within one to two business hours with pricing and next steps. Straightforward orders often get pricing in the first reply, while larger or more complex requests may get a quick follow-up question first."
+   },
+   {
+    "q": "Can I request a quote without final player sizes?",
+    "a": "Yes. An estimated quantity is enough to start. Collect real body measurements while the design is being finalized using our <a href=\"/size-guide/\">volleyball uniform size charts</a>, then submit the completed size roster when you approve the mockup."
+   },
+   {
+    "q": "Can I request a quote for several product types at once?",
+    "a": "Yes. List everything you need, such as game jerseys, shorts, warm-up suits, hoodies and practice gear, in one request. Quoting it together keeps colors and branding consistent across every piece and often brings better volume pricing than separate orders."
+   },
+   {
+    "q": "What happens if my form submission shows an error?",
+    "a": "Try submitting again after checking that the required fields are filled in. If it still fails, reach us through the contact page with your order details. If you submitted successfully but hear nothing within two hours, check your spam folder."
+   },
+   {
+    "q": "What does the free mockup in my quote show?",
+    "a": "The mockup is a full-color digital design of your uniform with your colors, logo, names and numbers placed as they will appear. You can request revisions as many times as needed, and nothing goes to print until you approve it."
+   },
+   {
+    "q": "Should I include my season start date in the request?",
+    "a": "Yes. Your deadline shapes the schedule. Standard production takes 10 to 14 business days after design approval and rush production takes 5 to 7 business days, so sharing your first match or tournament date helps us confirm a workable timeline upfront."
+   },
+   {
+    "q": "How do I pay once my quote is accepted?",
+    "a": "We send a PayPal invoice after you approve the final design. It is the only payment method we use, and because the invoice follows approval, you never pay for a design you have not signed off on."
+   },
+   {
+    "q": "Can I talk to someone instead of filling out the form?",
+    "a": "Yes. If you prefer to discuss your project directly, reach our team through the contact page during business hours, Monday through Friday, 9 am to 6 pm Eastern. The form is still the fastest route, since it captures all your order details at once."
+   }
+  ]
+ },
+ "/": {
+  "h2": "More Questions From Coaches and Team Managers",
+  "faqs": [
+   {
+    "q": "How do I pay for a custom volleyball uniform order?",
+    "a": "Payment is by PayPal invoice, which we send after you approve your design mockup. It is the only payment method we use, so there is nothing to pay while you review the design and request revisions."
+   },
+   {
+    "q": "How is my uniform order tracked once it ships?",
+    "a": "Every order ships by tracked courier, and you receive tracking information as soon as it is dispatched. Delivery usually takes 2 to 5 business days depending on your location, and the order arrives sorted and labeled by player name or number."
+   },
+   {
+    "q": "Can we reorder the same uniform design next season?",
+    "a": "Yes. Because your approved design is documented with its colors, fonts and placements, we can produce a full refresh or individual jerseys for new players in the same design, so new pieces match the uniforms your team already wears."
+   },
+   {
+    "q": "Does adding more colors to our design raise the price?",
+    "a": "Not with sublimation. Colors are infused into the fabric with full-color, edge-to-edge printing, so extra colors, gradients or patterns cost nothing more per color. Our <a href=\"/sublimated-volleyball-jerseys/\">sublimated volleyball jerseys</a> give teams far more creative freedom than screen printing."
+   }
+  ]
+ },
+ "/blog/best-volleyball-team-apparel-training-travel/": {
+  "h2": "Team Apparel for Training and Travel FAQs",
+  "faqs": [
+   {
+    "q": "Which apparel piece should a program buy after game uniforms?",
+    "a": "This guide names the warm-up suit as the most visible piece after the game jersey. It keeps muscles warm before matches, works between sets and on travel days, and gives the whole bench a unified look before the first point."
+   },
+   {
+    "q": "Should warm-up suits use the same design as game jerseys?",
+    "a": "Ideally, yes. Using the same color palette and font style as your game jerseys ties the program's apparel together, so players look like one team from the hotel lobby to the final warm-up before a championship match."
+   },
+   {
+    "q": "Why do many coaches pick hoodies as standard travel attire?",
+    "a": "A team arriving at a tournament in matching hoodies is instantly recognizable and shows program cohesion. Hoodies are also warm and comfortable on long travel days, which makes them a practical choice for coaches who want a consistent travel look."
+   },
+   {
+    "q": "Do hoodies make good senior night or end-of-season gifts?",
+    "a": "They do. An end-of-season hoodie with the player's name, graduation year and team logo becomes a keepsake players value long after they stop playing. Many programs give them as senior night gifts or team awards."
+   },
+   {
+    "q": "What features matter most in a daily practice jersey?",
+    "a": "Look for reinforced construction at stress points such as armholes and side seams, colors that set them apart from game jerseys and budget-friendly pricing for larger quantities. Practice jerseys are the most-worn piece in any player's kit, so durability comes first."
+   },
+   {
+    "q": "Why offer players a choice of inseam length on team orders?",
+    "a": "Players have different fit preferences, and shorts that feel wrong get adjusted constantly during drills. The guide suggests offering a choice of inseam length, such as 3, 5 or 7 inches, as a practical way to keep everyone comfortable in one team order."
+   },
+   {
+    "q": "Are matching team socks worth including in the apparel budget?",
+    "a": "Socks are often underestimated. A team in matching socks in school colors at practice and games looks cohesive from head to toe, while cushioning, arch support and moisture management protect players' feet through repeated jumping."
+   },
+   {
+    "q": "Should we plan the full apparel set all at once?",
+    "a": "Plan the full set at one time, even if you phase purchases over several seasons. Designing game jerseys, warm-ups, practice gear and accessories together keeps one design language across everything, which builds a stronger program identity than any single piece."
+   },
+   {
+    "q": "How does coordinated apparel help with recruits and parents?",
+    "a": "Coordinated team apparel signals organization, commitment and pride in the program. Recruits notice a team that looks polished at tournaments, and parents see a program that takes presentation seriously, from the hotel lobby to the court."
+   },
+   {
+    "q": "How can a tight budget still cover a full apparel program?",
+    "a": "Start with the pieces your team uses most, usually practice jerseys and warm-ups, then add hoodies, socks and extras in later seasons. Keep the same design across all of it, and consider <a href=\"/volleyball-team-kits/\">volleyball team kit packages</a> to bundle items in one order."
+   }
+  ]
+ },
+ "/blog/custom-name-number-volleyball-jerseys-guide/": {
+  "h2": "Name and Number Jersey Questions Answered",
+  "faqs": [
+   {
+    "q": "Why do player names matter if numbers identify players?",
+    "a": "Numbers let referees, scorers and fans identify players, while names build team identity and make players feel like real members of a program. A jersey with a player's own name and number is often one of their most valued keepsakes from their playing career."
+   },
+   {
+    "q": "When does a heat transfer make more sense than sublimation?",
+    "a": "Heat transfer works well when adding names or numbers to blank jerseys after delivery, when a player joins after the main order or when numbers change between seasons. Modern transfers look professional, though they are not as permanent as sublimation."
+   },
+   {
+    "q": "What is tackle twill and how does it compare?",
+    "a": "Tackle twill is one of the heat-applied transfer options for names and numbers. The guide notes that modern twill and tackle twill transfers are durable and professional-looking, but sublimated numbers are more permanent because they are printed into the fabric itself."
+   },
+   {
+    "q": "Which number fonts stay readable from the stands?",
+    "a": "Block fonts and athletic serif fonts, like those used by collegiate programs, read clearly from the stands, the officials' table and across the court. Decorative or script fonts often fail that test, so save them for accents rather than player numbers."
+   },
+   {
+    "q": "How thick should the strokes on jersey numbers be?",
+    "a": "Numbers should look bold and substantial, because thin, lightweight fonts get lost on a jersey. The guide recommends a stroke weight of at least one fifth of the numeral's overall width, which keeps numbers solid and readable during fast play."
+   },
+   {
+    "q": "How should the number font match the overall jersey design?",
+    "a": "The number font should complement the design's look. A modern geometric jersey pairs well with a contemporary sans-serif number, while a classic collegiate design suits a block number that nods to traditional athletic lettering. Mismatched styles make a jersey look unfinished."
+   },
+   {
+    "q": "How tall are player names usually printed on the back?",
+    "a": "Back names are typically 2 to 3 inches tall and sit centered above the number, though left- or right-justified names are also an option. Front chest names are usually smaller, around 1.5 to 2 inches, so they fit within the chest panel."
+   },
+   {
+    "q": "Why should name spelling be checked so carefully before approval?",
+    "a": "Names are printed exactly as submitted on the roster, and an incorrect name on a finished jersey requires a new production run that delays delivery. Have each player or parent confirm spelling, capitalization and spacing before you approve the final mockup."
+   },
+   {
+    "q": "Who checks high school jerseys against NFHS number rules?",
+    "a": "Our design team reviews every high school order against current NFHS requirements, including front and back number heights and color contrast. You still approve the final mockup, and our <a href=\"/high-school-volleyball-uniforms/\">high school volleyball uniforms</a> explain the compliance details."
+   },
+   {
+    "q": "Do sublimated names and numbers add weight to the jersey?",
+    "a": "No. Sublimated names and numbers are printed into the fabric along with the rest of the design, so they add no weight or texture and cannot crack, peel or fade. That keeps jerseys light and comfortable through long matches."
+   }
+  ]
+ },
+ "/blog/high-school-college-volleyball-uniform-guide/": {
+  "h2": "School Program Uniform Questions From Coaches",
+  "faqs": [
+   {
+    "q": "Which team wears light jerseys under NFHS rules?",
+    "a": "Under NFHS rules, the home team wears light-colored jerseys and the visiting team wears dark ones. That is why most high school programs order both a light and a dark set, designed together so they share the same layout and branding."
+   },
+   {
+    "q": "Which governing bodies set rules for college volleyball uniforms?",
+    "a": "Most four-year programs follow NCAA rules, while others compete under the NAIA. Rules can differ between divisions and sometimes between conferences, so share your conference's specific requirements when you request a quote and we build the design around them."
+   },
+   {
+    "q": "Are manufacturer and sponsor logos allowed on college uniforms?",
+    "a": "Manufacturer logos are generally permitted within size limits set in the rulebook. School or team sponsor logos fall under conference-specific rules that vary widely, so confirm your conference's current policy before adding sponsor artwork to the design."
+   },
+   {
+    "q": "How many spare uniforms should a school program budget for?",
+    "a": "The guide suggests multiplying the per-player cost by roster size plus two or three spares in common sizes, then adding two or three libero jerseys in the contrasting color. Those spares cover mid-season changes without waiting on a new production run."
+   },
+   {
+    "q": "Should schools set aside a contingency fund for replacements?",
+    "a": "Yes. The guide recommends holding back part of the total uniform budget for mid-season replacements, such as a damaged jersey or a new player. Planning it upfront avoids scrambling for approval when something comes up during the season."
+   },
+   {
+    "q": "What is a unified program design for varsity and JV?",
+    "a": "All teams share one design template, with varsity in the primary colors and JV in a modified color combination. It builds strong program cohesion and lets experienced JV players inherit lightly worn varsity jerseys as replacements."
+   },
+   {
+    "q": "What is the downside of separate designs for each team?",
+    "a": "Separate designs let varsity have the premium sublimated look while JV and freshman teams use budget-conscious options. That manages costs, but it can create a visible quality gap between teams, which some programs prefer to avoid."
+   },
+   {
+    "q": "Why do tryouts affect when a school should place its order?",
+    "a": "Final sizes cannot be collected until the roster is set after tryouts, and that step has to fit between budget approval and production. Planning around tryout dates, ideally ordering by June for a fall season, keeps you on standard production instead of rush."
+   },
+   {
+    "q": "How can coaches win athletic director approval for new uniforms?",
+    "a": "Present a well-organized quote request that covers every item you need, not just jerseys, along with a clear visual mockup and a workable timeline. A complete, professional package makes it easier for the athletic director to approve the spending."
+   },
+   {
+    "q": "How can booster clubs help fund uniform upgrades?",
+    "a": "Booster organizations often supplement official athletic budgets for uniform upgrades. A polished mockup and a clear quote make the fundraising case easier to present to parents and supporters, so start with a <a href=\"/request-a-quote/\">free school program quote</a>."
+   }
+  ]
+ },
+ "/blog/how-bulk-volleyball-uniform-orders-work/": {
+  "h2": "Bulk Volleyball Order Questions Answered",
+  "faqs": [
+   {
+    "q": "Which order types do most bulk volleyball orders fall into?",
+    "a": "Most fall into one of four types: jersey-only orders for a single team, complete jersey-and-shorts sets for one team, full team kit packages for a program and multi-team orders for leagues or clubs. Knowing yours speeds up the quote."
+   },
+   {
+    "q": "How long does the design phase take for a bulk order?",
+    "a": "For bulk orders, design development typically takes one to three rounds of revisions over two to four business days. You review each mockup, request changes and we revise until the design is exactly right before anything is printed."
+   },
+   {
+    "q": "What is the production approval form in a bulk order?",
+    "a": "Once the design and size roster are final, we send a production approval form. It is the binding commitment that starts production, so review names, numbers, sizes, colors and placement carefully. After signing, changes mean restarting the affected pieces."
+   },
+   {
+    "q": "When should the team size roster be submitted?",
+    "a": "Start collecting sizes while the design is being finalized, then submit the completed roster when you approve the design. Use chest and waist measurements from our <a href=\"/blog/volleyball-uniform-size-guide/\">volleyball uniform size guide</a> rather than estimated clothing sizes."
+   },
+   {
+    "q": "How are very large orders handled during production?",
+    "a": "For large orders of 100 or more units, production may be staggered across multiple days to keep quality consistent. Every piece is printed, cut, sewn and quality checked, and standard production still runs 10 to 14 business days after approval."
+   },
+   {
+    "q": "What does the quality control inspection check before shipping?",
+    "a": "Every order is checked for color accuracy, print placement, construction integrity and size accuracy against the submitted roster. Any piece that falls short is flagged and corrected before it leaves our facility, so the team receives exactly what was approved."
+   },
+   {
+    "q": "How are bulk orders shipped and tracked?",
+    "a": "Orders ship by tracked courier, and you receive tracking information as soon as the shipment is dispatched. Delivery typically takes 2 to 5 business days depending on your location, and very large orders may use freight shipping for better cost efficiency."
+   },
+   {
+    "q": "Can a league get one price across several teams?",
+    "a": "Often, yes. Leagues or associations placing a consolidated order across multiple teams can usually receive league-level pricing that applies to every team in the order. Combining teams also keeps one design system across the whole league."
+   },
+   {
+    "q": "How do I work backward from our first game date?",
+    "a": "Allow two to three business days for the quote and design, 10 to 14 business days for standard production and 3 to 5 days for shipping, then add a buffer week. For a September 1 opener, ordering by mid-July is comfortable."
+   },
+   {
+    "q": "Should I define every needed item before requesting a bulk quote?",
+    "a": "Yes. Decide whether you need just game jerseys or a complete kit with shorts, warm-ups and practice gear, and whether you are replacing one piece or building a full wardrobe. Clear needs upfront produce a faster, more accurate quote."
+   }
+  ]
+ },
+ "/blog/how-to-choose-custom-volleyball-uniforms/": {
+  "h2": "Choosing Custom Volleyball Uniforms: Common Questions",
+  "faqs": [
+   {
+    "q": "Why define the uniform's purpose before picking a design?",
+    "a": "A rec youth league, a beach club and a Division I program need different things. Decide whether you are ordering for practice, game play, travel or all three, because that choice shapes the fabric, fit and design decisions that follow."
+   },
+   {
+    "q": "What fabric weight do standard volleyball jerseys use?",
+    "a": "Standard jerseys use lightweight moisture-wicking polyester, typically in the 140 to 180 GSM range. That weight takes sublimation well, dries quickly and holds its shape over a season, which is why it is the common choice for competitive play."
+   },
+   {
+    "q": "Which players benefit most from polyester-spandex blend jerseys?",
+    "a": "Liberos and back-row defenders who dive often benefit most from the four-way stretch. The compression-style fit of a spandex blend also stays in place during overhead movements, which supports attacking and serving mechanics for front-row players."
+   },
+   {
+    "q": "How do I decide which customization level my team needs?",
+    "a": "Basic customization, a name, number and one or two colors, suits budget-conscious teams or programs that change designs often. Standard sublimation covers full-color logos, names and numbers, and full personalization adds details like senior recognition or captain marks."
+   },
+   {
+    "q": "What should game-day uniforms prioritize compared with practice sets?",
+    "a": "Game-day uniforms should prioritize moisture management, freedom of movement and a polished look that represents your program. For practice jerseys, durability and cost-efficiency usually matter more than visual design, which is why many teams keep separate sets."
+   },
+   {
+    "q": "Why should I share our rulebook when requesting a quote?",
+    "a": "NFHS and NCAA rules cover number heights, contrast between jersey and number and limits on front-of-jersey elements, and they vary by division or state. Sharing your governing body's current rulebook lets us build a compliant design from the first mockup."
+   },
+   {
+    "q": "Which measurements are needed for jerseys and shorts?",
+    "a": "Jersey sizes come from chest measurements, while shorts need waist and hip measurements. Collect them from every player and convert them with our <a href=\"/size-guide/\">volleyball uniform size chart</a>, since replacing incorrectly sized uniforms after production adds time and cost."
+   },
+   {
+    "q": "How does a coordinated package help the team's overall look?",
+    "a": "When game uniforms, practice jerseys and team apparel share fonts, colors and logo placement, the program looks professional from the gym to travel day to the sideline. Ordering them as one package is often more economical than buying each piece separately."
+   },
+   {
+    "q": "When should a team with an early September season order?",
+    "a": "An order placed by late July gives comfortable margin. Standard production takes 10 to 14 business days after design approval, plus three to five days for shipping and time for design review. Tournament teams on short notice can use rush production."
+   },
+   {
+    "q": "How does a compression base layer fit into a uniform plan?",
+    "a": "Compression fit hugs the body and is mostly worn as a base layer under the game jersey or by players who want muscle support. Planning compression shirts alongside the uniform keeps colors matched and gives those players a consistent look with the team."
+   }
+  ]
+ },
+ "/blog/how-to-order-team-volleyball-uniforms/": {
+  "h2": "More Questions About Ordering Team Uniforms",
+  "faqs": [
+   {
+    "q": "Why document the uniform design as a written spec?",
+    "a": "Recording exact colors, fonts and logo files means you never rebuild the artwork from scratch at reorder time. A clear spec turns a one-time design effort into a lasting program identity and keeps mid-season additions matching the original set."
+   },
+   {
+    "q": "What should I check on the digital proof before approving?",
+    "a": "Check colors, the spelling of every name and each number assignment against the roster. Production runs from the approved artwork, so anything missed at the proof stage ends up on the finished uniforms. Approve only when every detail is right."
+   },
+   {
+    "q": "How many spare jerseys should we include in the order?",
+    "a": "The guide suggests one or two spares in your most common sizes. Rosters change during a season, and having spares ready means a new player or a damaged jersey does not have to wait on a fresh production run."
+   },
+   {
+    "q": "Why start collecting player sizes earlier than seems necessary?",
+    "a": "Chasing measurements from a full roster always takes longer than expected. Starting early leaves a buffer, keeps the order on schedule and avoids a last-minute scramble before the production deadline, when mistakes are most likely to slip through."
+   },
+   {
+    "q": "What should a full quote for team uniforms include?",
+    "a": "A complete quote covers pricing, a digital proof of your design and a production timeline. Confirm the delivery date works for your season, and build in a buffer so uniforms arrive well before your first match rather than the same week."
+   },
+   {
+    "q": "Does a bundled package make budgeting easier for programs?",
+    "a": "Yes. Pricing one complete package is simpler than tracking separate items and shipments, and it often unlocks better per-player pricing. Our <a href=\"/team-packages/\">volleyball team packages</a> bundle game uniforms, warm-ups and practice gear in a single order."
+   }
+  ]
+ },
+ "/blog/sublimated-vs-screen-printed-volleyball-jerseys/": {
+  "h2": "Sublimation vs Screen Printing: Your Questions",
+  "faqs": [
+   {
+    "q": "How does screen printing apply ink to a jersey?",
+    "a": "Screen printing pushes ink through a stencil, called a screen, onto the fabric surface. Each color needs its own screen, and the ink sits on top of the fabric instead of bonding with it. It is proven and cost-effective for certain simple orders."
+   },
+   {
+    "q": "How many colors does screen printing handle well?",
+    "a": "Screen printing works best with one to four solid colors. Each extra color adds cost and complexity, and gradients or photographic images are not practical. For a simple team name, number and an accent color or two, it performs well."
+   },
+   {
+    "q": "Why do screen-printed numbers crack during a volleyball season?",
+    "a": "Screen-printed ink sits on top of the fabric, so it can crack over time in areas that flex repeatedly during play, such as sleeves, underarms and number areas. Better inks like plastisol and discharge last longer but still fall short of sublimation."
+   },
+   {
+    "q": "How long can a well-made sublimated jersey last?",
+    "a": "A well-made sublimated jersey can last five or more years of regular use and washing without noticeable color loss. Many teams wear the same sublimated set for several seasons before replacing it because of visual wear."
+   },
+   {
+    "q": "When is screen printing cheaper than sublimation per jersey?",
+    "a": "For simple one- or two-color designs on stock jerseys, screen printing can cost less per unit, especially in large quantities. That makes it attractive for practice jerseys where design complexity is not important and budget is the main concern."
+   },
+   {
+    "q": "Why does a multi-color design cost more with screen printing?",
+    "a": "Screen printing is priced by color, so a six-color design can cost about twice as much per unit as a two-color one. Sublimation pricing stays essentially flat however many colors or details the artwork includes, which favors complex designs."
+   },
+   {
+    "q": "Can screen printing be used on cotton practice shirts?",
+    "a": "Yes. Screen printing is the option to consider for cotton or cotton-blend shirts, since sublimation only works on polyester and certain polyester blends. It suits simple practice tops where price matters more than long-term durability."
+   },
+   {
+    "q": "Which printing method do you recommend for game-day uniforms?",
+    "a": "For competitive game-day uniforms at any level, we recommend sublimation. The design quality, durability and long-term value justify the investment, and sublimated names and numbers never peel. Screen printing is better kept for simple, budget practice gear."
+   },
+   {
+    "q": "Do sublimated jerseys feel different from screen-printed ones?",
+    "a": "Yes. Sublimated color becomes part of the fiber, so the design adds no weight or texture and the jersey stays light and breathable. Screen-printed ink forms a layer on the surface that you can feel and that can trap heat."
+   },
+   {
+    "q": "How do I get a price for sublimated jerseys?",
+    "a": "Send a quote request with your design ideas, colors and quantities, and we reply with pricing and a free mockup. You can also browse our <a href=\"/sublimated-volleyball-jerseys/\">custom sublimated volleyball jerseys</a> before you request a quote."
+   }
+  ]
+ },
+ "/blog/volleyball-jersey-design-ideas/": {
+  "h2": "More Jersey Design Ideas and Questions",
+  "faqs": [
+   {
+    "q": "Why should jersey colors be tested under gym lighting?",
+    "a": "Much of a modern program's presence lives in photos and video. Colors that pop under gym lighting and against your court produce sharper highlights and social content, which keeps the team looking professional beyond game day."
+   },
+   {
+    "q": "Do bold sublimated designs make jerseys hotter to wear?",
+    "a": "No. Sublimation dyes the design into the fabric with no heavy ink layer on top, so jerseys stay lighter and cooler than ones with layered-on prints. A complex design does not cost players comfort during long matches and hot tournaments."
+   },
+   {
+    "q": "Which accent elements add energy without cluttering a jersey?",
+    "a": "Side panels, shoulder yokes, angled color blocks and subtle background textures all work. Use one or two deliberate elements and let the logo and numbers stay the focal point. A clean design with one standout accent looks far more premium than a busy one."
+   },
+   {
+    "q": "Should I check league number rules before finalizing a design?",
+    "a": "Yes. Some associations set number height or contrast requirements, and building those rules in from the start avoids a last-minute redesign. Confirm the current rules, then keep numbers consistent across the roster with <a href=\"/custom-number-volleyball-jerseys/\">custom number volleyball jerseys</a>."
+   },
+   {
+    "q": "What are the most common volleyball jersey design mistakes?",
+    "a": "The usual mistakes are too many colors, hard-to-read number fonts and trendy elements that overwhelm the team brand. Trends fade, while a clean, confident design lasts for years and reorders well. When in doubt, simpler is usually stronger."
+   },
+   {
+    "q": "How do I keep a jersey design easy to reorder later?",
+    "a": "Stick to a tight palette, legible fonts and consistent placement, and document the colors, fonts and logo files you approve. A disciplined design reorders cleanly, so new players and future seasons match the original set without rebuilding the artwork."
+   }
+  ]
+ },
+ "/blog/volleyball-jersey-materials-explained/": {
+  "h2": "Volleyball Jersey Fabric Questions Answered",
+  "faqs": [
+   {
+    "q": "Why does polyester keep players drier than cotton?",
+    "a": "Polyester does not absorb water the way cotton does. Sweat moves from the skin through the fabric to the outer surface, where it evaporates quickly. Over a long tournament day, that keeps players noticeably drier and more comfortable than natural fibers."
+   },
+   {
+    "q": "Which polyester weight suits warm conditions and high-intensity play?",
+    "a": "Lightweight polyester in the 100 to 140 GSM range suits warm conditions and fast play. Medium weight, 150 to 180 GSM, is standard for most competitive programs, while heavier weights are used for practice jerseys that take rougher handling."
+   },
+   {
+    "q": "Do polyester jerseys shrink or stretch out over time?",
+    "a": "No. Polyester holds its shape and does not stretch out, shrink or pill the way cotton does. A jersey that fits correctly on day one should still fit correctly after two years of regular washing and wear."
+   },
+   {
+    "q": "What does four-way stretch mean in a volleyball jersey?",
+    "a": "Four-way stretch fabric stretches horizontally, vertically and along both diagonals. It suits defensive players who move along the floor often, and setters and liberos whose mechanics need a wide range of shoulder rotation during play."
+   },
+   {
+    "q": "What polyester-to-spandex ratios are common in volleyball jerseys?",
+    "a": "The common blends are 88/12 and 90/10 polyester to spandex. Both add elastic stretch that polyester alone cannot provide. Our compression shirts use a higher spandex ratio for a more pronounced compression effect on long tournament days."
+   },
+   {
+    "q": "Can men's volleyball jerseys use a form-fitting spandex blend?",
+    "a": "Yes. Spandex blends hug the body and are standard for competitive women's jerseys, but the fit is gaining ground in men's volleyball as well. Players who prefer a looser silhouette should say so when the order is placed."
+   },
+   {
+    "q": "Where are mesh panels usually placed on a volleyball jersey?",
+    "a": "Mesh panels typically go on the sides, underarms and back, where heat builds up during play. They can match the base color for a seamless look or use a contrasting team color. Designs in mesh areas are usually kept simpler."
+   },
+   {
+    "q": "What makes true moisture-wicking fabric different from basic polyester?",
+    "a": "Effective moisture-wicking fabrics use micro-channels built into the fabric that pull sweat away from the skin by capillary action. Higher-end fabrics add antimicrobial treatments that limit odor between washes, rather than simply avoiding water absorption."
+   },
+   {
+    "q": "Why should fabric softener never be used on jerseys?",
+    "a": "Fabric softener clogs the moisture-wicking channels, so the jersey stops moving sweat away as well. Wash in cool or warm water with a mild detergent, skip bleach, turn jerseys inside-out and air dry when possible."
+   },
+   {
+    "q": "Which fabric works best for a team with mixed positions?",
+    "a": "Our standard polyester-spandex blend in an athletic cut serves most positions well. Liberos get stretch for floor work, setters get freedom overhead, and hitters and middles get a clean fit. Explore our <a href=\"/volleyball-jerseys/\">custom volleyball jerseys</a> to compare styles."
+   }
+  ]
+ },
+ "/blog/volleyball-practice-gear-essentials/": {
+  "h2": "More Practice Gear Questions From Coaches",
+  "faqs": [
+   {
+    "q": "How does practice gear build team identity early on?",
+    "a": "Coordinated practice kit makes a program look organized from the very first session and sets a professional tone for the season. Players who train in matching team colors develop a stronger sense of belonging long before the first match."
+   },
+   {
+    "q": "How does layering a compression top help in cold gyms?",
+    "a": "A compression top under a practice jersey adds warmth on cool early-morning sessions and can be worn alone once the gym warms up. That lets players adapt to changing temperatures across a season without needing a separate wardrobe."
+   },
+   {
+    "q": "Why should practice shorts match the game-day cut?",
+    "a": "Practicing in the same cut players wear in matches keeps the fit familiar, so nothing feels different on game day. Durable practice pairs also protect the game shorts, and choosing styles that stay in place keeps drills free of distractions."
+   },
+   {
+    "q": "What small essentials round out a team practice kit?",
+    "a": "Beyond jerseys, compression tops, shorts and socks, kneepads, moisture-wicking headbands and a team bag complete the kit. These small items keep a squad organized and looking unified even during routine training sessions."
+   },
+   {
+    "q": "Why is easy care so important for practice tops?",
+    "a": "Practice tops take the heaviest, most repeated use of anything a team owns. Fabric that washes well and holds its shape keeps the kit looking sharp deep into the season instead of looking tired by midseason."
+   },
+   {
+    "q": "Should practice gear be ordered with spares in common sizes?",
+    "a": "Yes. Order accurate sizes plus a few spares in the most common sizes so new players and replacements are covered all season. Browse coordinated <a href=\"/practice-gear/\">volleyball practice gear</a> to build a kit in your team colors."
+   }
+  ]
+ },
+ "/blog/volleyball-uniform-size-guide/": {
+  "h2": "Volleyball Sizing Questions From Coaches and Parents",
+  "faqs": [
+   {
+    "q": "Why are clothing sizes a poor guide for team orders?",
+    "a": "Clothing sizes vary enormously between brands, so a player who wears a Large in one brand may wear a Medium in another. Using them produces a spread of wrong fits, while a chest measurement in inches stays consistent across every manufacturer."
+   },
+   {
+    "q": "How much ease should the tape have when measuring?",
+    "a": "Keep the tape level all the way around the fullest part of the chest with about one inch of ease, not pulled tight and not hanging loose. Record the measurement in inches and match it to the size chart."
+   },
+   {
+    "q": "How accurate does a youth chest measurement need to be?",
+    "a": "Accuracy to the nearest half inch is enough for jersey sizing. Parents can measure at home with a fabric measuring tape, or even a piece of string and a ruler, so there is no need for a professional fitting."
+   },
+   {
+    "q": "Why can't a small child just wear an adult XS?",
+    "a": "Youth jerseys are cut for developing bodies, with shorter torsos, narrower shoulders and different chest-to-length ratios. A 10-year-old with a 34-inch chest fits our YXL, while an adult XS would be much longer in the body and wider at the shoulders."
+   },
+   {
+    "q": "When should a player use the youth size chart?",
+    "a": "Use the youth chart for players under about 14 years old or under 5 feet 2 inches tall. Players at the upper end of youth sizing should be measured against both the youth and adult charts to find the best fit."
+   },
+   {
+    "q": "Why do women's shorts use hip measurements for sizing?",
+    "a": "The hip-to-waist ratio varies more in women's sizing, so hip measurement is usually the primary reference for women's shorts, while men's shorts are sized by waist. Collect both waist and hip measurements from female players and include both on the roster."
+   },
+   {
+    "q": "Do youth volleyball shorts size by waist or hip?",
+    "a": "For youth uniforms, waist measurement is primary for both boys and girls. Our <a href=\"/youth-volleyball-uniforms/\">youth volleyball uniforms</a> have elastic waistbands that allow some adjustment, but an accurate waist measurement still gives the best fit."
+   },
+   {
+    "q": "When is sizing down the right call for a player?",
+    "a": "Size down only when a player specifically wants a compression-style fit. Otherwise, a player between sizes should size up for better freedom during serves, attacks and dives. Note each preference per player on the roster."
+   },
+   {
+    "q": "What columns should a team size roster spreadsheet include?",
+    "a": "Include player name, jersey size, shorts size and notes such as prefers loose fit or compression required. If warm-up suits are part of the order, add jacket and pants sizes to the same sheet and submit it with your quote request."
+   },
+   {
+    "q": "How soon after delivery should fit problems be reported?",
+    "a": "Contact us within 7 days of delivery if a jersey does not fit. Replacement requests are reviewed case by case, but errors caused by inaccurate measurements on the submitted roster are not covered, which is why real measurements matter so much."
+   }
+  ]
+ },
+ "/blog/volleyball-warm-ups-and-team-apparel/": {
+  "h2": "More Questions About Warm-Ups and Apparel",
+  "faqs": [
+   {
+    "q": "Can coordinated warm-ups help a new program look established?",
+    "a": "Yes. A matching warm-up helps a young program punch above its weight, projecting the organization of a much larger operation. That first impression can shape how opponents, officials and even prospective players see the team."
+   },
+   {
+    "q": "How do team hoodies promote a program outside the gym?",
+    "a": "Hoodies get worn around school and town long after practice, so every player in team gear becomes a small, free advertisement for the program. Over a season, that quiet visibility builds recognition in the community."
+   },
+   {
+    "q": "What can a full team apparel line include besides hoodies?",
+    "a": "A full line can include jackets, tees, bags and travel wear alongside warm-ups and hoodies, so every part of the team's presence looks coordinated. See our <a href=\"/team-apparel/\">volleyball team apparel</a> options for pieces that share one design."
+   },
+   {
+    "q": "Why do separate apparel orders sometimes look slightly off in color?",
+    "a": "Pieces ordered at different times can come from different dye lots, which leads to slightly mismatched colors. Ordering apparel as one line means everything arrives on the same timeline and in matching dye lots, keeping the whole range consistent."
+   },
+   {
+    "q": "How does team apparel make tournament travel easier for coaches?",
+    "a": "When everyone knows exactly what to wear and bring, day-of stress drops for coaches and parents. Matching warm-ups, hoodies and bags also help keep a traveling group together and make the squad look calm, prepared and professional."
+   },
+   {
+    "q": "Should we document our apparel design for future additions?",
+    "a": "Yes. Record the colors, logo files, fonts and placements used across your warm-ups and hoodies. When you add jackets or replace a hoodie next season, the new pieces match the existing set and the program keeps one consistent look."
+   }
+  ]
+ },
+ "/blog/womens-volleyball-uniforms-guide/": {
+  "h2": "More Questions About Women's Volleyball Uniforms",
+  "faqs": [
+   {
+    "q": "Why does a well-cut jersey matter for team photos?",
+    "a": "A jersey cut to female proportions sits cleanly on the bench and in team photos, which supports the program's image. When the fit is right, players stop thinking about their uniform and focus entirely on the game in front of them."
+   },
+   {
+    "q": "Which seam types reduce chafing during repeated diving?",
+    "a": "Flatlock and bonded seams are worth asking about, because seam placement is a common source of irritation during repeated diving and sliding. Flat seams paired with four-way stretch fabric keep a uniform comfortable after two hours of play."
+   },
+   {
+    "q": "Why does accurate sizing matter more for fitted uniforms?",
+    "a": "A fitted garment shows fit problems clearly, while loose gear hides them. Collect real body measurements, take waist and hip for shorts, and note whether each player prefers a compression or slightly relaxed fit so the roster reflects what she wants."
+   },
+   {
+    "q": "How does a coordinated set simplify mid-season additions?",
+    "a": "Because colors, trim and sizing are documented as one system, a new player slots straight into the existing kit with no guesswork or mismatched pieces. Reordering a full set next season is just as straightforward."
+   },
+   {
+    "q": "What fabric features keep players comfortable through a five-set match?",
+    "a": "Look for moisture-wicking, breathable performance fabric with four-way stretch that moves with the body. Comfortable fabric is not a luxury, since it directly affects how well players focus and perform when a match goes the distance."
+   },
+   {
+    "q": "How does uniform style affect team confidence on court?",
+    "a": "A uniform players are proud of makes them feel confident, and confident players compete better. A clean design in strong colors, with consistent numbers and branding, turns individuals into a unit. Explore our <a href=\"/women-volleyball-uniforms/\">women's volleyball uniforms</a> for coordinated sets."
+   }
+  ]
+ }
+}

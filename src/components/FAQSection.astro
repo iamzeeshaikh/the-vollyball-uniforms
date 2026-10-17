@@ -10,7 +10,10 @@ interface Props {
   addSchema?: boolean;
 }
 
-const { faqs, title = 'Frequently Asked Questions', addSchema = true } = Astro.props;
+import { withExtras, plainText } from '../lib/page-faqs';
+const { faqs: ownFaqs, title = 'Frequently Asked Questions', addSchema = true } = Astro.props;
+// Extra questions for this route are appended where the page emits its schema.
+const faqs = addSchema ? withExtras(Astro.url.pathname, ownFaqs) : ownFaqs;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -20,7 +23,7 @@ const schema = {
     name: faq.question,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: faq.answer,
+      text: plainText(faq.answer),
     },
   })),
 };
@@ -38,11 +41,11 @@ const schema = {
               <svg class="w-3.5 h-3.5 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </span>
           </summary>
-          <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-50">{faq.answer}</div>
+          <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-50" set:html={faq.answer} />
         </details>
       ))}
     </div>
   </div>
 </section>
 
-{addSchema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+{addSchema && faqs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

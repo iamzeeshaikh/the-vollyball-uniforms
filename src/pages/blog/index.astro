@@ -1,4 +1,6 @@
 ---
+import FAQSection from '../../components/FAQSection.astro';
+import { extraHeading } from '../../lib/page-faqs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTASection from '../../components/CTASection.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
@@ -57,5 +59,6 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Blog' }];
     </div>
   </section>
 
+  <FAQSection faqs={[]} title={extraHeading(Astro.url.pathname)} />
   <CTASection title="Ready to Order Custom Volleyball Uniforms?" subtitle="Put what you've learned into action. Request a free quote and design mockup for your team." />
 </BaseLayout>

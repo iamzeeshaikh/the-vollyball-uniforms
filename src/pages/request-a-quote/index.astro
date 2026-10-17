@@ -1,4 +1,6 @@
 ---
+import FAQSection from '../../components/FAQSection.astro';
+import { extraHeading } from '../../lib/page-faqs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
@@ -81,4 +83,5 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Request a Quote' }]
       </div>
     </div>
   </section>
+  <FAQSection faqs={[]} title={extraHeading(Astro.url.pathname)} />
 </BaseLayout>

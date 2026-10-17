@@ -1,4 +1,6 @@
 ---
+import FAQSection from '../../components/FAQSection.astro';
+import { extraHeading } from '../../lib/page-faqs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CTASection from '../../components/CTASection.astro';
@@ -50,5 +52,6 @@ const schema = {
     </section>
   ))}
 
+  <FAQSection faqs={[]} title={extraHeading(Astro.url.pathname)} />
   <CTASection title="Don't See Your City?" subtitle="We outfit volleyball teams in every corner of the country, not just the cities listed here. Tell us your team and colors for a free quote." />
 </BaseLayout>

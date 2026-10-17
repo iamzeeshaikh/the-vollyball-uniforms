@@ -70,16 +70,16 @@ const sizingFaqs = [
   </section>
 
   <div id="ordering" class="scroll-mt-24">
-    <FAQSection faqs={orderFaqs} title="Ordering Process" />
+    <FAQSection addSchema={false} faqs={orderFaqs} title="Ordering Process" />
   </div>
   <div id="design" class="scroll-mt-24">
-    <FAQSection faqs={designFaqs} title="Design & Customization" />
+    <FAQSection addSchema={false} faqs={designFaqs} title="Design & Customization" />
   </div>
   <div id="products" class="scroll-mt-24">
-    <FAQSection faqs={productFaqs} title="Products & Materials" />
+    <FAQSection addSchema={false} faqs={productFaqs} title="Products & Materials" />
   </div>
   <div id="sizing" class="scroll-mt-24">
-    <FAQSection faqs={sizingFaqs} title="Sizing & Fit" />
+    <FAQSection addSchema={false} faqs={sizingFaqs} title="Sizing & Fit" />
   </div>
 
   <section class="py-12 bg-white">
@@ -94,4 +94,5 @@ const sizingFaqs = [
   </section>
 
   <CTASection title="Ready to Get Started?" subtitle="Request a free quote and design mockup for your volleyball team's uniforms." />
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [...orderFaqs, ...designFaqs, ...productFaqs, ...sizingFaqs].map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) })} />
 </BaseLayout>

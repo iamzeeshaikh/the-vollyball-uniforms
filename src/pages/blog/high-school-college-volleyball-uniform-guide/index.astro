@@ -1,4 +1,6 @@
 ---
+import FAQSection from '../../../components/FAQSection.astro';
+import { extraHeading } from '../../../lib/page-faqs';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import CTASection from '../../../components/CTASection.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
@@ -84,5 +86,6 @@ const schema = {
     </div>
   </article>
 
+  <FAQSection faqs={[]} title={extraHeading(Astro.url.pathname)} />
   <CTASection />
 </BaseLayout>
