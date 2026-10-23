@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Order Received | The Volleyball Uniforms" description="Your volleyball uniform order has been received. We email a free design mockup next, then a PayPal invoice once you approve it." canonical="https://thevolleyballuniforms.com/order-confirmed/" noindex={true}>
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-navy-950 mb-3">Thank you, your order is in</h1>
+      <p class="text-lg">Order reference <strong data-ref>sent by email</strong></p>
+      <p class="mt-3 text-gray-600">We have emailed a copy of your order. Here is what happens next.</p>
+      <ol class="mt-4 list-decimal pl-6 space-y-2 text-gray-700">
+        <li>Our designers prepare your free mockup and email it to you.</li>
+        <li>You approve the design or ask for changes. Nothing is made before you approve.</li>
+        <li>We email a PayPal invoice. Production starts when it is paid: 10–14 business days, or 5–7 with rush.</li>
+        <li>Your uniforms ship free within the US by tracked courier, sorted by player.</li>
+      </ol>
+      <p class="mt-6 text-gray-700">Questions? Call <a class="text-electric-600 underline" href="tel:+12134493746">+1 213-449-3746</a> or email <a class="text-electric-600 underline" href="mailto:Info@thevolleyballuniforms.com">Info@thevolleyballuniforms.com</a> with your order reference.</p>
+      <a href="/volleyball-jerseys/" class="mt-8 inline-flex min-h-[46px] items-center rounded-lg bg-electric-600 px-6 font-bold text-white hover:bg-electric-700">Back to all uniforms</a>
+    </div>
+  </section>
+  <script is:inline>
+    var ref = (new URLSearchParams(location.search).get('ref') || '').replace(/[^A-Z0-9-]/g, '');
+    if (ref) document.querySelector('[data-ref]').textContent = ref;
+  </script>
+</BaseLayout>

@@ -18,10 +18,38 @@ export function offerPrice(product: Product): string {
   return product.price.toFixed(2);
 }
 
-/** "From $32.00" — the visible headline price on the product page. */
+/** "$32.00" — the visible headline price on the product page (owner 2026-10-23: a real
+ * per-item price that can be ordered at checkout, not a "from" figure). */
 export function displayPrice(product: Product): string {
-  return `From $${offerPrice(product)}`;
+  return `$${offerPrice(product)}`;
 }
+
+/** Smallest order the site takes online for a product (FAQ: no minimum; college sets: 6). */
+export function minQty(product: Product): number {
+  return product.slug === 'college-volleyball-uniforms' ? 6 : 1;
+}
+export const MAX_QTY = 500;
+
+/** Payment, shipping and returns, exactly as the policy pages state them (owner-approved 2026-10-23). */
+export const PAYMENT_LINE = 'Pay by PayPal invoice after you approve your free design mockup.';
+export const OFFER_EXTRAS = {
+  itemCondition: 'https://schema.org/NewCondition',
+  shippingDetails: {
+    '@type': 'OfferShippingDetails',
+    shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
+    shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+    deliveryTime: {
+      '@type': 'ShippingDeliveryTime',
+      handlingTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' },
+      transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+    },
+  },
+  hasMerchantReturnPolicy: {
+    '@type': 'MerchantReturnPolicy',
+    applicableCountry: 'US',
+    returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+  },
+};
 
 /**
  * Offer.priceValidUntil, computed as build date + 1 year so it can never go

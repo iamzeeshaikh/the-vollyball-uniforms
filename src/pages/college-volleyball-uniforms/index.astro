@@ -8,7 +8,7 @@ import FAQSection from '../../components/FAQSection.astro';
 import CTASection from '../../components/CTASection.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { products, offerPrice, PRICE_VALID_UNTIL } from '../../data/products';
+import { products, offerPrice, PRICE_VALID_UNTIL, OFFER_EXTRAS } from '../../data/products';
 import ProductPrice from '../../components/ProductPrice.astro';
 
 const product = products.find(p => p.slug === 'college-volleyball-uniforms')!;
@@ -78,6 +78,7 @@ const schema = {
     priceValidUntil: PRICE_VALID_UNTIL,
     url: `https://thevolleyballuniforms.com/${product.slug}/`,
     seller: { '@type': 'Organization', name: 'The Volleyball Uniforms', url: 'https://thevolleyballuniforms.com' },
+    ...OFFER_EXTRAS,
   },
 };
 

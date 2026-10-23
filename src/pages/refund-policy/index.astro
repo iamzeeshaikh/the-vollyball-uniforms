@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Refund Policy' }];
+---
+
+<BaseLayout
+  title="Refund Policy | The Volleyball Uniforms"
+  description="Custom volleyball uniforms are made to order. If we make a mistake, a piece is defective or arrives damaged, tell us within 7 days and we reprint it or refund you."
+  canonical="https://thevolleyballuniforms.com/refund-policy/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl font-extrabold text-navy-950 mb-3">Refund Policy</h1>
+      <p class="text-gray-500 text-sm mb-10">Last updated: October 23, 2026</p>
+
+      <div class="prose-custom">
+        <p>Every jersey and uniform we make is produced for your team from the design you approve. Because of that, our refund policy works differently from a standard retail return policy. Please read it before you place an order.</p>
+
+        <h2>1. Custom Items Are Not Returnable</h2>
+        <p>Custom-made items cannot be returned or exchanged because they carry your team's design, names and numbers. Orders cannot be cancelled once you have approved the design for production.</p>
+
+        <h2>2. When We Reprint or Refund</h2>
+        <p>We put it right at no cost to you when:</p>
+        <ul>
+          <li>The items do not match your approved design because of our error, such as wrong colors, names, numbers or logo placement</li>
+          <li>An item has a manufacturing defect, such as a printing, stitching or fabric fault</li>
+          <li>Your order arrives damaged, or the carrier confirms it lost in transit</li>
+        </ul>
+        <p>In these cases we reprint the affected items free of charge, or refund them if a reprint does not suit you.</p>
+
+        <h2>3. What Is Not Covered</h2>
+        <ul>
+          <li>Errors that were present in the design you approved, such as a misspelled name you signed off on</li>
+          <li>Sizing errors that come from the roster or measurements you submitted</li>
+          <li>Wear from normal use, or damage from washing against the care instructions</li>
+        </ul>
+
+        <h2>4. How to Report a Problem</h2>
+        <p>Contact us within 7 days of delivery with your order details and clear photos of the problem. Email <a href="mailto:Info@thevolleyballuniforms.com">Info@thevolleyballuniforms.com</a> or call <a href="tel:+12134493746">+1 213-449-3746</a>. We may ask you to send an item back so we can inspect it; when the fault is ours, we pay for that shipping.</p>
+
+        <h2>5. How Refunds Are Paid</h2>
+        <p>Orders are paid by PayPal invoice, so approved refunds go back through PayPal to the account that paid, in USD, within 10 business days of approval.</p>
+
+        <h2>6. Contact</h2>
+        <p>Questions about this policy can be sent to <a href="mailto:Info@thevolleyballuniforms.com">Info@thevolleyballuniforms.com</a>. See also our <a href="/shipping-policy/">shipping policy</a> and <a href="/terms-and-conditions/">terms and conditions</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

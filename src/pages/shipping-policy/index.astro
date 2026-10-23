@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Shipping Policy' }];
+---
+
+<BaseLayout
+  title="Shipping Policy | The Volleyball Uniforms"
+  description="Free tracked shipping on every US order. Custom volleyball uniforms are made in 10–14 business days after design approval and arrive in 2–5 business days."
+  canonical="https://thevolleyballuniforms.com/shipping-policy/"
+>
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4"><Breadcrumbs items={breadcrumbs} /></div>
+  </div>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl font-extrabold text-navy-950 mb-3">Shipping Policy</h1>
+      <p class="text-gray-500 text-sm mb-10">Last updated: October 23, 2026</p>
+
+      <div class="prose-custom">
+        <p>Every order from The Volleyball Uniforms is made to order for your team. This page explains where we ship, what shipping costs and how long an order takes from design approval to your door.</p>
+
+        <h2>1. Where We Ship</h2>
+        <p>We are based in New York and ship to addresses in all 50 US states. Orders can go to a school, club or home address, whichever suits your team. For delivery outside the United States, <a href="/request-a-quote/">request a quote</a> with your country and we confirm the shipping cost before you order.</p>
+
+        <h2>2. Shipping Cost</h2>
+        <p>Shipping is free on every order delivered within the United States. The price shown on the product page and at checkout already includes it, with no minimum order value.</p>
+
+        <h2>3. Production Time</h2>
+        <p>Production starts after you approve your design mockup and pay the PayPal invoice we send at that point.</p>
+        <ul>
+          <li>Standard production: 10–14 business days after approval</li>
+          <li>Rush production: 5–7 business days after approval, when you ask for it before approving the design</li>
+        </ul>
+
+        <h2>4. Delivery Time</h2>
+        <p>Orders ship by tracked courier and usually arrive 2–5 business days after dispatch, depending on your location. Very large orders may travel by freight. Delivery times are estimates; we are not responsible for carrier delays once a package is in transit.</p>
+
+        <h2>5. Tracking</h2>
+        <p>You receive tracking details by email as soon as your order leaves our facility. Orders arrive sorted and labeled by player name or number.</p>
+
+        <h2>6. Address Accuracy</h2>
+        <p>Please check the delivery address before you approve your design. If a package is returned because of an incorrect or incomplete address, we contact you to arrange delivery again.</p>
+
+        <h2>7. Damaged or Missing Packages</h2>
+        <p>If your order arrives damaged or a package is marked delivered but has not reached you, tell us within 7 days of delivery with photos where possible. See our <a href="/refund-policy/">refund policy</a> for how we put it right.</p>
+
+        <h2>8. Contact</h2>
+        <p>Questions about shipping: <a href="mailto:Info@thevolleyballuniforms.com">Info@thevolleyballuniforms.com</a> or <a href="tel:+12134493746">+1 213-449-3746</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
