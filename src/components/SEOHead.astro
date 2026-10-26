@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '../data/products';
+import { siteConfig, OFFER_EXTRAS } from '../data/products';
 
 interface Props {
   title: string;
@@ -53,22 +53,14 @@ function enrichProductNode(node: any) {
       url: productUrl,
       ...offers,
       // Shipping details mirror the site's stated policy (FAQ / terms):
-      // 10-14 business day production, 2-5 business day tracked delivery, US market.
+      // 10-14 business day production, tracked delivery to every SHIP_COUNTRIES entry.
       // No shipping price is advertised on the site, so no shippingRate is claimed here.
-      shippingDetails: offers.shippingDetails ?? {
-        '@type': 'OfferShippingDetails',
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' },
-          transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
-        },
-      },
+      shippingDetails: offers.shippingDetails ?? OFFER_EXTRAS.shippingDetails,
       // Terms & Conditions section 6: custom-made products, returns not accepted
       // (defective items replaced free within 7 days of delivery).
       hasMerchantReturnPolicy: offers.hasMerchantReturnPolicy ?? {
         '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'US',
+        applicableCountry: OFFER_EXTRAS.hasMerchantReturnPolicy.applicableCountry,
         returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
         merchantReturnLink: `${siteConfig.url}/terms-and-conditions/`,
       },

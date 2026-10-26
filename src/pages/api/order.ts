@@ -5,14 +5,14 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
-import { products, minQty, MAX_QTY } from '../../data/products';
+import { products, minQty, MAX_QTY, SHIP_COUNTRIES } from '../../data/products';
 import { spamReasons } from '../../data/spam.js';
 
 const SITE = 'https://thevolleyballuniforms.com';
 const MAX_FILE = 4 * 1024 * 1024;
 const ALLOWED_EXT = /\.(pdf|ai|eps|svg|png|jpe?g|zip|csv|xlsx)$/i;
-const FIELDS = ['name', 'email', 'phone', 'company', 'address1', 'address2', 'city', 'region', 'postal', 'notes', 'items', 'ts', 'website'] as const;
-const REQUIRED = ['name', 'email', 'phone', 'address1', 'city', 'region', 'postal'] as const;
+const FIELDS = ['name', 'email', 'phone', 'company', 'address1', 'address2', 'city', 'region', 'postal', 'country', 'notes', 'items', 'ts', 'website'] as const;
+const REQUIRED = ['name', 'email', 'phone', 'address1', 'city', 'postal'] as const;
 const money = (n: number) => `$${n.toFixed(2)}`;
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ').trim();
@@ -43,6 +43,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   try { form = await request.formData(); } catch { return json(400, { ok: false, error: 'Could not read the order' }); }
   const v = Object.fromEntries(FIELDS.map((k) => [k, String(form.get(k) ?? '').trim().slice(0, k === 'items' ? 8000 : 3000)])) as Record<(typeof FIELDS)[number], string>;
   if (REQUIRED.some((k) => !v[k]) || !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(v.email)) return json(422, { ok: false, error: 'Please fill in every required field' });
+  // Old checkout pages sent no country field: those were US-only.
+  const country = SHIP_COUNTRIES.find((c) => c.code === (v.country || 'US'));
+  if (!country) return json(422, { ok: false, error: 'We ship to the US, UK, Canada and Australia; request a quote for other countries' });
+  if (country.code !== 'GB' && !v.region) return json(422, { ok: false, error: 'Please fill in every required field' });
 
   // Never trust the browser's prices: rebuild every line from the catalogue.
   let raw: unknown = [];
@@ -73,7 +77,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const from = { name: import.meta.env.SMTP_FROM_NAME ?? 'The Volleyball Uniforms', address: import.meta.env.SMTP_FROM_EMAIL ?? smtpUser };
 
   const ref = orderRef();
-  const address = [v.address1, v.address2, [v.city, v.region, v.postal].filter(Boolean).join(', '), 'United States'].filter(Boolean).join('\n');
+  const address = [v.address1, v.address2, [v.city, v.region, v.postal].filter(Boolean).join(', '), country.name].filter(Boolean).join('\n');
   const payLine = 'PayPal invoice: send it after the customer approves the design mockup';
   const itemText = lines.map((l) => `- ${l.name}: ${l.qty} x ${money(l.price)} per ${l.unit} = ${money(l.total)}`).join('\n');
   const td = 'style="padding:6px 12px;border-bottom:1px solid #e3e5e8"';
@@ -93,7 +97,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json(502, { ok: false, error: 'We could not send your order' });
   }
 
-  const steps = ['Our designers prepare your free mockup and email it to you.', 'You approve the design or ask for changes. Nothing is made before you approve.', 'We email a PayPal invoice. Production starts when it is paid: 10–14 business days, or 5–7 with rush.', 'Your uniforms ship free within the US by tracked courier.'];
+  const steps = ['Our designers prepare your free mockup and email it to you.', 'You approve the design or ask for changes. Nothing is made before you approve.', 'We email a PayPal invoice. Production starts when it is paid: 10–14 business days, or 5–7 with rush.', `Your uniforms ship free to ${country.name} by tracked courier.`];
   try {
     await mailer.sendMail({
       from, to: { name: oneLine(v.name), address: oneLine(v.email) }, replyTo: 'Info@thevolleyballuniforms.com',

@@ -2,17 +2,17 @@
 // Checkout: lines come from the visitor's browser (localStorage, set by the order box in
 // ProductPrice.astro); prices come from src/data/products.ts and /api/order re-prices them.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { products, minQty, MAX_QTY, PAYMENT_LINE } from '../../data/products';
+import { products, minQty, MAX_QTY, PAYMENT_LINE, SHIP_COUNTRIES } from '../../data/products';
 const catalog = Object.fromEntries(products.map((p) => [p.slug, { t: p.name, p: p.price, u: p.priceUnit, m: minQty(p), i: p.images[0] ?? '' }]));
 const cfg = { catalog, max: MAX_QTY };
 const input = 'w-full rounded-md border border-gray-300 px-3 py-2.5 text-base text-navy-950';
 const label = 'grid gap-1 text-sm font-semibold text-gray-700';
 ---
-<BaseLayout title="Checkout | The Volleyball Uniforms" description="Place your custom volleyball uniform order with free US shipping. Pay by PayPal invoice after you approve your free design mockup." canonical="https://thevolleyballuniforms.com/checkout/" noindex={true}>
+<BaseLayout title="Checkout | The Volleyball Uniforms" description="Place your custom volleyball uniform order with free shipping to the US, UK, Canada and Australia. Pay by PayPal invoice after you approve your free design mockup." canonical="https://thevolleyballuniforms.com/checkout/" noindex={true}>
   <section class="py-12 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4">
       <h1 class="text-3xl md:text-4xl font-extrabold text-navy-950 mb-2">Checkout</h1>
-      <p class="text-gray-600 max-w-3xl">Free shipping in the US. We email a free design mockup first; nothing is made or charged before you approve it. {PAYMENT_LINE}</p>
+      <p class="text-gray-600 max-w-3xl">Free shipping to the US, UK, Canada and Australia. We email a free design mockup first; nothing is made or charged before you approve it. {PAYMENT_LINE}</p>
       <form id="tvu-co-form" novalidate class="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] items-start">
         <div class="grid gap-6">
           <fieldset class="grid gap-4 sm:grid-cols-2 rounded-xl border border-gray-200 bg-white p-5">
@@ -23,13 +23,14 @@ const label = 'grid gap-1 text-sm font-semibold text-gray-700';
             <label class={`${label} sm:col-span-2`}>Team, school or club (optional)<input name="company" autocomplete="organization" maxlength="140" class={input} /></label>
           </fieldset>
           <fieldset class="grid gap-4 sm:grid-cols-2 rounded-xl border border-gray-200 bg-white p-5">
-            <legend class="px-2 font-bold text-navy-950">Shipping address (United States)</legend>
+            <legend class="px-2 font-bold text-navy-950">Shipping address</legend>
+            <label class={`${label} sm:col-span-2`}>Country<select name="country" autocomplete="country" required class={input}>{SHIP_COUNTRIES.map((c) => <option value={c.code}>{c.name}</option>)}</select></label>
             <label class={`${label} sm:col-span-2`}>Address<input name="address1" autocomplete="address-line1" required maxlength="200" class={input} /></label>
             <label class={`${label} sm:col-span-2`}>Apartment, suite (optional)<input name="address2" autocomplete="address-line2" maxlength="200" class={input} /></label>
             <label class={label}>City<input name="city" autocomplete="address-level2" required maxlength="100" class={input} /></label>
-            <label class={label}>State<input name="region" autocomplete="address-level1" required maxlength="60" class={input} /></label>
-            <label class={label}>ZIP code<input name="postal" autocomplete="postal-code" required maxlength="20" class={input} /></label>
-            <p class="text-xs text-gray-500 sm:col-span-2 self-end">Outside the US? <a class="text-electric-600 underline" href="/request-a-quote/">Request a quote</a> with your country.</p>
+            <label class={label}>State, province or county<input name="region" autocomplete="address-level1" maxlength="60" class={input} /></label>
+            <label class={label}>ZIP or postcode<input name="postal" autocomplete="postal-code" required maxlength="20" class={input} /></label>
+            <p class="text-xs text-gray-500 sm:col-span-2 self-end">Shipping somewhere else? <a class="text-electric-600 underline" href="/request-a-quote/">Request a quote</a> with your country.</p>
           </fieldset>
           <fieldset class="grid gap-4 rounded-xl border border-gray-200 bg-white p-5">
             <legend class="px-2 font-bold text-navy-950">Design and roster</legend>

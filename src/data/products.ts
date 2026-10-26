@@ -32,21 +32,33 @@ export const MAX_QTY = 500;
 
 /** Payment, shipping and returns, exactly as the policy pages state them (owner-approved 2026-10-23). */
 export const PAYMENT_LINE = 'Pay by PayPal invoice after you approve your free design mockup.';
+/**
+ * Countries the site ships to, all with free shipping (owner 2026-10-26: "USA, UK, CA, AUS,
+ * ye global site hai"). Schema, the Merchant feed, checkout and /api/order read this list.
+ */
+export const SHIP_COUNTRIES = [
+  { code: 'US', name: 'United States', transit: [2, 5] },
+  { code: 'GB', name: 'United Kingdom', transit: [5, 10] },
+  { code: 'CA', name: 'Canada', transit: [5, 10] },
+  { code: 'AU', name: 'Australia', transit: [5, 10] },
+] as const;
+export const HANDLING_DAYS = [10, 14] as const;
+
 export const OFFER_EXTRAS = {
   itemCondition: 'https://schema.org/NewCondition',
-  shippingDetails: {
+  shippingDetails: SHIP_COUNTRIES.map((c) => ({
     '@type': 'OfferShippingDetails',
     shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
-    shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+    shippingDestination: { '@type': 'DefinedRegion', addressCountry: c.code },
     deliveryTime: {
       '@type': 'ShippingDeliveryTime',
-      handlingTime: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 14, unitCode: 'DAY' },
-      transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+      handlingTime: { '@type': 'QuantitativeValue', minValue: HANDLING_DAYS[0], maxValue: HANDLING_DAYS[1], unitCode: 'DAY' },
+      transitTime: { '@type': 'QuantitativeValue', minValue: c.transit[0], maxValue: c.transit[1], unitCode: 'DAY' },
     },
-  },
+  })),
   hasMerchantReturnPolicy: {
     '@type': 'MerchantReturnPolicy',
-    applicableCountry: 'US',
+    applicableCountry: SHIP_COUNTRIES.map((c) => c.code),
     returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
   },
 };
