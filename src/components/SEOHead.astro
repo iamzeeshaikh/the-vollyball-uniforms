@@ -75,9 +75,36 @@ function enrichProductNode(node: any) {
   };
 }
 
-const schemaList = schema
+const baseList = schema
   ? (Array.isArray(schema) ? schema : [schema]).map(enrichProductNode)
-  : undefined;
+  : [];
+
+// Every indexable page names the business behind it. The homepage passes its own
+// fuller Organization/LocalBusiness node, so only add this one when none is present.
+const hasOrg = baseList.some((n: any) => {
+  const t = n?.['@type'];
+  return t === 'Organization' || (Array.isArray(t) && t.includes('Organization'));
+});
+const orgNode = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/favicon.svg`,
+  telephone: '+12134493746',
+  email: 'Info@thevolleyballuniforms.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '245 W 29th St',
+    addressLocality: 'New York',
+    addressRegion: 'NY',
+    postalCode: '10001',
+    addressCountry: 'US',
+  },
+};
+const schemaList = noindex
+  ? (baseList.length ? baseList : undefined)
+  : (hasOrg ? baseList : [...baseList, orgNode]);
 ---
 
 <title>{fullTitle}</title>

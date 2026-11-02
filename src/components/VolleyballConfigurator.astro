@@ -17,12 +17,12 @@ const groups = [
     label: 'Garment set',
     multi: false,
     options: [
-      { id: 'jersey', label: 'Game jersey', hint: 'Sublimated or cut & sew', price: 32 },
-      { id: 'jersey-shorts', label: 'Jersey + shorts', hint: 'Full match kit', price: 58 },
-      { id: 'long-sleeve', label: 'Long-sleeve jersey', hint: 'Indoor / cooler gyms', price: 38 },
-      { id: 'practice', label: 'Practice jersey', hint: 'Lightweight training top', price: 22 },
-      { id: 'libero', label: 'Libero contrast set', hint: 'Contrast jersey included', price: 62 },
-      { id: 'warmup', label: 'Warm-up suit', hint: 'Jacket and pants', price: 74 },
+      { id: 'jersey', label: 'Game jersey', hint: 'Sublimated or cut & sew', price: 32, img: '/images/women-volleyball-jerseys/1-220.webp' },
+      { id: 'jersey-shorts', label: 'Jersey + shorts', hint: 'Full match kit', price: 58, img: '/images/women-volleyball-uniforms/1-220.webp' },
+      { id: 'long-sleeve', label: 'Long-sleeve jersey', hint: 'Indoor / cooler gyms', price: 38, img: '/images/volleyball-compression-shirts/1-220.webp' },
+      { id: 'practice', label: 'Practice jersey', hint: 'Lightweight training top', price: 22, img: '/images/volleyball-practice-jerseys/1-220.webp' },
+      { id: 'libero', label: 'Libero contrast set', hint: 'Contrast jersey included', price: 62, img: '/images/volleyball-team-kits/1-220.webp' },
+      { id: 'warmup', label: 'Warm-up suit', hint: 'Jacket and pants', price: 74, img: '/images/volleyball-warm-up-suits/1-220.webp' },
     ],
   },
   {
@@ -79,9 +79,9 @@ const groups = [
     label: 'Add-ons',
     multi: true,
     options: [
-      { id: 'shorts', label: 'Matching shorts', hint: 'Same fabric and colours', price: 24 },
-      { id: 'kneepads', label: 'Team knee pads', hint: 'Colour matched', price: 16 },
-      { id: 'socks', label: 'Team socks', hint: 'Custom stripe or colour', price: 8 },
+      { id: 'shorts', label: 'Matching shorts', hint: 'Same fabric and colors', price: 24 },
+      { id: 'kneepads', label: 'Team knee pads', hint: 'Color matched', price: 16 },
+      { id: 'socks', label: 'Team socks', hint: 'Custom stripe or color', price: 8 },
       { id: 'bag', label: 'Player bags', hint: 'Named kit bags', price: 22 },
       { id: 'sample', label: 'Pre-production sample', hint: 'One stitched sample', price: 12 },
       { id: 'rush', label: 'Rush production', hint: 'Priority queue', price: 10 },
@@ -96,10 +96,10 @@ const rosters = [6, 10, 12, 15, 20, 30, 45];
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto mb-10">
       <span class="inline-block text-xs font-bold uppercase tracking-widest text-electric-600 mb-3">
-        Build your kit
+        Step-by-step order form
       </span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-navy-950 mb-3">
-        Customize your volleyball uniforms
+        Design Your Custom Volleyball Uniforms
       </h2>
       <p class="text-gray-600 leading-relaxed">
         Pick your garment, fabric, decoration and roster size. Your specification builds as you go —
@@ -131,6 +131,9 @@ const rosters = [6, 10, 12, 15, 20, 30, 45];
                   data-price={String(option.price ?? 0)}
                   aria-pressed="false"
                 >
+                  {(option as any).img && (
+                    <img src={(option as any).img} alt={`${option.label} volleyball uniform photo`} width="220" height="220" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover rounded-lg mb-2 bg-gray-100" />
+                  )}
                   <span class="block text-sm font-semibold text-navy-950">{option.label}</span>
                   {option.hint && <span class="block text-xs text-gray-500 mt-0.5">{option.hint}</span>}
                 </button>
@@ -178,7 +181,7 @@ const rosters = [6, 10, 12, 15, 20, 30, 45];
             <input type="text" name="team" required placeholder="Team / school *"
               class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
           </div>
-          <input type="text" data-cfg-colours placeholder="Team colours (e.g. navy, gold, white)"
+          <input type="text" data-cfg-colours placeholder="Team colors (e.g. navy, gold, white)"
             class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-electric-500" />
           <textarea data-cfg-notes rows="3" placeholder="Season start, delivery date, or a design you want matched…"
             class="w-full min-w-0 rounded-lg border border-gray-200 px-4 py-3 text-base resize-none focus:outline-none focus:ring-2 focus:ring-electric-500"></textarea>
@@ -360,7 +363,7 @@ const rosters = [6, 10, 12, 15, 20, 30, 45];
           return `${labels[key]}: ${value}`;
         })
         .concat(
-          coloursInput.value ? `Team colours: ${coloursInput.value}` : '',
+          coloursInput.value ? `Team colors: ${coloursInput.value}` : '',
           estimate
             ? `Indicative budget: $${estimate.low.toLocaleString()} – $${estimate.high.toLocaleString()} (about $${estimate.per} per player)`
             : 'Indicative budget: pending review',
