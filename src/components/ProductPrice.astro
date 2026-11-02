@@ -21,8 +21,9 @@ const min = minQty(product);
 
 <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4" id="order">
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-    <span class="text-3xl font-extrabold text-navy-950">{displayPrice(product)}</span>
-    <span class="text-sm font-semibold text-gray-600">per {product.priceUnit}</span>
+    <!-- Per-unit starting price only; no pack or running total in the order box
+         (owner 2026-11-02). The checkout still totals the order. -->
+    <span class="text-2xl font-extrabold text-navy-950">Starting from {displayPrice(product)} per {product.priceUnit}</span>
     <span class="text-sm font-semibold text-green-700">· Free shipping to the US, UK, Canada and Australia</span>
   </div>
   <p class="mt-1.5 text-sm text-gray-500 leading-relaxed">{note ?? `${PAYMENT_LINE} Nothing is made before you approve it.`}</p>
@@ -31,7 +32,6 @@ const min = minQty(product);
       <input type="number" name="qty" value={min} min={min} max={MAX_QTY} step="1" inputmode="numeric" class="w-28 rounded-md border border-gray-300 px-3 py-2.5 text-base text-navy-950" />
     </label>
     <div class="flex flex-wrap items-center gap-3">
-      <span class="text-sm text-gray-600">Total <strong class="text-lg text-navy-950" data-total>{`$${(product.price * min).toFixed(2)}`}</strong></span>
       <input type="hidden" name="add" value={product.slug} />
       <button type="submit" class="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-electric-600 px-6 font-bold text-white hover:bg-electric-700">Add to order</button>
     </div>
@@ -44,10 +44,8 @@ const min = minQty(product);
   const KEY = 'tvu-cart';
   for (const f of document.querySelectorAll<HTMLFormElement>('[data-tvu-order]')) {
     const qty = f.querySelector<HTMLInputElement>('input[name="qty"]')!;
-    const out = f.querySelector<HTMLElement>('[data-total]')!;
     const price = Number(f.dataset.price), min = Number(f.dataset.min), max = Number(f.dataset.max);
     const val = () => Math.min(max, Math.max(min, Math.floor(Number(qty.value) || min)));
-    qty.addEventListener('input', () => { out.textContent = `$${(val() * price).toFixed(2)}`; });
     f.addEventListener('submit', (e) => {
       e.preventDefault();
       const n = val();
