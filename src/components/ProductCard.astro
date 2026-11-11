@@ -7,7 +7,10 @@ interface Props {
   category?: string;
 }
 
+import { products, displayPrice } from '../data/products';
+
 const { name, slug, image, description, category } = Astro.props;
+const product = products.find((p) => p.slug === slug);
 // Every product photo has a 900px WebP rendition next to the JPEG (scripts/optimize-images.mjs).
 const cardImage = image.replace(/\.jpg$/, '-900.webp');
 ---
@@ -33,9 +36,10 @@ const cardImage = image.replace(/\.jpg$/, '-900.webp');
     <div class="p-5">
       <h3 class="font-bold text-navy-950 text-lg mb-2 group-hover:text-electric-600 transition-colors">{name}</h3>
       <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">{description}</p>
+      {product && <p class="text-navy-950 text-sm font-bold mb-3">Starting from {displayPrice(product)} per {product.priceUnit}</p>}
       <div class="flex items-center justify-between">
         <span class="text-electric-600 font-semibold text-sm flex items-center gap-1.5">
-          Get a Quote
+          {product ? 'View & Order' : 'Get a Quote'}
           <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </span>
         <div class="flex items-center gap-1">

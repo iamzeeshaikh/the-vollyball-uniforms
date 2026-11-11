@@ -1,0 +1,36 @@
+---
+// Guarantee seals + "We accept PayPal" mark (sports sites standard: PayPal invoice is the only
+// payment method, so no card logos). Every line matches the policy pages: free shipping to
+// SHIP_COUNTRIES, free mockup before payment, reprint/refund per /refund-policy/.
+interface Props {
+  tone?: 'light' | 'dark';
+}
+const { tone = 'light' } = Astro.props;
+const dark = tone === 'dark';
+const seals = [
+  { t: 'Secure Checkout', s: 'SSL encrypted', d: '<rect x="6" y="11" width="12" height="9" rx="2"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/>' },
+  { t: 'Satisfaction Guarantee', s: 'Free reprint if we get it wrong', d: '<path d="M12 21s7-3.5 7-9V6l-7-3-7 3v6c0 5.5 7 9 7 9z"/><path d="M9 12l2 2 4-4"/>' },
+  { t: 'Free Shipping', s: 'US, UK, CA & AU', d: '<rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>' },
+  { t: 'Free Mockup', s: 'Approve before you pay', d: '<path d="M4 20h4l10-10-4-4L4 16z"/><path d="M13 7l4 4"/>' },
+];
+---
+
+<div class:list={['flex flex-col gap-4', dark ? 'items-center' : 'rounded-lg border border-gray-200 bg-white px-4 py-4']} aria-label="Our guarantees">
+  <div class:list={[dark ? 'flex flex-wrap justify-center gap-x-8 gap-y-4' : 'grid grid-cols-1 sm:grid-cols-2 gap-3']}>
+    {seals.map(({ t, s, d }) => (
+      <div class="flex items-center gap-2.5">
+        <span class:list={['flex h-10 w-10 shrink-0 items-center justify-center rounded-full', dark ? 'bg-gold-500/10 text-gold-400' : 'bg-electric-50 text-electric-600']}>
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={d} />
+        </span>
+        <span class="flex flex-col leading-tight">
+          <strong class:list={['text-sm font-bold', dark ? 'text-white' : 'text-navy-950']}>{t}</strong>
+          <small class:list={['text-xs', dark ? 'text-navy-400' : 'text-gray-500']}>{s}</small>
+        </span>
+      </div>
+    ))}
+  </div>
+  <div class:list={['flex items-center gap-2 text-sm', dark ? 'text-navy-400' : 'text-gray-500']}>
+    <span>We accept</span>
+    <span class="text-lg font-extrabold italic tracking-tight leading-none" role="img" aria-label="PayPal"><span class={dark ? 'text-white' : 'text-[#253b80]'}>Pay</span><span class={dark ? 'text-[#2fb4ff]' : 'text-[#179bd7]'}>Pal</span></span>
+  </div>
+</div>

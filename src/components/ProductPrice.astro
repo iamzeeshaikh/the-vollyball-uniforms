@@ -9,6 +9,7 @@
 // sites rule), sent after the design mockup is approved.
 import type { Product } from '../data/products';
 import { displayPrice, minQty, MAX_QTY, PAYMENT_LINE } from '../data/products';
+import TrustSeals from './TrustSeals.astro';
 
 interface Props {
   product: Product;
@@ -38,6 +39,7 @@ const min = minQty(product);
   </form>
   {min > 1 && <p class="mt-2 text-xs text-gray-500">Minimum {min} {product.priceUnit}s per order.</p>}
   <p class="mt-2 text-xs text-gray-500">Ordering for a whole club or league? <a href="#quote" class="text-electric-600 underline">Ask for team pricing</a>.</p>
+  <div class="mt-4"><TrustSeals /></div>
 </div>
 
 <script>
